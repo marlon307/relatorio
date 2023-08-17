@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 
@@ -27,10 +28,10 @@ namespace DB
         {
             try
             {
-                using (var cmd = DBConnection().CreateCommand())
+                using (var command = DBConnection().CreateCommand())
                 {
-                    cmd.CommandText = "CREATE TABLE IF NOT EXISTS rotas (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(50) NOT NULL)";
-                    cmd.ExecuteNonQuery();
+                    command.CommandText = "CREATE TABLE IF NOT EXISTS rotas (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(50) NOT NULL)";
+                    command.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
@@ -38,18 +39,51 @@ namespace DB
                 throw ex;
             }
         }
-        public static DataTable QuerySelect(String query)
+        public class ConditionWhere
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+
+            public ConditionWhere(string name, string value)
+            {
+                Name = name;
+                Value = value;
+            }
+        }
+
+        public static SQLiteDataReader QuerySelect(string query, List<ConditionWhere> where = null)
         {
             try
             {
-                SQLiteDataAdapter da = null;
-                DataTable dt = new DataTable();
-                using (var cmd = DBConnection().CreateCommand())
+                SQLiteCommand command = new SQLiteCommand(query, DBConnection());
+                if(where != null)
                 {
-                    cmd.CommandText = query;
-                    da = new SQLiteDataAdapter(cmd.CommandText, DBConnection());
-                    da.Fill(dt);
-                    return dt;
+                    foreach (ConditionWhere item in where)
+                    {
+                        command.Parameters.AddWithValue(item.Name, item.Value);
+                    }
+                }
+                command.ExecuteNonQuery();
+                SQLiteDataReader reader = command.ExecuteReader();
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static void QueryInsert(string query, List<ConditionWhere> values)
+        {
+            try
+            {
+                using (var command = DBConnection().CreateCommand())
+                {
+                    command.CommandText = query;
+                    foreach (ConditionWhere item in values)
+                    {
+                        command.Parameters.AddWithValue(item.Name, item.Value);
+                    }
+                    command.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
@@ -57,21 +91,17 @@ namespace DB
                 throw ex;
             }
         }
-        public static void QueryInsert(String query)
+
+
+        public static void QueryDelete(string query, List<ConditionWhere> where)
         {
-            try
+            using (SQLiteCommand command = new SQLiteCommand(query, DBConnection()))
             {
-                DataTable dt = new DataTable();
-                using (var cmd = DBConnection().CreateCommand())
+                foreach (ConditionWhere item in where)
                 {
-                    cmd.CommandText = query;
-                    cmd.Parameters.AddWithValue("@name", "Teste");
-                    cmd.ExecuteNonQuery();
+                    command.Parameters.AddWithValue(item.Name.ToString(), item.Value.ToString());
+                    command.ExecuteNonQuery();
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
     }

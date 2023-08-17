@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+using System.Data.SQLite;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using DB;
+using static DB.SQLiteDB;
 
 namespace start
 {
@@ -33,29 +31,44 @@ namespace start
             public static List<ClassGridRota> ListarRotas()
             {
                 List<ClassGridRota> List = new List<ClassGridRota>();
-                DataTable listRoute = DB.SQLiteDB.QuerySelect("SELECT name FROM rotas;");
+                SQLiteDataReader listRoute = QuerySelect("SELECT name FROM rotas");
+
+                while (listRoute.Read())
+                {
+                    ClassGridRota p = new ClassGridRota()
+                    {
+                        Rota = listRoute["name"].ToString(),
+                    };
+                    List.Add(p);
+                }
                 return List;
             }
             public static void ExcluirItemRota(string Rota)
             {
-                XElement xml = XElement.Load("config.xml");
-                XElement x = xml.Elements().Where(p => p.Attribute("Rota").Value.Equals(Rota.ToString())).First();
-                if (x != null)
+                List<ConditionWhere> whereCondition = new List<ConditionWhere>
                 {
-                    x.Remove();
-                }
-                xml.Save("config.xml"); 
+                    new ConditionWhere("@name", Rota.ToString()),
+                };
+                QueryDelete("DELETE FROM rotas WHERE name=@name", whereCondition);
             }
         }
         private void BttAddRota_Click(object sender, EventArgs e)
         {
-            bool consulta = false;
             if (TbAddRota.Text != "" && TbAddRota.Text.Length > 3)
             {
-               
-                if(consulta == false)
+                List<ConditionWhere> values = new List<ConditionWhere>
                 {
-                    DB.SQLiteDB.QueryInsert("INSERT INTO rotas(name) VALUES(@name)");
+                    new ConditionWhere("@name", TbAddRota.Text.ToUpper()),
+                };
+                SQLiteDataReader listRoute = QuerySelect("SELECT name FROM rotas WHERE name=@name", values);
+                if (!listRoute.Read())
+                {
+                    QueryInsert("INSERT INTO rotas(name) VALUES(@name)", values);
+                    HomeObjects.ComboBoxRota.Items.Add(TbAddRota.Text.ToUpper());
+                    HomeObjects.ComboBoxRota.Refresh();
+                    TbAddRota.Clear();
+                    ListGrid = ClassGridRota.ListarRotas();
+                    ListGridRota.DataSource = ListGrid;
                 }
                 else
                 {
