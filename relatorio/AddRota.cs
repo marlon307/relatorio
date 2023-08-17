@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using DB;
 
 namespace start
 {
@@ -32,15 +33,7 @@ namespace start
             public static List<ClassGridRota> ListarRotas()
             {
                 List<ClassGridRota> List = new List<ClassGridRota>();
-                XElement xml = XElement.Load("config.xml");
-                foreach (XElement x in xml.Elements())
-                {
-                    ClassGridRota p = new ClassGridRota()
-                    {
-                        Rota = x.Attribute("Rota").Value,
-                    };
-                    List.Add(p);
-                }
+                DataTable listRoute = DB.SQLiteDB.QuerySelect("SELECT name FROM rotas;");
                 return List;
             }
             public static void ExcluirItemRota(string Rota)
@@ -59,27 +52,10 @@ namespace start
             bool consulta = false;
             if (TbAddRota.Text != "" && TbAddRota.Text.Length > 3)
             {
-                XElement xml = XElement.Load("config.xml");
-
-                foreach (XElement d in xml.Elements("cfgRotas"))
-                {
-                    if (TbAddRota.Text.ToUpper() == d.Attribute("Rota").Value)
-                    {
-                        consulta = true;
-                        break;
-                    }
-                }
+               
                 if(consulta == false)
                 {
-                    XElement x = new XElement("cfgRotas");
-                    x.Add(new XAttribute("Rota", TbAddRota.Text.ToUpper()));
-                    xml.Add(x);
-                    xml.Save(@"config.xml");
-                    HomeObjects.ComboBoxRota.Items.Add(TbAddRota.Text.ToUpper());
-                    HomeObjects.ComboBoxRota.Refresh();
-                    TbAddRota.Clear();
-                    ListGrid = ClassGridRota.ListarRotas();
-                    ListGridRota.DataSource = ListGrid;
+                    DB.SQLiteDB.QueryInsert("INSERT INTO rotas(name) VALUES(@name)");
                 }
                 else
                 {
