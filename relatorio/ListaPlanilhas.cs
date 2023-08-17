@@ -61,7 +61,7 @@ namespace start
                 TbLpSob.Clear();
                 TbLpObs.Clear();
                 ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
-                ObjectsHome.ListGridHome.DataSource = ListGridHm;
+               // ObjectsHome.ListGridHome.DataSource = ListGridHm;
             }
         }
         private void BtnLpOk_Click(object sender, EventArgs e)
@@ -88,7 +88,7 @@ namespace start
                     ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
                     LpGrid.DataSource = ListGridLp;
                     ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
-                    ObjectsHome.ListGridHome.DataSource = ListGridHm;
+                  //  ObjectsHome.ListGridHome.DataSource = ListGridHm;
                 }
             }
             this.Close();
@@ -117,7 +117,7 @@ namespace start
                     ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
                     LpGrid.DataSource = ListGridLp;
                     ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
-                    ObjectsHome.ListGridHome.DataSource = ListGridHm;
+                   // ObjectsHome.ListGridHome.DataSource = ListGridHm;
                 }
             }
         }
@@ -144,12 +144,12 @@ namespace start
         }
         private void TbxsEditPlan(object sender, EventArgs e)
         {
-            TexboxFormat.Moeda(ref TbLpDep);
-            TexboxFormat.Moeda(ref TbLpGast);
-            TexboxFormat.Moeda(ref TbLpCheq);
-            TexboxFormat.Moeda(ref TbLpMoed);
-            TexboxFormat.Moeda(ref TbLpFalt);
-            TexboxFormat.Moeda(ref TbLpSob);
+           // TexboxFormat.Moeda(ref TbLpDep);
+           // TexboxFormat.Moeda(ref TbLpGast);
+           // TexboxFormat.Moeda(ref TbLpCheq);
+           // TexboxFormat.Moeda(ref TbLpMoed);
+           // TexboxFormat.Moeda(ref TbLpFalt);
+           // TexboxFormat.Moeda(ref TbLpSob);
             Calculo();
         }
         private void Calculo()

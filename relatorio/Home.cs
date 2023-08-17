@@ -38,21 +38,21 @@ namespace start
                 while (listRoute.Read())
                 {
                     AddRotaList = listRoute["name"].ToString();
-                    ComboBoxRota.Items.Add(AddRotaList);
+                    ComboBoxRoute.Items.Add(AddRotaList);
                 }
             }
         }
         private void Calculo()
         {
-            if (TbGasto.Text != "" && TbDeposito.Text != "" && TbCheque.Text != "" &&
-                TbMoeda.Text != "" && TbSobra.Text != "" && TbFalta.Text != "")
+            if (TbSpent.Text != "" && TbDeposit.Text != "" && TbCheque.Text != "" &&
+                TbCoin.Text != "" && TbLeftOver.Text != "" && TbLack.Text != "")
             {
-                n1 = Convert.ToDouble(TbDeposito.Text.Replace("R$ ", ""));
-                n2 = Convert.ToDouble(TbGasto.Text.Replace("R$ ", ""));
+                n1 = Convert.ToDouble(TbDeposit.Text.Replace("R$ ", ""));
+                n2 = Convert.ToDouble(TbSpent.Text.Replace("R$ ", ""));
                 n3 = Convert.ToDouble(TbCheque.Text.Replace("R$ ", ""));
-                n4 = Convert.ToDouble(TbMoeda.Text.Replace("R$ ", ""));
-                n5 = Convert.ToDouble(TbSobra.Text.Replace("R$ ", ""));
-                n6 = Convert.ToDouble(TbFalta.Text.Replace("R$ ", ""));
+                n4 = Convert.ToDouble(TbCoin.Text.Replace("R$ ", ""));
+                n5 = Convert.ToDouble(TbLeftOver.Text.Replace("R$ ", ""));
+                n6 = Convert.ToDouble(TbLack.Text.Replace("R$ ", ""));
 
                 total = n1 + n2 + n3 + n4 - n5 + n6;
 
@@ -95,13 +95,13 @@ namespace start
         {
            bool consulta = false;
 
-            if (ComboBoxRota.Text != "")
+            if (ComboBoxRoute.Text != "")
             {
                 XElement xml = XElement.Load(@"cache\" + DateProprie + ".xml");
 
                 foreach (XElement x in xml.Elements("Planilha"))
                 {
-                    if (ComboBoxRota.Text == x.Attribute("Rota").Value)
+                    if (ComboBoxRoute.Text == x.Attribute("Rota").Value)
                     {
                         consulta = true;
                         break;
@@ -109,73 +109,17 @@ namespace start
                 }
                 if (consulta == false)
                 {
-                    XElement x = new XElement("Planilha");
-                    x.Add(new XAttribute("Rota", ComboBoxRota.Text));
-                    x.Add(new XAttribute("Funcionario", TbFuncionario.Text.ToUpper())); TbFuncionario.Clear();
-                    x.Add(new XAttribute("SaidaP", TbSaida.Text)); TbSaida.Clear();
-                    x.Add(new XAttribute("VoltaP", TbVolta.Text)); TbVolta.Clear();
-                    x.Add(new XAttribute("Deposito", TbDeposito.Text)); TbDeposito.Clear();
-                    x.Add(new XAttribute("Gasto", TbGasto.Text)); TbGasto.Clear();
-                    x.Add(new XAttribute("Cheque", TbCheque.Text)); TbCheque.Clear();
-                    x.Add(new XAttribute("Moeda", TbMoeda.Text)); TbMoeda.Clear();
-                    x.Add(new XAttribute("Falta", TbFalta.Text)); TbFalta.Clear();
-                    x.Add(new XAttribute("Sobra", TbSobra.Text)); TbSobra.Clear();
-                    x.Add(new XAttribute("Observacoes", TbObservacao.Text.ToUpper())); TbObservacao.Clear();
-                    xml.Add(x);
-                    xml.Save(@"cache\" + DateProprie + ".xml");
+                    
                     ListGrid = ClassGridLpHome.ListaRelatorio(DateProprie);
-                    ListGridHome.DataSource = ListGrid;
-                //-------------http://www.linhadecodigo.com.br/artigo/3449/manipulando-arquivos-xml-em-csharp.aspx Estudo XML-------------------*/
-
-                //https://social.msdn.microsoft.com/Forums/pt-BR/user/threads?user=tayler0009
-
-                /*     XmlDocument xml = new XmlDocument();
-                     
-                     xml.Load(@"cache\" + DateProprie + ".xml");
-                     //your customization here
-                     XmlNode node = xml.GetElementsByTagName("Planilha")[0];
-
-                     XmlElement x = node as XmlElement;
-                     x.SetAttribute("Rota", ComboBoxRota.Text.ToUpper());
-                     x.SetAttribute("Funcionario", TbFuncionario.Text.ToUpper());
-                     x.SetAttribute("SaidaP", TbSaida.Text);
-                     x.SetAttribute("VoltaP", TbVolta.Text);
-                     x.SetAttribute("Deposito", TbDeposito.Text);
-                     x.SetAttribute("Gasto", TbGasto.Text);
-                     x.SetAttribute("Cheque", TbCheque.Text);
-                     x.SetAttribute("Moeda", TbMoeda.Text);
-                     x.SetAttribute("Falta", TbFalta.Text);
-                     x.SetAttribute("Sobra", TbSobra.Text);
-                     x.SetAttribute("Observacoes", TbObservacao.Text.ToUpper());
-                     xml.Save(@"cache\" + DateProprie + ".xml");*/
+                    // ListGridHome.DataSource = ListGrid;
                 }
             }
         }
         private void DateTimeCx_ValueChanged(object sender, EventArgs e)//Selecionar Data para o nome do arquivo
-        {   
+        {
             DateProprie = DateTimeCx.Text.Replace("/", "-");
         }
-        private void LabelsHover(object sender, EventArgs e)
-        {
 
-        }
-        private void MouseHoverCxEdit(object sender, EventArgs e)
-        {
-            if (LbLegenEditPlan.Visible == false)
-            {
-                if(ListGridHome.SelectedRows.Count > 0)
-                {
-                    LbLegenEditPlan.Visible = true;
-                }
-            }
-        }
-        private void MouseLeavCxEdit(object sender, EventArgs e)
-        {
-            if(LbLegenEditPlan.Visible == true)
-            {
-                LbLegenEditPlan.Visible = false;
-            }
-        }
         private void ListarRel_Click(object sender, EventArgs e)
         {
             ListRelatorios FormRl = new ListRelatorios();
@@ -190,45 +134,29 @@ namespace start
             FormCfg.MetroStyleCfg.Style = (MetroColorStyle)StyleFoms;
             FormCfg.ShowDialog();
         }
-        private void ListGridHome_CellDoubleClick(object sender, DataGridViewCellEventArgs e) //Vai abrir outra aba para excluir ou editar as planilhas
-        {
-            if (ListGridHome.SelectedRows.Count > 0)
-            {
-                int indice = ListGridHome.SelectedRows[0].Index;
-                VlueIndexGrid = indice;
-                ListaPlanilhas FormLp = new ListaPlanilhas(this);
-                FormLp.StyleManegerLplan.Theme = (MetroThemeStyle)ThemeForm;
-                FormLp.StyleManegerLplan.Style = (MetroColorStyle)StyleFoms;
-                FormLp.ShowDialog();
-            }
-        }
+
         private void LinkAddRota_Click(object sender, EventArgs e)//Vai abrir uma apara para adicionar mais Rotas
         {
-            if (ListGridHome.SelectedRows.Count >= 0)
-            { 
-                AddRota FormRota = new AddRota(this);
-                FormRota.StyleMangerAddRot.Theme = (MetroThemeStyle)ThemeForm;
-                FormRota.StyleMangerAddRot.Style = (MetroColorStyle)StyleFoms;
-                FormRota.ShowDialog();
-            }
+            AddRota FormRout = new AddRota(this);
+            FormRout.ShowDialog();
         }
         private void OnClickTbRel(object sender, EventArgs e)//------------------Formatacoes no conjunto de texbox Relatorio-----HOME------------
         {
-            TbDeposito.Select(TbDeposito.Text.Length, 0);//Vai colocar o cursor sempre no final
-            TbGasto.Select(TbGasto.Text.Length, 0);
+            TbDeposit.Select(TbDeposit.Text.Length, 0);//Vai colocar o cursor sempre no final
+            TbSpent.Select(TbSpent.Text.Length, 0);
             TbCheque.Select(TbCheque.Text.Length, 0);
-            TbMoeda.Select(TbMoeda.Text.Length, 0);
-            TbFalta.Select(TbFalta.Text.Length, 0);
-            TbSobra.Select(TbSobra.Text.Length, 0);
+            TbCoin.Select(TbCoin.Text.Length, 0);
+            TbLack.Select(TbLack.Text.Length, 0);
+            TbLeftOver.Select(TbLeftOver.Text.Length, 0);
         }
         private void KeyPressTbRel(object sender, KeyPressEventArgs e)//Sao as texbox TbSaida TbVolta TbDeposito TbGasto TbCheque TbMoeda TbFalta TbSobra
         {
-            TbDeposito.Select(TbDeposito.Text.Length, 0);//Vai colocar o cursor sempre no final
-            TbGasto.Select(TbGasto.Text.Length, 0);
+            TbDeposit.Select(TbDeposit.Text.Length, 0);//Vai colocar o cursor sempre no final
+            TbSpent.Select(TbSpent.Text.Length, 0);
             TbCheque.Select(TbCheque.Text.Length, 0);
-            TbMoeda.Select(TbMoeda.Text.Length, 0);
-            TbFalta.Select(TbFalta.Text.Length, 0);
-            TbSobra.Select(TbSobra.Text.Length, 0);
+            TbCoin.Select(TbCoin.Text.Length, 0);
+            TbLack.Select(TbLack.Text.Length, 0);
+            TbLeftOver.Select(TbLeftOver.Text.Length, 0);
             
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)//Proibe digitacao de letras
             {
@@ -238,12 +166,12 @@ namespace start
         private void TbxMoedFormat(object sender, EventArgs e)
         {
             Calculo();
-            TexboxFormat.Moeda(ref TbDeposito);
-            TexboxFormat.Moeda(ref TbGasto);
+            TexboxFormat.Moeda(ref TbDeposit);
+            TexboxFormat.Moeda(ref TbLack);
             TexboxFormat.Moeda(ref TbCheque);
-            TexboxFormat.Moeda(ref TbMoeda);
-            TexboxFormat.Moeda(ref TbFalta);
-            TexboxFormat.Moeda(ref TbSobra);
+            TexboxFormat.Moeda(ref TbCoin);
+            TexboxFormat.Moeda(ref TbLack);
+            TexboxFormat.Moeda(ref TbLeftOver);
         }
         private void KeyDownRel(object sender, KeyEventArgs e)//Sao as texbox TbDeposito TbGasto TbCheque TbMoeda TbFalta TbSobra
         {
@@ -254,26 +182,3 @@ namespace start
         }
     }
 }
-/* private void metroButton1_Click(object sender, EventArgs e)
-{
-   DLL_CLASS_CNPJ.CNPJ cnpj = new DLL_CLASS_CNPJ.CNPJ();
-   cnpj.mForm(TbCPFCNPJ.Text, "");//33000167000101
-   TbNameF.Text = DLL_CLASS_CNPJ.InfoCNPJ.NomeFantasia;
-   TbRasaoS.Text = DLL_CLASS_CNPJ.InfoCNPJ.RazaoSocial;
-   TbNumero.Text = DLL_CLASS_CNPJ.InfoCNPJ.EnderecoNumero;
-   TbComplento.Text = DLL_CLASS_CNPJ.InfoCNPJ.EnderecoComplemento;
-   TbCep.Text = DLL_CLASS_CNPJ.InfoCNPJ.EnderecoCEP;
-   TbEmail.Text = DLL_CLASS_CNPJ.InfoCNPJ.Email;
-}*/
-/*Listar arquivos relatorio ex
-
-DirectoryInfo diretorio = new DirectoryInfo(@"cache");
-
-FileInfo[] Arquivos = diretorio.GetFiles();
-
-foreach (FileInfo arquivo in Arquivos)
-{
-
-metroComboBox1.Items.Add(arquivo.Name.Replace(".xml", ""));
-
-}*/

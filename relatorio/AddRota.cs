@@ -8,14 +8,14 @@ namespace start
 {
     public partial class AddRota : MetroFramework.Forms.MetroForm
     {
-        Home HomeObjects;
+        private readonly Home HomeObjects;
         private List<ClassGridRota> ListGrid;
 
-        public AddRota(Home frm1)
+        public AddRota(Home FormHome)
         { 
             InitializeComponent();
             this.StyleManager = StyleMangerAddRot;
-            HomeObjects = frm1;
+            HomeObjects = FormHome;
             ListGrid = ClassGridRota.ListarRotas();
             ListGridRota.DataSource = ListGrid;
         }
@@ -64,8 +64,9 @@ namespace start
                 if (!listRoute.Read())
                 {
                     QueryInsert("INSERT INTO rotas(name) VALUES(@name)", values);
-                    HomeObjects.ComboBoxRota.Items.Add(TbAddRota.Text.ToUpper());
-                    HomeObjects.ComboBoxRota.Refresh();
+                    // HomeObjects.ComboBoxRota.Items.Add(TbAddRota.Text.ToUpper());
+                    HomeObjects.ComboBoxRoute.Items.Add(TbAddRota.Text.ToUpper());
+                    HomeObjects.ComboBoxRoute.Refresh();
                     TbAddRota.Clear();
                     ListGrid = ClassGridRota.ListarRotas();
                     ListGridRota.DataSource = ListGrid;
@@ -94,8 +95,8 @@ namespace start
                 ClassGridRota.ExcluirItemRota(ListGrid[indice].Rota);
                 ListGrid = ClassGridRota.ListarRotas();
                 ListGridRota.DataSource = ListGrid;
-                HomeObjects.ComboBoxRota.Items.RemoveAt(indice);
-                HomeObjects.ComboBoxRota.Refresh();
+                HomeObjects.ComboBoxRoute.Items.RemoveAt(indice);
+                HomeObjects.ComboBoxRoute.Refresh();
             }
         }
     }

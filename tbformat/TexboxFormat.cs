@@ -1,11 +1,11 @@
 ﻿using System;
-using MetroFramework.Controls;
+using System.Windows.Forms;
 
 namespace format
 {
     public class TexboxFormat
     {
-        public static void Moeda(ref MetroTextBox txt)
+        public static void Moeda(ref TextBox txt)
         {
             try
             {
@@ -20,7 +20,9 @@ namespace format
                 txt.Text = string.Format("{0:C}", v);
                 txt.SelectionStart = txt.Text.Length;
             }
-            catch (Exception) { }
+            catch (Exception) {
+                throw new Exception();
+            }
         }
     }
 }
