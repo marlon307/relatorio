@@ -1,17 +1,19 @@
 ﻿using System;
-using MetroFramework.Controls;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace format
 {
     public class TexboxFormat
     {
-        public static void Moeda(ref MetroTextBox txt)
+        public static void Moeda(ref TextBox txt)
         {
             try
             {
                 string n = string.Empty;
                 double v = 0;
                 n = txt.Text.Replace("R$", "").Replace(".", "").Replace(",", "");
+                // n = Regex.Match(txt.Text, @"\d+\.*\d*").Value;
                 if (n.Equals("")) n = "";
                 n = n.PadLeft(3, '0');
                 if (n.Length > 3 & n.Substring(0, 1) == "0")
@@ -20,7 +22,9 @@ namespace format
                 txt.Text = string.Format("{0:C}", v);
                 txt.SelectionStart = txt.Text.Length;
             }
-            catch (Exception) { }
+            catch (Exception) {
+                throw new Exception();
+            }
         }
     }
 }
