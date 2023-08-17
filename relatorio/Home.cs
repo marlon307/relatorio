@@ -30,12 +30,15 @@ namespace start
             DateProprie = DateTime.Now.ToString("dd-MM-yyyy");
 
             //Carregar A lista de Rostas 
-            XElement xml = XElement.Load("config.xml");
-            foreach (XElement x in xml.Elements())
-            {
-                AddRotaList = x.Attribute("Rota").Value;
-                ComboBoxRota.Items.Add(AddRotaList);
-            }
+            //if(File.Exists("config.xml"))
+            //{
+              //  XElement xml = XElement.Load("config.xml");
+                //foreach (XElement x in xml.Elements())
+                //{
+                  //  AddRotaList = x.Attribute("Rota").Value;
+                    //ComboBoxRota.Items.Add(AddRotaList);
+               // }
+            //}
         }
         private void Calculo()
         {

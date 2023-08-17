@@ -7,10 +7,10 @@ namespace format
     {
         public static void Moeda(ref MetroTextBox txt)
         {
-            string n = string.Empty;
-            double v = 0;
             try
             {
+                string n = string.Empty;
+                double v = 0;
                 n = txt.Text.Replace("R$", "").Replace(".", "").Replace(",", "");
                 if (n.Equals("")) n = "";
                 n = n.PadLeft(3, '0');
@@ -22,10 +22,5 @@ namespace format
             }
             catch (Exception) { }
         }
-        public static void ThemeForAll()
-        {
-
-        }
-
     }
 }
