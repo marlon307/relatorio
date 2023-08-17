@@ -7,6 +7,8 @@ using HomeClass;
 using format;
 using MetroFramework.Forms;
 using MetroFramework;
+using System.Data.SQLite;
+using static DB.SQLiteDB;
 
 namespace start
 {
@@ -30,15 +32,15 @@ namespace start
             DateProprie = DateTime.Now.ToString("dd-MM-yyyy");
 
             //Carregar A lista de Rostas 
-            //if(File.Exists("config.xml"))
-            //{
-              //  XElement xml = XElement.Load("config.xml");
-                //foreach (XElement x in xml.Elements())
-                //{
-                  //  AddRotaList = x.Attribute("Rota").Value;
-                    //ComboBoxRota.Items.Add(AddRotaList);
-               // }
-            //}
+            if(File.Exists("database.db"))
+            {
+                SQLiteDataReader listRoute = QuerySelect("SELECT name FROM rotas");
+                while (listRoute.Read())
+                {
+                    AddRotaList = listRoute["name"].ToString();
+                    ComboBoxRota.Items.Add(AddRotaList);
+                }
+            }
         }
         private void Calculo()
         {
