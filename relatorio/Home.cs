@@ -5,14 +5,12 @@ using System.Xml.Linq;
 using System.IO;
 using HomeClass;
 using format;
-using MetroFramework.Forms;
-using MetroFramework;
 using System.Data.SQLite;
 using static DB.SQLiteDB;
 
 namespace start
 {
-    public partial class Home : MetroForm
+    public partial class Home : Form
     {
         //Declaracao variaveis
         double n1, n2, n3, n4, n5, n6, total;
@@ -26,8 +24,6 @@ namespace start
         public Home()
         {
             InitializeComponent();
-
-            this.StyleManager = MetroStyleManager;
 
             DateProprie = DateTime.Now.ToString("dd-MM-yyyy");
 
@@ -51,45 +47,28 @@ namespace start
                 n2 = Convert.ToDouble(TbSpent.Text.Replace("R$ ", ""));
                 n3 = Convert.ToDouble(TbCheque.Text.Replace("R$ ", ""));
                 n4 = Convert.ToDouble(TbCoin.Text.Replace("R$ ", ""));
-                n5 = Convert.ToDouble(TbLeftOver.Text.Replace("R$ ", ""));
-                n6 = Convert.ToDouble(TbLack.Text.Replace("R$ ", ""));
+                n5 = Convert.ToDouble(TbLack.Text.Replace("R$ ", ""));
+                n6 = Convert.ToDouble(TbLeftOver.Text.Replace("R$ ", ""));
 
                 total = n1 + n2 + n3 + n4 - n5 + n6;
 
                 TbTotal.Text = string.Format("{0:C}", total);
             }
         }
-        private void TbBCep(object sender, EventArgs e)
-        {
-            if (TbCep.Text.Length > 7)
-            {
-                try
-                {
-                    CEP cep = new CEP(TbCep.Text);
-                    TbRua.Text = cep.logradouro.ToUpper();
-                    TbBairro.Text = cep.bairro.ToUpper();
-                    TbCidade.Text = cep.localidade.ToUpper();
-                    TbEstado.Text = cep.uf.ToUpper();
-                }
-                catch (Exception) { }
-            }
-        }
         private void BtnLancar_Click(object sender, EventArgs e)
         {
-            string nomeArquivo = @"cache\" + DateProprie + ".xml";
-
-            if (!File.Exists(nomeArquivo))
-            {
-                XDocument xml = new XDocument(new XDeclaration("1.0", "utf-8", ""),new XElement("Xml",
-                new XElement("Relatorio", new XElement("NotasAReceber"),new XElement("RotaValue"), new XElement("CtrlEstoque"),
-                new XElement("Planilhas", new XElement("Planilha")))));//Cria um novo arquivo XML
-                xml.Save(nomeArquivo);
-                CarregarRelatorio();
-            }
-            else
-            {
-                CarregarRelatorio();
-            }
+            ComboBoxRoute.Text = null;
+            TbEmployee.Text = null;
+            TbExit.Text = null;
+            TbBack.Text = null;
+            TbDeposit.Text = "R$ 0,00";
+            TbSpent.Text = "R$ 0,00";
+            TbCheque.Text = "R$ 0,00";
+            TbCoin.Text = "R$ 0,00";
+            TbLack.Text = "R$ 0,00";
+            TbLeftOver.Text = "R$ 0,00";
+            TbComments.Text = null;
+            ComboBoxRoute.Focus();
         }
         private void CarregarRelatorio ()
         {
@@ -123,15 +102,11 @@ namespace start
         private void ListarRel_Click(object sender, EventArgs e)
         {
             ListRelatorios FormRl = new ListRelatorios();
-            FormRl.StyleMagerRf.Theme = (MetroThemeStyle)ThemeForm;
-            FormRl.StyleMagerRf.Style = (MetroColorStyle)StyleFoms;
             FormRl.ShowDialog();
         }
         private void MCfgs_Click(object sender, EventArgs e)
         {   
             Configuracoes FormCfg = new Configuracoes(this);
-            FormCfg.MetroStyleCfg.Theme = (MetroThemeStyle)ThemeForm;
-            FormCfg.MetroStyleCfg.Style = (MetroColorStyle)StyleFoms;
             FormCfg.ShowDialog();
         }
 
@@ -167,7 +142,7 @@ namespace start
         {
             Calculo();
             TexboxFormat.Moeda(ref TbDeposit);
-            TexboxFormat.Moeda(ref TbLack);
+            TexboxFormat.Moeda(ref TbSpent);
             TexboxFormat.Moeda(ref TbCheque);
             TexboxFormat.Moeda(ref TbCoin);
             TexboxFormat.Moeda(ref TbLack);
