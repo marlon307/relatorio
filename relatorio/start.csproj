@@ -125,6 +125,7 @@
       <DependentUpon>AddRota.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\ClassGridLpEtq.cs" />
+    <Compile Include="Class\RouteManeger.cs" />
     <Compile Include="Configuracoes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,7 +187,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
-    <None Include="CNPJ.tlb" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\Correios.Net.Address.datasource" />

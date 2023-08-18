@@ -29,63 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.TbAddRota = new MetroFramework.Controls.MetroTextBox();
-            this.BttAddRota = new MetroFramework.Controls.MetroButton();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BttOKAddR = new MetroFramework.Controls.MetroButton();
-            this.ListGridRota = new MetroFramework.Controls.MetroGrid();
-            this.Rota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StyleMangerAddRot = new MetroFramework.Components.MetroStyleManager(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.ListGridRota)).BeginInit();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TbAddRota = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ListGridRota = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.StyleMangerAddRot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListGridRota)).BeginInit();
             this.SuspendLayout();
-            // 
-            // TbAddRota
-            // 
-            // 
-            // 
-            // 
-            this.TbAddRota.CustomButton.Image = null;
-            this.TbAddRota.CustomButton.Location = new System.Drawing.Point(301, 1);
-            this.TbAddRota.CustomButton.Name = "";
-            this.TbAddRota.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.TbAddRota.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.TbAddRota.CustomButton.TabIndex = 1;
-            this.TbAddRota.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.TbAddRota.CustomButton.UseSelectable = true;
-            this.TbAddRota.CustomButton.Visible = false;
-            this.TbAddRota.Lines = new string[0];
-            this.TbAddRota.Location = new System.Drawing.Point(23, 63);
-            this.TbAddRota.MaxLength = 32767;
-            this.TbAddRota.Name = "TbAddRota";
-            this.TbAddRota.PasswordChar = '\0';
-            this.TbAddRota.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.TbAddRota.SelectedText = "";
-            this.TbAddRota.SelectionLength = 0;
-            this.TbAddRota.SelectionStart = 0;
-            this.TbAddRota.ShortcutsEnabled = true;
-            this.TbAddRota.Size = new System.Drawing.Size(323, 23);
-            this.TbAddRota.TabIndex = 0;
-            this.TbAddRota.UseSelectable = true;
-            this.TbAddRota.WaterMark = "DIGITE AQUI UM NOME PARA ROTA";
-            this.TbAddRota.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.TbAddRota.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // BttAddRota
-            // 
-            this.BttAddRota.Location = new System.Drawing.Point(352, 63);
-            this.BttAddRota.Name = "BttAddRota";
-            this.BttAddRota.Size = new System.Drawing.Size(75, 23);
-            this.BttAddRota.TabIndex = 1;
-            this.BttAddRota.Text = "ADICIONAR";
-            this.BttAddRota.UseSelectable = true;
-            this.BttAddRota.Click += new System.EventHandler(this.BttAddRota_Click);
             // 
             // BttOKAddR
             // 
-            this.BttOKAddR.Location = new System.Drawing.Point(23, 266);
+            this.BttOKAddR.Location = new System.Drawing.Point(23, 352);
             this.BttOKAddR.Name = "BttOKAddR";
             this.BttOKAddR.Size = new System.Drawing.Size(75, 23);
             this.BttOKAddR.TabIndex = 2;
@@ -93,81 +51,87 @@
             this.BttOKAddR.UseSelectable = true;
             this.BttOKAddR.Click += new System.EventHandler(this.BttOKAddR_Click);
             // 
-            // ListGridRota
-            // 
-            this.ListGridRota.AllowUserToAddRows = false;
-            this.ListGridRota.AllowUserToResizeRows = false;
-            this.ListGridRota.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ListGridRota.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListGridRota.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.ListGridRota.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ListGridRota.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.ListGridRota.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Rota});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ListGridRota.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ListGridRota.EnableHeadersVisualStyles = false;
-            this.ListGridRota.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.ListGridRota.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ListGridRota.Location = new System.Drawing.Point(23, 92);
-            this.ListGridRota.Name = "ListGridRota";
-            this.ListGridRota.ReadOnly = true;
-            this.ListGridRota.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ListGridRota.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.ListGridRota.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.ListGridRota.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ListGridRota.Size = new System.Drawing.Size(400, 168);
-            this.ListGridRota.TabIndex = 3;
-            this.ListGridRota.DoubleClick += new System.EventHandler(this.ListGridRota_DoubleClick);
-            // 
-            // Rota
-            // 
-            this.Rota.DataPropertyName = "Rota";
-            this.Rota.HeaderText = "ROSTAS EXISTENTES";
-            this.Rota.MaxInputLength = 50;
-            this.Rota.MinimumWidth = 342;
-            this.Rota.Name = "Rota";
-            this.Rota.ReadOnly = true;
-            this.Rota.Width = 342;
-            // 
             // StyleMangerAddRot
             // 
             this.StyleMangerAddRot.Owner = this;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(352, 84);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "ADICIONAR";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.BttAddRota_Click);
+            // 
+            // TbAddRota
+            // 
+            this.TbAddRota.Location = new System.Drawing.Point(23, 86);
+            this.TbAddRota.Name = "TbAddRota";
+            this.TbAddRota.Size = new System.Drawing.Size(323, 20);
+            this.TbAddRota.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 61);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Nome da Rota";
+            // 
+            // ListGridRota
+            // 
+            this.ListGridRota.AllowUserToAddRows = false;
+            this.ListGridRota.BackgroundColor = System.Drawing.Color.White;
+            this.ListGridRota.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListGridRota.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.ListGridRota.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.ListGridRota.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.ListGridRota.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.ListGridRota.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ListGridRota.Location = new System.Drawing.Point(23, 145);
+            this.ListGridRota.MultiSelect = false;
+            this.ListGridRota.Name = "ListGridRota";
+            this.ListGridRota.ReadOnly = true;
+            this.ListGridRota.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.ListGridRota.RowHeadersVisible = false;
+            this.ListGridRota.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ListGridRota.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.ListGridRota.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ListGridRota.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ListGridRota.ShowCellToolTips = false;
+            this.ListGridRota.ShowEditingIcon = false;
+            this.ListGridRota.Size = new System.Drawing.Size(400, 200);
+            this.ListGridRota.TabIndex = 7;
+            this.ListGridRota.DoubleClick += new System.EventHandler(this.ListGridRota_DoubleClick);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(195, 129);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Rotas";
             // 
             // AddRota
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 300);
+            this.ClientSize = new System.Drawing.Size(450, 400);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.ListGridRota);
-            this.Controls.Add(this.BttOKAddR);
-            this.Controls.Add(this.BttAddRota);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.TbAddRota);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BttOKAddR);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(450, 300);
+            this.MaximumSize = new System.Drawing.Size(450, 400);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(450, 300);
+            this.MinimumSize = new System.Drawing.Size(450, 400);
             this.Name = "AddRota";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
@@ -178,18 +142,20 @@
             this.Style = MetroFramework.MetroColorStyle.Default;
             this.Text = "Adicionar/Remover uma Rota";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
-            ((System.ComponentModel.ISupportInitialize)(this.ListGridRota)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StyleMangerAddRot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ListGridRota)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private MetroFramework.Controls.MetroButton BttAddRota;
         private MetroFramework.Controls.MetroButton BttOKAddR;
-        public MetroFramework.Controls.MetroTextBox TbAddRota;
-        private MetroFramework.Controls.MetroGrid ListGridRota;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rota;
         public MetroFramework.Components.MetroStyleManager StyleMangerAddRot;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox TbAddRota;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView ListGridRota;
+        private System.Windows.Forms.Label label2;
     }
 }

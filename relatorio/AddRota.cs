@@ -1,4 +1,5 @@
-﻿using System;
+﻿using start.Class;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Windows.Forms;
@@ -9,48 +10,17 @@ namespace start
     public partial class AddRota : MetroFramework.Forms.MetroForm
     {
         private readonly Home HomeObjects;
-        private List<ClassGridRota> ListGrid;
+        private List<RouteManeger> ListGrid;
 
         public AddRota(Home FormHome)
         { 
             InitializeComponent();
             this.StyleManager = StyleMangerAddRot;
             HomeObjects = FormHome;
-            ListGrid = ClassGridRota.ListarRotas();
+            ListGrid = RouteManeger.ListarRotas();
             ListGridRota.DataSource = ListGrid;
-        }
-        class ClassGridRota
-        {
-            private string rota;
-
-            public string Rota
-            {
-                get { return rota; }
-                set { rota = value; }
-            }
-            public static List<ClassGridRota> ListarRotas()
-            {
-                List<ClassGridRota> List = new List<ClassGridRota>();
-                SQLiteDataReader listRoute = QuerySelect("SELECT name FROM rotas");
-
-                while (listRoute.Read())
-                {
-                    ClassGridRota p = new ClassGridRota()
-                    {
-                        Rota = listRoute["name"].ToString(),
-                    };
-                    List.Add(p);
-                }
-                return List;
-            }
-            public static void ExcluirItemRota(string Rota)
-            {
-                List<ConditionWhere> whereCondition = new List<ConditionWhere>
-                {
-                    new ConditionWhere("@name", Rota.ToString()),
-                };
-                QueryDelete("DELETE FROM rotas WHERE name=@name", whereCondition);
-            }
+            ListGridRota.Columns[0].Width = 400;
+            ListGridRota.Columns[0].Resizable = DataGridViewTriState.False;
         }
         private void BttAddRota_Click(object sender, EventArgs e)
         {
@@ -58,17 +28,16 @@ namespace start
             {
                 List<ConditionWhere> values = new List<ConditionWhere>
                 {
-                    new ConditionWhere("@name", TbAddRota.Text.ToUpper()),
+                    new ConditionWhere("@route", TbAddRota.Text.ToUpper()),
                 };
-                SQLiteDataReader listRoute = QuerySelect("SELECT name FROM rotas WHERE name=@name", values);
+                SQLiteDataReader listRoute = QuerySelect("SELECT route FROM routes WHERE route=@route AND deleted_at IS NULL", values);
                 if (!listRoute.Read())
                 {
-                    QueryInsert("INSERT INTO rotas(name) VALUES(@name)", values);
-                    // HomeObjects.ComboBoxRota.Items.Add(TbAddRota.Text.ToUpper());
+                    QueryInsert("INSERT INTO routes(route) VALUES(@route)", values);
                     HomeObjects.ComboBoxRoute.Items.Add(TbAddRota.Text.ToUpper());
                     HomeObjects.ComboBoxRoute.Refresh();
                     TbAddRota.Clear();
-                    ListGrid = ClassGridRota.ListarRotas();
+                    ListGrid = RouteManeger.ListarRotas();
                     ListGridRota.DataSource = ListGrid;
                 }
                 else
@@ -92,8 +61,8 @@ namespace start
             if (ListGridRota.SelectedRows.Count > 0)
             {
                 int indice = ListGridRota.SelectedRows[0].Index;
-                ClassGridRota.ExcluirItemRota(ListGrid[indice].Rota);
-                ListGrid = ClassGridRota.ListarRotas();
+                RouteManeger.ExcluirItemRota(ListGrid[indice].Nome);
+                ListGrid = RouteManeger.ListarRotas();
                 ListGridRota.DataSource = ListGrid;
                 HomeObjects.ComboBoxRoute.Items.RemoveAt(indice);
                 HomeObjects.ComboBoxRoute.Refresh();
