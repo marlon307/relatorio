@@ -29,27 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.BttOKAddR = new MetroFramework.Controls.MetroButton();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StyleMangerAddRot = new MetroFramework.Components.MetroStyleManager(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.TbAddRota = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ListGridRota = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
+            this.BttOKAddR = new System.Windows.Forms.Button();
+            this.message = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.StyleMangerAddRot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListGridRota)).BeginInit();
             this.SuspendLayout();
-            // 
-            // BttOKAddR
-            // 
-            this.BttOKAddR.Location = new System.Drawing.Point(23, 352);
-            this.BttOKAddR.Name = "BttOKAddR";
-            this.BttOKAddR.Size = new System.Drawing.Size(75, 23);
-            this.BttOKAddR.TabIndex = 2;
-            this.BttOKAddR.Text = "OK";
-            this.BttOKAddR.UseSelectable = true;
-            this.BttOKAddR.Click += new System.EventHandler(this.BttOKAddR_Click);
             // 
             // StyleMangerAddRot
             // 
@@ -57,7 +47,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(352, 84);
+            this.button1.Location = new System.Drawing.Point(346, 53);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -67,7 +57,7 @@
             // 
             // TbAddRota
             // 
-            this.TbAddRota.Location = new System.Drawing.Point(23, 86);
+            this.TbAddRota.Location = new System.Drawing.Point(17, 53);
             this.TbAddRota.Name = "TbAddRota";
             this.TbAddRota.Size = new System.Drawing.Size(323, 20);
             this.TbAddRota.TabIndex = 5;
@@ -75,7 +65,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 61);
+            this.label1.Location = new System.Drawing.Point(14, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
             this.label1.TabIndex = 6;
@@ -91,15 +81,15 @@
             this.ListGridRota.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.ListGridRota.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.ListGridRota.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ListGridRota.Location = new System.Drawing.Point(23, 145);
+            this.ListGridRota.Location = new System.Drawing.Point(17, 97);
             this.ListGridRota.MultiSelect = false;
             this.ListGridRota.Name = "ListGridRota";
             this.ListGridRota.ReadOnly = true;
             this.ListGridRota.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.ListGridRota.RowHeadersVisible = false;
             this.ListGridRota.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.ListGridRota.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ListGridRota.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.ListGridRota.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.ListGridRota.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ListGridRota.ShowCellToolTips = false;
@@ -108,40 +98,47 @@
             this.ListGridRota.TabIndex = 7;
             this.ListGridRota.DoubleClick += new System.EventHandler(this.ListGridRota_DoubleClick);
             // 
-            // label2
+            // BttOKAddR
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(195, 129);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Rotas";
+            this.BttOKAddR.Location = new System.Drawing.Point(23, 326);
+            this.BttOKAddR.Name = "BttOKAddR";
+            this.BttOKAddR.Size = new System.Drawing.Size(75, 23);
+            this.BttOKAddR.TabIndex = 8;
+            this.BttOKAddR.Text = "FECHAR";
+            this.BttOKAddR.UseVisualStyleBackColor = true;
+            // 
+            // message
+            // 
+            this.message.AutoSize = true;
+            this.message.Location = new System.Drawing.Point(125, 311);
+            this.message.Name = "message";
+            this.message.Size = new System.Drawing.Size(50, 13);
+            this.message.TabIndex = 9;
+            this.message.Text = "Message";
+            this.message.Visible = false;
             // 
             // AddRota
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 400);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(434, 361);
+            this.Controls.Add(this.message);
+            this.Controls.Add(this.BttOKAddR);
             this.Controls.Add(this.ListGridRota);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TbAddRota);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.BttOKAddR);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(450, 400);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(450, 400);
             this.Name = "AddRota";
-            this.Resizable = false;
-            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Style = MetroFramework.MetroColorStyle.Default;
             this.Text = "Adicionar/Remover uma Rota";
-            this.Theme = MetroFramework.MetroThemeStyle.Default;
+            this.DoubleClick += new System.EventHandler(this.ListGridRota_DoubleClick);
             ((System.ComponentModel.ISupportInitialize)(this.StyleMangerAddRot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListGridRota)).EndInit();
             this.ResumeLayout(false);
@@ -150,12 +147,12 @@
         }
 
         #endregion
-        private MetroFramework.Controls.MetroButton BttOKAddR;
         public MetroFramework.Components.MetroStyleManager StyleMangerAddRot;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox TbAddRota;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView ListGridRota;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button BttOKAddR;
+        private System.Windows.Forms.Label message;
     }
 }

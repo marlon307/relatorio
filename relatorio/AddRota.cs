@@ -7,7 +7,7 @@ using static DB.SQLiteDB;
 
 namespace start
 {
-    public partial class AddRota : MetroFramework.Forms.MetroForm
+    public partial class AddRota : Form
     {
         private readonly Home HomeObjects;
         private List<RouteManeger> ListGrid;
@@ -15,7 +15,6 @@ namespace start
         public AddRota(Home FormHome)
         { 
             InitializeComponent();
-            this.StyleManager = StyleMangerAddRot;
             HomeObjects = FormHome;
             ListGrid = RouteManeger.ListarRotas();
             ListGridRota.DataSource = ListGrid;
@@ -42,13 +41,14 @@ namespace start
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "\n\n\nJa existe uma rota com este nome.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    message.Text = "Ja existe uma rota com este nome.";
+                    message.Visible = true;
                 }
             }
             else
             {
-                MetroFramework.MetroMessageBox.Show(this, "\n\nAdicione um nome para a ROTA!\nA quantidade de caracteres minimo e (4)\nE clique em ADICIONAR.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //-------------------http://denricdenise.info/2015/09/how-to-use-metromessagebox/-------------
+                message.Text = "Adicione um nome para a ROTA!\nA quantidade de caracteres minimo e (4)\nE clique em ADICIONAR.";
+                message.Visible = true;
             }
         }
         private void BttOKAddR_Click(object sender, EventArgs e)
@@ -58,13 +58,13 @@ namespace start
         //Remover item da combBox e da griviwe com duplo clique
         private void ListGridRota_DoubleClick(object sender, EventArgs e)
         {
-            if (ListGridRota.SelectedRows.Count > 0)
+            if (ListGridRota.CurrentCell != null)
             {
-                int indice = ListGridRota.SelectedRows[0].Index;
-                RouteManeger.ExcluirItemRota(ListGrid[indice].Nome);
+                int index = ListGridRota.CurrentCell.RowIndex;
+                RouteManeger.ExcluirItemRota(ListGrid[index].Rotas);
                 ListGrid = RouteManeger.ListarRotas();
                 ListGridRota.DataSource = ListGrid;
-                HomeObjects.ComboBoxRoute.Items.RemoveAt(indice);
+                HomeObjects.ComboBoxRoute.Items.RemoveAt(index);
                 HomeObjects.ComboBoxRoute.Refresh();
             }
         }

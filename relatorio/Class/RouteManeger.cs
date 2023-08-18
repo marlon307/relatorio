@@ -9,7 +9,7 @@ namespace start.Class
     {
         private string rota;
 
-        public string Nome
+        public string Rotas
         {
             get { return rota; }
             set { rota = value; }
@@ -23,7 +23,7 @@ namespace start.Class
             {
                 RouteManeger p = new RouteManeger()
                 {
-                    Nome = listRoute["route"].ToString(),
+                    Rotas = listRoute["route"].ToString(),
                 };
                 List.Add(p);
             }
