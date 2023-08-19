@@ -182,7 +182,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 17);
             this.label2.TabIndex = 73;
-            this.label2.Text = "Funcionario";
+            this.label2.Text = "Funcionário";
             // 
             // label1
             // 
@@ -232,6 +232,7 @@
             this.TbCheque.Name = "TbCheque";
             this.TbCheque.Size = new System.Drawing.Size(105, 26);
             this.TbCheque.TabIndex = 7;
+            this.TbCheque.Tag = "CurrencyTb";
             this.TbCheque.Text = "R$ 0,00";
             this.TbCheque.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbCheque.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -244,6 +245,7 @@
             this.TbCoin.Name = "TbCoin";
             this.TbCoin.Size = new System.Drawing.Size(105, 26);
             this.TbCoin.TabIndex = 8;
+            this.TbCoin.Tag = "CurrencyTb";
             this.TbCoin.Text = "R$ 0,00";
             this.TbCoin.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbCoin.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -256,6 +258,7 @@
             this.TbLack.Name = "TbLack";
             this.TbLack.Size = new System.Drawing.Size(105, 26);
             this.TbLack.TabIndex = 9;
+            this.TbLack.Tag = "CurrencyTb";
             this.TbLack.Text = "R$ 0,00";
             this.TbLack.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbLack.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -268,6 +271,7 @@
             this.TbLeftOver.Name = "TbLeftOver";
             this.TbLeftOver.Size = new System.Drawing.Size(105, 26);
             this.TbLeftOver.TabIndex = 10;
+            this.TbLeftOver.Tag = "CurrencyTb";
             this.TbLeftOver.Text = "R$ 0,00";
             this.TbLeftOver.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbLeftOver.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -288,6 +292,7 @@
             this.TbSpent.Name = "TbSpent";
             this.TbSpent.Size = new System.Drawing.Size(105, 26);
             this.TbSpent.TabIndex = 6;
+            this.TbSpent.Tag = "CurrencyTb";
             this.TbSpent.Text = "R$ 0,00";
             this.TbSpent.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbSpent.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -300,6 +305,7 @@
             this.TbDeposit.Name = "TbDeposit";
             this.TbDeposit.Size = new System.Drawing.Size(105, 26);
             this.TbDeposit.TabIndex = 5;
+            this.TbDeposit.Tag = "CurrencyTb";
             this.TbDeposit.Text = "R$ 0,00";
             this.TbDeposit.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbDeposit.TextChanged += new System.EventHandler(this.TbxMoedFormat);

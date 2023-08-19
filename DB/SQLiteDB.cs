@@ -126,16 +126,19 @@ namespace DB
                 throw ex;
             }
         }
-        public static void QueryInsert(string query, List<ConditionWhere> values)
+        public static void QueryInsert(string query, List<ConditionWhere> values = null)
         {
             try
             {
                 using (var command = DBConnection().CreateCommand())
                 {
                     command.CommandText = query;
-                    foreach (ConditionWhere item in values)
+                    if (values != null)
                     {
-                        command.Parameters.AddWithValue(item.Name, item.Value);
+                        foreach (ConditionWhere item in values)
+                        {
+                            command.Parameters.AddWithValue(item.Name, item.Value);
+                        }
                     }
                     command.ExecuteNonQuery();
                 }
