@@ -31,8 +31,8 @@ namespace start
                 SQLiteDataReader listRoute = QuerySelect("SELECT name FROM employees WHERE name=@name AND deleted_at IS NULL", values);
                 if (!listRoute.Read())
                 {
-                    QueryInsert("INSERT INTO employees(name) VALUES(@name)", values);
-                    HomeObjects.CbEmployees.Items.Add(TbNameEmployee.Text.ToUpper());
+                    int idRoute = QueryInsert("INSERT INTO employees(name) VALUES(@name)", values);
+                    HomeObjects.CbEmployees.Items.Add(new ComboBoxItem(idRoute.ToString(), TbNameEmployee.Text));
                     HomeObjects.CbEmployees.Refresh();
                     ListEmpoyees.Clear();
                     ListEmpoyees = EmployeeManeger.ListEmployess();

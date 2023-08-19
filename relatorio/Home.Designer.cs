@@ -423,6 +423,7 @@
             this.MinimumSize = new System.Drawing.Size(600, 600);
             this.Name = "Home";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relatório ";
             this.TextChanged += new System.EventHandler(this.DateTimeCx_ValueChanged);
             this.Click += new System.EventHandler(this.OnClickTbRel);

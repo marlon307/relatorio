@@ -31,8 +31,8 @@ namespace start
                 SQLiteDataReader listRoute = QuerySelect("SELECT route FROM routes WHERE route=@route AND deleted_at IS NULL", values);
                 if (!listRoute.Read())
                 {
-                    QueryInsert("INSERT INTO routes(route) VALUES(@route)", values);
-                    HomeObjects.ComboBoxRoute.Items.Add(TbAddRota.Text.ToUpper());
+                    int id = QueryInsert("INSERT INTO routes(route) VALUES(@route)", values);
+                    HomeObjects.ComboBoxRoute.Items.Add(new ComboBoxItem(id.ToString(), TbAddRota.Text.ToUpper()));
                     HomeObjects.ComboBoxRoute.Refresh();
                     TbAddRota.Clear();
                     ListGrid = RouteManeger.ListarRotas();

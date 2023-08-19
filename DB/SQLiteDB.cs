@@ -126,7 +126,7 @@ namespace DB
                 throw ex;
             }
         }
-        public static void QueryInsert(string query, List<ConditionWhere> values = null)
+        public static int QueryInsert(string query, List<ConditionWhere> values = null)
         {
             try
             {
@@ -141,6 +141,9 @@ namespace DB
                         }
                     }
                     command.ExecuteNonQuery();
+                    command.CommandText = "SELECT last_insert_rowid()";
+                    int lastInsertedId = Convert.ToInt32(command.ExecuteScalar());
+                    return lastInsertedId;
                 }
             }
             catch (Exception ex)

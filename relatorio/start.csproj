@@ -73,9 +73,6 @@
     <ApplicationIcon>Group-1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CNPJ, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f50de5dcda738049, processorArchitecture=MSIL">
-      <HintPath>..\packages\Consulta_CNPJ.1.0.1\lib\CNPJ.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -128,6 +125,7 @@
       <DependentUpon>AddRota.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\ClassGridLpEtq.cs" />
+    <Compile Include="Class\ComboBoxItem.cs" />
     <Compile Include="Class\EmployeeManeger.cs" />
     <Compile Include="Class\RouteManeger.cs" />
     <Compile Include="Configuracoes.cs">
