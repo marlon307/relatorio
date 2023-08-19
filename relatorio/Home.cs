@@ -32,22 +32,21 @@ namespace start
             if (File.Exists("database.db"))
             {
                 SQLiteDataReader isReport = QuerySelect("SELECT id, date FROM reports WHERE date = DATE()");
-                while (!isReport.Read())
+                if(!isReport.Read())
                 {
                     idReport = QueryInsert("INSERT INTO reports(date) VALUES(DATE())");
-                    break;
                 }
                 if (idReport == 0)
                 {
                     idReport = Convert.ToInt32(isReport["id"]);
                 }
                 SQLiteDataReader listRoute = QuerySelect("SELECT id, route FROM routes WHERE deleted_at IS NULL");
-                while (listRoute.Read())
+                if(listRoute.Read())
                 {
                     ComboBoxRoute.Items.Add(new ComboBoxItem(listRoute["id"].ToString(), listRoute["route"].ToString()));
                 }
                 SQLiteDataReader listEmployee = QuerySelect("SELECT id, name FROM employees WHERE deleted_at IS NULL");
-                while (listEmployee.Read())
+                if(listEmployee.Read())
                 {
                     CbEmployees.Items.Add(new ComboBoxItem(listEmployee["id"].ToString(), listEmployee["name"].ToString()));
                 }
@@ -81,7 +80,6 @@ namespace start
                 ComboBoxItem selectedItem = (ComboBoxItem)CbEmployees.SelectedItem;
                 string idEmployee = selectedItem.ID;
                
-
                 List<ConditionWhere> values = new List<ConditionWhere>
                 {
                      new ConditionWhere("@report_id", idReport.ToString()),
@@ -111,28 +109,6 @@ namespace start
                 TbLeftOver.Text = "R$ 0,00";
                 TbComments.Text = null;
                 ComboBoxRoute.Focus();
-            }
-        }
-        private void CarregarRelatorio ()
-        {
-           bool consulta = false;
-            if (ComboBoxRoute.Text != "")
-            {
-                XElement xml = XElement.Load(@"cache\" + DateProprie + ".xml");
-
-                foreach (XElement x in xml.Elements("Planilha"))
-                {
-                    if (ComboBoxRoute.Text == x.Attribute("Rota").Value)
-                    {
-                        consulta = true;
-                        break;
-                    }
-                }
-                if (consulta == false)
-                {
-                    ListGrid = ClassGridLpHome.ListaRelatorio(DateProprie);
-                    // ListGridHome.DataSource = ListGrid;
-                }
             }
         }
         private void DateTimeCx_ValueChanged(object sender, EventArgs e)//Selecionar Data para o nome do arquivo
