@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Text.RegularExpressions;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace format
@@ -12,8 +12,8 @@ namespace format
             {
                 string n = string.Empty;
                 double v = 0;
-                n = txt.Text.Replace("R$", "").Replace(".", "").Replace(",", "");
-                // n = Regex.Match(txt.Text, @"\d+\.*\d*").Value;
+
+                n = new string(txt.Text.Where(char.IsDigit).ToArray());
                 if (n.Equals("")) n = "";
                 n = n.PadLeft(3, '0');
                 if (n.Length > 3 & n.Substring(0, 1) == "0")

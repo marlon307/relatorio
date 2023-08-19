@@ -73,9 +73,6 @@
     <ApplicationIcon>Group-1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BuscaCEP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BuscaCEP.1.0.0\lib\net40\BuscaCEP.dll</HintPath>
-    </Reference>
     <Reference Include="CNPJ, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f50de5dcda738049, processorArchitecture=MSIL">
       <HintPath>..\packages\Consulta_CNPJ.1.0.1\lib\CNPJ.dll</HintPath>
     </Reference>
@@ -125,6 +122,7 @@
       <DependentUpon>AddRota.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\ClassGridLpEtq.cs" />
+    <Compile Include="Class\RouteManeger.cs" />
     <Compile Include="Configuracoes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,7 +184,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="App.config" />
-    <None Include="CNPJ.tlb" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\Correios.Net.Address.datasource" />

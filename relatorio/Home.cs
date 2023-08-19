@@ -28,15 +28,17 @@ namespace start
             DateProprie = DateTime.Now.ToString("dd-MM-yyyy");
 
             //Carregar A lista de Rostas 
-            if(File.Exists("database.db"))
+            if (File.Exists("database.db"))
             {
-                SQLiteDataReader listRoute = QuerySelect("SELECT name FROM rotas");
+                SQLiteDataReader listRoute = QuerySelect("SELECT route FROM routes WHERE deleted_at IS NULL");
                 while (listRoute.Read())
                 {
-                    AddRotaList = listRoute["name"].ToString();
+                    AddRotaList = listRoute["route"].ToString();
                     ComboBoxRoute.Items.Add(AddRotaList);
                 }
             }
+            else { CreateTable(); }
+            
         }
         private void Calculo()
         {

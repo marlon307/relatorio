@@ -1,4 +1,5 @@
-﻿using System;
+﻿using start.Class;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Windows.Forms;
@@ -6,51 +7,19 @@ using static DB.SQLiteDB;
 
 namespace start
 {
-    public partial class AddRota : MetroFramework.Forms.MetroForm
+    public partial class AddRota : Form
     {
         private readonly Home HomeObjects;
-        private List<ClassGridRota> ListGrid;
+        private List<RouteManeger> ListGrid;
 
         public AddRota(Home FormHome)
         { 
             InitializeComponent();
-            this.StyleManager = StyleMangerAddRot;
             HomeObjects = FormHome;
-            ListGrid = ClassGridRota.ListarRotas();
+            ListGrid = RouteManeger.ListarRotas();
             ListGridRota.DataSource = ListGrid;
-        }
-        class ClassGridRota
-        {
-            private string rota;
-
-            public string Rota
-            {
-                get { return rota; }
-                set { rota = value; }
-            }
-            public static List<ClassGridRota> ListarRotas()
-            {
-                List<ClassGridRota> List = new List<ClassGridRota>();
-                SQLiteDataReader listRoute = QuerySelect("SELECT name FROM rotas");
-
-                while (listRoute.Read())
-                {
-                    ClassGridRota p = new ClassGridRota()
-                    {
-                        Rota = listRoute["name"].ToString(),
-                    };
-                    List.Add(p);
-                }
-                return List;
-            }
-            public static void ExcluirItemRota(string Rota)
-            {
-                List<ConditionWhere> whereCondition = new List<ConditionWhere>
-                {
-                    new ConditionWhere("@name", Rota.ToString()),
-                };
-                QueryDelete("DELETE FROM rotas WHERE name=@name", whereCondition);
-            }
+            ListGridRota.Columns[0].Width = 400;
+            ListGridRota.Columns[0].Resizable = DataGridViewTriState.False;
         }
         private void BttAddRota_Click(object sender, EventArgs e)
         {
@@ -58,44 +27,44 @@ namespace start
             {
                 List<ConditionWhere> values = new List<ConditionWhere>
                 {
-                    new ConditionWhere("@name", TbAddRota.Text.ToUpper()),
+                    new ConditionWhere("@route", TbAddRota.Text.ToUpper()),
                 };
-                SQLiteDataReader listRoute = QuerySelect("SELECT name FROM rotas WHERE name=@name", values);
+                SQLiteDataReader listRoute = QuerySelect("SELECT route FROM routes WHERE route=@route AND deleted_at IS NULL", values);
                 if (!listRoute.Read())
                 {
-                    QueryInsert("INSERT INTO rotas(name) VALUES(@name)", values);
-                    // HomeObjects.ComboBoxRota.Items.Add(TbAddRota.Text.ToUpper());
+                    QueryInsert("INSERT INTO routes(route) VALUES(@route)", values);
                     HomeObjects.ComboBoxRoute.Items.Add(TbAddRota.Text.ToUpper());
                     HomeObjects.ComboBoxRoute.Refresh();
                     TbAddRota.Clear();
-                    ListGrid = ClassGridRota.ListarRotas();
+                    ListGrid = RouteManeger.ListarRotas();
                     ListGridRota.DataSource = ListGrid;
                 }
                 else
                 {
-                    MetroFramework.MetroMessageBox.Show(this, "\n\n\nJa existe uma rota com este nome.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    message.Text = "Ja existe uma rota com este nome.";
+                    message.Visible = true;
                 }
             }
             else
             {
-                MetroFramework.MetroMessageBox.Show(this, "\n\nAdicione um nome para a ROTA!\nA quantidade de caracteres minimo e (4)\nE clique em ADICIONAR.", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                //-------------------http://denricdenise.info/2015/09/how-to-use-metromessagebox/-------------
+                message.Text = "Adicione um nome para a ROTA!\nA quantidade de caracteres minimo e (4)\nE clique em ADICIONAR.";
+                message.Visible = true;
             }
         }
         private void BttOKAddR_Click(object sender, EventArgs e)
         {
-            this.Close();
+           Close();
         }
         //Remover item da combBox e da griviwe com duplo clique
         private void ListGridRota_DoubleClick(object sender, EventArgs e)
         {
-            if (ListGridRota.SelectedRows.Count > 0)
+            if (ListGridRota.CurrentCell != null)
             {
-                int indice = ListGridRota.SelectedRows[0].Index;
-                ClassGridRota.ExcluirItemRota(ListGrid[indice].Rota);
-                ListGrid = ClassGridRota.ListarRotas();
+                int index = ListGridRota.CurrentCell.RowIndex;
+                RouteManeger.ExcluirItemRota(ListGrid[index].Rotas);
+                ListGrid = RouteManeger.ListarRotas();
                 ListGridRota.DataSource = ListGrid;
-                HomeObjects.ComboBoxRoute.Items.RemoveAt(indice);
+                HomeObjects.ComboBoxRoute.Items.RemoveAt(index);
                 HomeObjects.ComboBoxRoute.Refresh();
             }
         }
