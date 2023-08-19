@@ -21,11 +21,11 @@ namespace start.Class
 
             while (listRoute.Read())
             {
-                RouteManeger p = new RouteManeger()
+                RouteManeger route = new RouteManeger()
                 {
                     Rotas = listRoute["route"].ToString(),
                 };
-                List.Add(p);
+                List.Add(route);
             }
             return List;
         }

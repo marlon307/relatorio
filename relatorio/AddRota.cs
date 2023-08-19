@@ -11,7 +11,6 @@ namespace start
     {
         private readonly Home HomeObjects;
         private List<RouteManeger> ListGrid;
-
         public AddRota(Home FormHome)
         { 
             InitializeComponent();
@@ -23,7 +22,7 @@ namespace start
         }
         private void BttAddRota_Click(object sender, EventArgs e)
         {
-            if (TbAddRota.Text != "" && TbAddRota.Text.Length > 3)
+            if (TbAddRota.Text.Length > 3)
             {
                 List<ConditionWhere> values = new List<ConditionWhere>
                 {

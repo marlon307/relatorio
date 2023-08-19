@@ -115,6 +115,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEmployee.Designer.cs">
+      <DependentUpon>AddEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddRota.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,7 @@
       <DependentUpon>AddRota.cs</DependentUpon>
     </Compile>
     <Compile Include="Class\ClassGridLpEtq.cs" />
+    <Compile Include="Class\EmployeeManeger.cs" />
     <Compile Include="Class\RouteManeger.cs" />
     <Compile Include="Configuracoes.cs">
       <SubType>Form</SubType>
@@ -155,6 +162,9 @@
       <DependentUpon>ListRelatorios.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddEmployee.resx">
+      <DependentUpon>AddEmployee.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddRota.resx">
       <DependentUpon>AddRota.cs</DependentUpon>
     </EmbeddedResource>

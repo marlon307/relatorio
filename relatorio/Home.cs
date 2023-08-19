@@ -17,6 +17,7 @@ namespace start
         public static int VlueIndexGrid { get; private set; }
         public static string DateProprie { get; private set; }
         public string AddRotaList { get; }
+        public string AddEmployeeList { get; }
         public static int StyleFoms = 4; //Cor das bordas Azul
         public static int ThemeForm = 1;//Tema Claro
         private List<ClassGridLpHome> ListGrid;
@@ -24,9 +25,7 @@ namespace start
         public Home()
         {
             InitializeComponent();
-
             DateProprie = DateTime.Now.ToString("dd-MM-yyyy");
-
             //Carregar A lista de Rostas 
             if (File.Exists("database.db"))
             {
@@ -35,6 +34,12 @@ namespace start
                 {
                     AddRotaList = listRoute["route"].ToString();
                     ComboBoxRoute.Items.Add(AddRotaList);
+                }
+                SQLiteDataReader listEmployee = QuerySelect("SELECT name FROM employees WHERE deleted_at IS NULL");
+                while (listEmployee.Read())
+                {
+                    AddEmployeeList = listEmployee["name"].ToString();
+                    CbEmployees.Items.Add(AddEmployeeList);
                 }
             }
             else { CreateTable(); }
@@ -60,7 +65,7 @@ namespace start
         private void BtnLancar_Click(object sender, EventArgs e)
         {
             ComboBoxRoute.Text = null;
-            TbEmployee.Text = null;
+            CbEmployees.Text = null;
             TbExit.Text = null;
             TbBack.Text = null;
             TbDeposit.Text = "R$ 0,00";
@@ -106,6 +111,13 @@ namespace start
             ListRelatorios FormRl = new ListRelatorios();
             FormRl.ShowDialog();
         }
+
+        private void AddEmployeeLB_Click(object sender, EventArgs e)
+        {
+            AddEmployee FormEmployee = new AddEmployee(this);
+            FormEmployee.ShowDialog();
+        }
+
         private void MCfgs_Click(object sender, EventArgs e)
         {   
             Configuracoes FormCfg = new Configuracoes(this);

@@ -55,11 +55,12 @@
             this.TbDeposit = new System.Windows.Forms.TextBox();
             this.TbBack = new System.Windows.Forms.TextBox();
             this.TbExit = new System.Windows.Forms.TextBox();
-            this.TbEmployee = new System.Windows.Forms.TextBox();
             this.ComboBoxRoute = new System.Windows.Forms.ComboBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.DateTimeCx = new System.Windows.Forms.DateTimePicker();
             this.MetroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.AddEmployeeLB = new System.Windows.Forms.LinkLabel();
+            this.CbEmployees = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.MetroStyleManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -320,14 +321,6 @@
             this.TbExit.Size = new System.Drawing.Size(105, 26);
             this.TbExit.TabIndex = 3;
             // 
-            // TbEmployee
-            // 
-            this.TbEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbEmployee.Location = new System.Drawing.Point(40, 127);
-            this.TbEmployee.Name = "TbEmployee";
-            this.TbEmployee.Size = new System.Drawing.Size(283, 26);
-            this.TbEmployee.TabIndex = 2;
-            // 
             // ComboBoxRoute
             // 
             this.ComboBoxRoute.AccessibleName = "Rota";
@@ -362,11 +355,34 @@
             // 
             this.MetroStyleManager.Owner = this;
             // 
+            // AddEmployeeLB
+            // 
+            this.AddEmployeeLB.AutoSize = true;
+            this.AddEmployeeLB.Location = new System.Drawing.Point(165, 102);
+            this.AddEmployeeLB.Name = "AddEmployeeLB";
+            this.AddEmployeeLB.Size = new System.Drawing.Size(157, 13);
+            this.AddEmployeeLB.TabIndex = 86;
+            this.AddEmployeeLB.TabStop = true;
+            this.AddEmployeeLB.Text = "Adicionar/Remover Funcionário";
+            this.AddEmployeeLB.Click += new System.EventHandler(this.AddEmployeeLB_Click);
+            // 
+            // CbEmployees
+            // 
+            this.CbEmployees.AccessibleName = "Rota";
+            this.CbEmployees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbEmployees.FormattingEnabled = true;
+            this.CbEmployees.Location = new System.Drawing.Point(40, 125);
+            this.CbEmployees.Name = "CbEmployees";
+            this.CbEmployees.Size = new System.Drawing.Size(282, 28);
+            this.CbEmployees.TabIndex = 87;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 561);
+            this.Controls.Add(this.CbEmployees);
+            this.Controls.Add(this.AddEmployeeLB);
             this.Controls.Add(this.DateTimeCx);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label12);
@@ -393,7 +409,6 @@
             this.Controls.Add(this.TbDeposit);
             this.Controls.Add(this.TbBack);
             this.Controls.Add(this.TbExit);
-            this.Controls.Add(this.TbEmployee);
             this.Controls.Add(this.ComboBoxRoute);
             this.Controls.Add(this.MCfgs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -436,13 +451,14 @@
         public System.Windows.Forms.TextBox TbComments;
         private System.Windows.Forms.TextBox TbSpent;
         private System.Windows.Forms.TextBox TbDeposit;
-        public System.Windows.Forms.TextBox TbEmployee;
         public System.Windows.Forms.ComboBox ComboBoxRoute;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.DateTimePicker DateTimeCx;
         private System.Windows.Forms.TextBox TbBack;
         private System.Windows.Forms.TextBox TbExit;
         public MetroFramework.Components.MetroStyleManager MetroStyleManager;
+        private System.Windows.Forms.LinkLabel AddEmployeeLB;
+        public System.Windows.Forms.ComboBox CbEmployees;
     }
 }
 

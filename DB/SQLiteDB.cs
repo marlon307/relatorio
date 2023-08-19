@@ -8,7 +8,17 @@ namespace DB
     public class SQLiteDB
     {
         private static SQLiteConnection SQLiteConnection = null;
+        public class ConditionWhere
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
 
+            public ConditionWhere(string name, string value)
+            {
+                Name = name;
+                Value = value;
+            }
+        }
         private static SQLiteConnection DBConnection()
         {
             if (SQLiteConnection == null)
@@ -18,7 +28,6 @@ namespace DB
             }
             return SQLiteConnection;
         }
-
         public static void CreateDB()
         {
             try
@@ -44,7 +53,7 @@ namespace DB
                         CREATE TABLE IF NOT EXISTS employees (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             name TEXT NOT NULL,
-                            deleted_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                            deleted_at DATETIME
                         );
 
                         CREATE TABLE IF NOT EXISTS products (
@@ -91,17 +100,6 @@ namespace DB
             catch (Exception ex)
             {
                 throw ex;
-            }
-        }
-        public class ConditionWhere
-        {
-            public string Name { get; set; }
-            public string Value { get; set; }
-
-            public ConditionWhere(string name, string value)
-            {
-                Name = name;
-                Value = value;
             }
         }
         public static SQLiteDataReader QuerySelect(string query, List<ConditionWhere> where = null)
