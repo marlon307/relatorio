@@ -53,7 +53,7 @@ namespace start
         }
         private void BttOKAddR_Click(object sender, EventArgs e)
         {
-            this.Close();
+           Close();
         }
         //Remover item da combBox e da griviwe com duplo clique
         private void ListGridRota_DoubleClick(object sender, EventArgs e)

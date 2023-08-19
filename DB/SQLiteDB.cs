@@ -11,8 +11,11 @@ namespace DB
 
         private static SQLiteConnection DBConnection()
         {
-            SQLiteConnection = new SQLiteConnection("Data Source=database.db; Version=3;");
-            SQLiteConnection.Open();
+            if (SQLiteConnection == null)
+            { 
+                SQLiteConnection = new SQLiteConnection("Data Source=database.db; Version=3;");
+                SQLiteConnection.Open();
+            }
             return SQLiteConnection;
         }
 
@@ -101,22 +104,24 @@ namespace DB
                 Value = value;
             }
         }
-
         public static SQLiteDataReader QuerySelect(string query, List<ConditionWhere> where = null)
         {
             try
             {
-                SQLiteCommand command = new SQLiteCommand(query, DBConnection());
-                if(where != null)
+                using (var command = DBConnection().CreateCommand())
                 {
-                    foreach (ConditionWhere item in where)
+                    command.CommandText = query;
+                    if (where != null)
                     {
-                        command.Parameters.AddWithValue(item.Name, item.Value);
+                        foreach (ConditionWhere item in where)
+                        {
+                            command.Parameters.AddWithValue(item.Name, item.Value);
+                        }
                     }
+                    command.ExecuteNonQuery();
+                    SQLiteDataReader reader = command.ExecuteReader();
+                    return reader;
                 }
-                command.ExecuteNonQuery();
-                SQLiteDataReader reader = command.ExecuteReader();
-                return reader;
             }
             catch (Exception ex)
             {
@@ -146,13 +151,14 @@ namespace DB
         {
             try
             {
-                using (SQLiteCommand command = new SQLiteCommand(query, DBConnection()))
+                using (var command = DBConnection().CreateCommand())
                 {
+                    command.CommandText = query;
                     foreach (ConditionWhere item in where)
                     {
                         command.Parameters.AddWithValue(item.Name.ToString(), item.Value.ToString());
-                        command.ExecuteNonQuery();
                     }
+                    command.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StyleMangerAddRot = new MetroFramework.Components.MetroStyleManager(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.TbAddRota = new System.Windows.Forms.TextBox();
@@ -88,8 +88,8 @@
             this.ListGridRota.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.ListGridRota.RowHeadersVisible = false;
             this.ListGridRota.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.ListGridRota.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ListGridRota.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.ListGridRota.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.ListGridRota.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ListGridRota.ShowCellToolTips = false;
@@ -106,6 +106,7 @@
             this.BttOKAddR.TabIndex = 8;
             this.BttOKAddR.Text = "FECHAR";
             this.BttOKAddR.UseVisualStyleBackColor = true;
+            this.BttOKAddR.Click += new System.EventHandler(this.BttOKAddR_Click);
             // 
             // message
             // 
