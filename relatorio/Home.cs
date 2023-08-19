@@ -7,6 +7,8 @@ using HomeClass;
 using format;
 using System.Data.SQLite;
 using static DB.SQLiteDB;
+using System.Globalization;
+using start.Class;
 
 namespace start
 {
@@ -17,28 +19,43 @@ namespace start
         public static int VlueIndexGrid { get; private set; }
         public static string DateProprie { get; private set; }
         public string AddRotaList { get; }
+        private readonly int idReport = 0;
+        public string AddEmployeeList { get; }
         public static int StyleFoms = 4; //Cor das bordas Azul
         public static int ThemeForm = 1;//Tema Claro
         private List<ClassGridLpHome> ListGrid;
-
         public Home()
         {
             InitializeComponent();
-
             DateProprie = DateTime.Now.ToString("dd-MM-yyyy");
-
             //Carregar A lista de Rostas 
             if (File.Exists("database.db"))
             {
-                SQLiteDataReader listRoute = QuerySelect("SELECT route FROM routes WHERE deleted_at IS NULL");
+                SQLiteDataReader isReport = QuerySelect("SELECT id, date FROM reports WHERE date = DATE()");
+                while (!isReport.Read())
+                {
+                    idReport = QueryInsert("INSERT INTO reports(date) VALUES(DATE())");
+                    break;
+                }
+                if (idReport == 0)
+                {
+                    idReport = Convert.ToInt32(isReport["id"]);
+                }
+                SQLiteDataReader listRoute = QuerySelect("SELECT id, route FROM routes WHERE deleted_at IS NULL");
                 while (listRoute.Read())
                 {
-                    AddRotaList = listRoute["route"].ToString();
-                    ComboBoxRoute.Items.Add(AddRotaList);
+                    ComboBoxRoute.Items.Add(new ComboBoxItem(listRoute["id"].ToString(), listRoute["route"].ToString()));
+                }
+                SQLiteDataReader listEmployee = QuerySelect("SELECT id, name FROM employees WHERE deleted_at IS NULL");
+                while (listEmployee.Read())
+                {
+                    CbEmployees.Items.Add(new ComboBoxItem(listEmployee["id"].ToString(), listEmployee["name"].ToString()));
                 }
             }
-            else { CreateTable(); }
-            
+            else {
+                CreateTable();
+                QueryInsert("INSERT INTO reports(date) VALUES(DATE())");
+            }
         }
         private void Calculo()
         {
@@ -51,31 +68,54 @@ namespace start
                 n4 = Convert.ToDouble(TbCoin.Text.Replace("R$ ", ""));
                 n5 = Convert.ToDouble(TbLack.Text.Replace("R$ ", ""));
                 n6 = Convert.ToDouble(TbLeftOver.Text.Replace("R$ ", ""));
-
                 total = n1 + n2 + n3 + n4 - n5 + n6;
-
                 TbTotal.Text = string.Format("{0:C}", total);
             }
         }
         private void BtnLancar_Click(object sender, EventArgs e)
         {
-            ComboBoxRoute.Text = null;
-            TbEmployee.Text = null;
-            TbExit.Text = null;
-            TbBack.Text = null;
-            TbDeposit.Text = "R$ 0,00";
-            TbSpent.Text = "R$ 0,00";
-            TbCheque.Text = "R$ 0,00";
-            TbCoin.Text = "R$ 0,00";
-            TbLack.Text = "R$ 0,00";
-            TbLeftOver.Text = "R$ 0,00";
-            TbComments.Text = null;
-            ComboBoxRoute.Focus();
+            if (CbEmployees.SelectedItem != null)
+            {
+                ComboBoxItem routeSelected = (ComboBoxItem)ComboBoxRoute.SelectedItem;
+                string idRouter = routeSelected.ID;
+                ComboBoxItem selectedItem = (ComboBoxItem)CbEmployees.SelectedItem;
+                string idEmployee = selectedItem.ID;
+               
+
+                List<ConditionWhere> values = new List<ConditionWhere>
+                {
+                     new ConditionWhere("@report_id", idReport.ToString()),
+                    new ConditionWhere("@route_id", idRouter),
+                    new ConditionWhere("@employee_id", idEmployee),
+                    new ConditionWhere("@qtd_exit", TbExit.Text),
+                    new ConditionWhere("@qtd_back", TbBack.Text),
+                    new ConditionWhere("@deposit", double.Parse(TbDeposit.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@spent", double.Parse(TbSpent.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@cheque", double.Parse(TbCheque.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@coins", double.Parse(TbCoin.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@lack", double.Parse(TbLack.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@leftover",double.Parse(TbLeftOver.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@comments", TbComments.Text.ToUpper()),
+                };
+                QueryInsert(@"INSERT INTO records(report_id, route_id, employee_id, qtd_exit, qtd_back, deposit, spent, cheque, coins, lack, leftover, comments)
+                VALUES(@report_id, @route_id, @employee_id, @qtd_exit, @qtd_back, @deposit, @spent, @cheque, @coins, @lack, @leftover, @comments)", values);
+                ComboBoxRoute.Text = null;
+                CbEmployees.Text = null;
+                TbExit.Text = null;
+                TbBack.Text = null;
+                TbDeposit.Text = "R$ 0,00";
+                TbSpent.Text = "R$ 0,00";
+                TbCheque.Text = "R$ 0,00";
+                TbCoin.Text = "R$ 0,00";
+                TbLack.Text = "R$ 0,00";
+                TbLeftOver.Text = "R$ 0,00";
+                TbComments.Text = null;
+                ComboBoxRoute.Focus();
+            }
         }
         private void CarregarRelatorio ()
         {
            bool consulta = false;
-
             if (ComboBoxRoute.Text != "")
             {
                 XElement xml = XElement.Load(@"cache\" + DateProprie + ".xml");
@@ -90,7 +130,6 @@ namespace start
                 }
                 if (consulta == false)
                 {
-                    
                     ListGrid = ClassGridLpHome.ListaRelatorio(DateProprie);
                     // ListGridHome.DataSource = ListGrid;
                 }
@@ -100,18 +139,21 @@ namespace start
         {
             DateProprie = DateTimeCx.Text.Replace("/", "-");
         }
-
         private void ListarRel_Click(object sender, EventArgs e)
         {
             ListRelatorios FormRl = new ListRelatorios();
             FormRl.ShowDialog();
+        }
+        private void AddEmployeeLB_Click(object sender, EventArgs e)
+        {
+            AddEmployee FormEmployee = new AddEmployee(this);
+            FormEmployee.ShowDialog();
         }
         private void MCfgs_Click(object sender, EventArgs e)
         {   
             Configuracoes FormCfg = new Configuracoes(this);
             FormCfg.ShowDialog();
         }
-
         private void LinkAddRota_Click(object sender, EventArgs e)//Vai abrir uma apara para adicionar mais Rotas
         {
             AddRota FormRout = new AddRota(this);

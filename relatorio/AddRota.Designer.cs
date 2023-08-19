@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.StyleMangerAddRot = new MetroFramework.Components.MetroStyleManager(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.TbAddRota = new System.Windows.Forms.TextBox();
@@ -74,6 +75,8 @@
             // ListGridRota
             // 
             this.ListGridRota.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ListGridRota.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.ListGridRota.BackgroundColor = System.Drawing.Color.White;
             this.ListGridRota.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ListGridRota.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
@@ -88,8 +91,8 @@
             this.ListGridRota.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.ListGridRota.RowHeadersVisible = false;
             this.ListGridRota.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToFirstHeader;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.ListGridRota.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ListGridRota.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.ListGridRota.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.ListGridRota.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ListGridRota.ShowCellToolTips = false;

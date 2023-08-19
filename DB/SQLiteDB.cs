@@ -8,7 +8,17 @@ namespace DB
     public class SQLiteDB
     {
         private static SQLiteConnection SQLiteConnection = null;
+        public class ConditionWhere
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
 
+            public ConditionWhere(string name, string value)
+            {
+                Name = name;
+                Value = value;
+            }
+        }
         private static SQLiteConnection DBConnection()
         {
             if (SQLiteConnection == null)
@@ -18,7 +28,6 @@ namespace DB
             }
             return SQLiteConnection;
         }
-
         public static void CreateDB()
         {
             try
@@ -44,7 +53,7 @@ namespace DB
                         CREATE TABLE IF NOT EXISTS employees (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             name TEXT NOT NULL,
-                            deleted_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                            deleted_at DATETIME
                         );
 
                         CREATE TABLE IF NOT EXISTS products (
@@ -93,17 +102,6 @@ namespace DB
                 throw ex;
             }
         }
-        public class ConditionWhere
-        {
-            public string Name { get; set; }
-            public string Value { get; set; }
-
-            public ConditionWhere(string name, string value)
-            {
-                Name = name;
-                Value = value;
-            }
-        }
         public static SQLiteDataReader QuerySelect(string query, List<ConditionWhere> where = null)
         {
             try
@@ -128,18 +126,24 @@ namespace DB
                 throw ex;
             }
         }
-        public static void QueryInsert(string query, List<ConditionWhere> values)
+        public static int QueryInsert(string query, List<ConditionWhere> values = null)
         {
             try
             {
                 using (var command = DBConnection().CreateCommand())
                 {
                     command.CommandText = query;
-                    foreach (ConditionWhere item in values)
+                    if (values != null)
                     {
-                        command.Parameters.AddWithValue(item.Name, item.Value);
+                        foreach (ConditionWhere item in values)
+                        {
+                            command.Parameters.AddWithValue(item.Name, item.Value);
+                        }
                     }
                     command.ExecuteNonQuery();
+                    command.CommandText = "SELECT last_insert_rowid()";
+                    int lastInsertedId = Convert.ToInt32(command.ExecuteScalar());
+                    return lastInsertedId;
                 }
             }
             catch (Exception ex)

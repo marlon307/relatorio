@@ -55,11 +55,12 @@
             this.TbDeposit = new System.Windows.Forms.TextBox();
             this.TbBack = new System.Windows.Forms.TextBox();
             this.TbExit = new System.Windows.Forms.TextBox();
-            this.TbEmployee = new System.Windows.Forms.TextBox();
             this.ComboBoxRoute = new System.Windows.Forms.ComboBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.DateTimeCx = new System.Windows.Forms.DateTimePicker();
             this.MetroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
+            this.AddEmployeeLB = new System.Windows.Forms.LinkLabel();
+            this.CbEmployees = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.MetroStyleManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -181,7 +182,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 17);
             this.label2.TabIndex = 73;
-            this.label2.Text = "Funcionario";
+            this.label2.Text = "Funcionário";
             // 
             // label1
             // 
@@ -231,6 +232,7 @@
             this.TbCheque.Name = "TbCheque";
             this.TbCheque.Size = new System.Drawing.Size(105, 26);
             this.TbCheque.TabIndex = 7;
+            this.TbCheque.Tag = "CurrencyTb";
             this.TbCheque.Text = "R$ 0,00";
             this.TbCheque.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbCheque.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -243,6 +245,7 @@
             this.TbCoin.Name = "TbCoin";
             this.TbCoin.Size = new System.Drawing.Size(105, 26);
             this.TbCoin.TabIndex = 8;
+            this.TbCoin.Tag = "CurrencyTb";
             this.TbCoin.Text = "R$ 0,00";
             this.TbCoin.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbCoin.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -255,6 +258,7 @@
             this.TbLack.Name = "TbLack";
             this.TbLack.Size = new System.Drawing.Size(105, 26);
             this.TbLack.TabIndex = 9;
+            this.TbLack.Tag = "CurrencyTb";
             this.TbLack.Text = "R$ 0,00";
             this.TbLack.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbLack.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -267,6 +271,7 @@
             this.TbLeftOver.Name = "TbLeftOver";
             this.TbLeftOver.Size = new System.Drawing.Size(105, 26);
             this.TbLeftOver.TabIndex = 10;
+            this.TbLeftOver.Tag = "CurrencyTb";
             this.TbLeftOver.Text = "R$ 0,00";
             this.TbLeftOver.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbLeftOver.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -287,6 +292,7 @@
             this.TbSpent.Name = "TbSpent";
             this.TbSpent.Size = new System.Drawing.Size(105, 26);
             this.TbSpent.TabIndex = 6;
+            this.TbSpent.Tag = "CurrencyTb";
             this.TbSpent.Text = "R$ 0,00";
             this.TbSpent.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbSpent.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -299,6 +305,7 @@
             this.TbDeposit.Name = "TbDeposit";
             this.TbDeposit.Size = new System.Drawing.Size(105, 26);
             this.TbDeposit.TabIndex = 5;
+            this.TbDeposit.Tag = "CurrencyTb";
             this.TbDeposit.Text = "R$ 0,00";
             this.TbDeposit.Click += new System.EventHandler(this.OnClickTbRel);
             this.TbDeposit.TextChanged += new System.EventHandler(this.TbxMoedFormat);
@@ -319,14 +326,6 @@
             this.TbExit.Name = "TbExit";
             this.TbExit.Size = new System.Drawing.Size(105, 26);
             this.TbExit.TabIndex = 3;
-            // 
-            // TbEmployee
-            // 
-            this.TbEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbEmployee.Location = new System.Drawing.Point(40, 127);
-            this.TbEmployee.Name = "TbEmployee";
-            this.TbEmployee.Size = new System.Drawing.Size(283, 26);
-            this.TbEmployee.TabIndex = 2;
             // 
             // ComboBoxRoute
             // 
@@ -362,11 +361,34 @@
             // 
             this.MetroStyleManager.Owner = this;
             // 
+            // AddEmployeeLB
+            // 
+            this.AddEmployeeLB.AutoSize = true;
+            this.AddEmployeeLB.Location = new System.Drawing.Point(165, 102);
+            this.AddEmployeeLB.Name = "AddEmployeeLB";
+            this.AddEmployeeLB.Size = new System.Drawing.Size(157, 13);
+            this.AddEmployeeLB.TabIndex = 86;
+            this.AddEmployeeLB.TabStop = true;
+            this.AddEmployeeLB.Text = "Adicionar/Remover Funcionário";
+            this.AddEmployeeLB.Click += new System.EventHandler(this.AddEmployeeLB_Click);
+            // 
+            // CbEmployees
+            // 
+            this.CbEmployees.AccessibleName = "Rota";
+            this.CbEmployees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CbEmployees.FormattingEnabled = true;
+            this.CbEmployees.Location = new System.Drawing.Point(40, 125);
+            this.CbEmployees.Name = "CbEmployees";
+            this.CbEmployees.Size = new System.Drawing.Size(282, 28);
+            this.CbEmployees.TabIndex = 87;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 561);
+            this.Controls.Add(this.CbEmployees);
+            this.Controls.Add(this.AddEmployeeLB);
             this.Controls.Add(this.DateTimeCx);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label12);
@@ -393,7 +415,6 @@
             this.Controls.Add(this.TbDeposit);
             this.Controls.Add(this.TbBack);
             this.Controls.Add(this.TbExit);
-            this.Controls.Add(this.TbEmployee);
             this.Controls.Add(this.ComboBoxRoute);
             this.Controls.Add(this.MCfgs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -402,6 +423,7 @@
             this.MinimumSize = new System.Drawing.Size(600, 600);
             this.Name = "Home";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Relatório ";
             this.TextChanged += new System.EventHandler(this.DateTimeCx_ValueChanged);
             this.Click += new System.EventHandler(this.OnClickTbRel);
@@ -436,13 +458,14 @@
         public System.Windows.Forms.TextBox TbComments;
         private System.Windows.Forms.TextBox TbSpent;
         private System.Windows.Forms.TextBox TbDeposit;
-        public System.Windows.Forms.TextBox TbEmployee;
         public System.Windows.Forms.ComboBox ComboBoxRoute;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.DateTimePicker DateTimeCx;
         private System.Windows.Forms.TextBox TbBack;
         private System.Windows.Forms.TextBox TbExit;
         public MetroFramework.Components.MetroStyleManager MetroStyleManager;
+        private System.Windows.Forms.LinkLabel AddEmployeeLB;
+        public System.Windows.Forms.ComboBox CbEmployees;
     }
 }
 
