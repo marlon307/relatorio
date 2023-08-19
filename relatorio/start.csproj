@@ -127,6 +127,7 @@
     <Compile Include="Class\ClassGridLpEtq.cs" />
     <Compile Include="Class\ComboBoxItem.cs" />
     <Compile Include="Class\EmployeeManeger.cs" />
+    <Compile Include="Class\ReportsManeger.cs" />
     <Compile Include="Class\RouteManeger.cs" />
     <Compile Include="Configuracoes.cs">
       <SubType>Form</SubType>

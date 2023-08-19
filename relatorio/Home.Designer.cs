@@ -61,6 +61,10 @@
             this.MetroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
             this.AddEmployeeLB = new System.Windows.Forms.LinkLabel();
             this.CbEmployees = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.MetroStyleManager)).BeginInit();
             this.SuspendLayout();
             // 
@@ -382,11 +386,47 @@
             this.CbEmployees.Size = new System.Drawing.Size(282, 28);
             this.CbEmployees.TabIndex = 87;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(444, 370);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 88;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(444, 427);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 89;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(441, 348);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(75, 13);
+            this.label13.TabIndex = 90;
+            this.label13.Text = "Estoque inicial";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(441, 407);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 13);
+            this.label14.TabIndex = 91;
+            this.label14.Text = "Produção";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 561);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.CbEmployees);
             this.Controls.Add(this.AddEmployeeLB);
             this.Controls.Add(this.DateTimeCx);
@@ -466,6 +506,10 @@
         public MetroFramework.Components.MetroStyleManager MetroStyleManager;
         private System.Windows.Forms.LinkLabel AddEmployeeLB;
         public System.Windows.Forms.ComboBox CbEmployees;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
