@@ -129,6 +129,7 @@
     <Compile Include="Class\EmployeeManeger.cs" />
     <Compile Include="Class\ReportsManeger.cs" />
     <Compile Include="Class\RouteManeger.cs" />
+    <Compile Include="Class\WorksheetsManeger.cs" />
     <Compile Include="Configuracoes.cs">
       <SubType>Form</SubType>
     </Compile>

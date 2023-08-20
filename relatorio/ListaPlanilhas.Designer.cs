@@ -29,23 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnLpOk = new MetroFramework.Controls.MetroButton();
             this.BtnLpDel = new MetroFramework.Controls.MetroButton();
-            this.LpGrid = new MetroFramework.Controls.MetroGrid();
-            this.LpRotaX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpFuncX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpSaiuX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpVoltaX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpDepX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpGastX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpChequeX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpMoedaX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpFaltaX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpSobraX = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LpObsX = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TbLpRota = new MetroFramework.Controls.MetroTextBox();
             this.TbLpFunc = new MetroFramework.Controls.MetroTextBox();
             this.TbLpSaida = new MetroFramework.Controls.MetroTextBox();
@@ -72,8 +57,9 @@
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.BtnLpSave = new MetroFramework.Controls.MetroButton();
             this.StyleManegerLplan = new MetroFramework.Components.MetroStyleManager(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.LpGrid)).BeginInit();
+            this.LpGrid = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.StyleManegerLplan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LpGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnLpOk
@@ -95,141 +81,6 @@
             this.BtnLpDel.Text = "EXCLUIR";
             this.BtnLpDel.UseSelectable = true;
             this.BtnLpDel.Click += new System.EventHandler(this.BtnLpDel_Click);
-            // 
-            // LpGrid
-            // 
-            this.LpGrid.AllowUserToAddRows = false;
-            this.LpGrid.AllowUserToResizeRows = false;
-            this.LpGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LpGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LpGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.LpGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.LpGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.LpGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LpGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.LpRotaX,
-            this.LpFuncX,
-            this.LpSaiuX,
-            this.LpVoltaX,
-            this.LpDepX,
-            this.LpGastX,
-            this.LpChequeX,
-            this.LpMoedaX,
-            this.LpFaltaX,
-            this.LpSobraX,
-            this.LpObsX});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.LpGrid.DefaultCellStyle = dataGridViewCellStyle2;
-            this.LpGrid.EnableHeadersVisualStyles = false;
-            this.LpGrid.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LpGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.LpGrid.Location = new System.Drawing.Point(23, 381);
-            this.LpGrid.Name = "LpGrid";
-            this.LpGrid.ReadOnly = true;
-            this.LpGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.LpGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.LpGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.LpGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.LpGrid.Size = new System.Drawing.Size(544, 182);
-            this.LpGrid.TabIndex = 3;
-            this.LpGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LpGrid_CellClick);
-            // 
-            // LpRotaX
-            // 
-            this.LpRotaX.DataPropertyName = "LpGridRota";
-            this.LpRotaX.HeaderText = "ROTA";
-            this.LpRotaX.Name = "LpRotaX";
-            this.LpRotaX.ReadOnly = true;
-            // 
-            // LpFuncX
-            // 
-            this.LpFuncX.DataPropertyName = "LpGridFunc";
-            this.LpFuncX.HeaderText = "FUNCIONARIO";
-            this.LpFuncX.Name = "LpFuncX";
-            this.LpFuncX.ReadOnly = true;
-            // 
-            // LpSaiuX
-            // 
-            this.LpSaiuX.DataPropertyName = "LpGridSaiu";
-            this.LpSaiuX.HeaderText = "SAIDA";
-            this.LpSaiuX.Name = "LpSaiuX";
-            this.LpSaiuX.ReadOnly = true;
-            // 
-            // LpVoltaX
-            // 
-            this.LpVoltaX.DataPropertyName = "LpGridVolta";
-            this.LpVoltaX.HeaderText = "VOLTA";
-            this.LpVoltaX.Name = "LpVoltaX";
-            this.LpVoltaX.ReadOnly = true;
-            // 
-            // LpDepX
-            // 
-            this.LpDepX.DataPropertyName = "LpGridDep";
-            this.LpDepX.HeaderText = "DEPOSITO";
-            this.LpDepX.Name = "LpDepX";
-            this.LpDepX.ReadOnly = true;
-            // 
-            // LpGastX
-            // 
-            this.LpGastX.DataPropertyName = "LpGridGast";
-            this.LpGastX.HeaderText = "GASTO";
-            this.LpGastX.Name = "LpGastX";
-            this.LpGastX.ReadOnly = true;
-            // 
-            // LpChequeX
-            // 
-            this.LpChequeX.DataPropertyName = "LpGridCheq";
-            this.LpChequeX.HeaderText = "CHEQUE";
-            this.LpChequeX.Name = "LpChequeX";
-            this.LpChequeX.ReadOnly = true;
-            // 
-            // LpMoedaX
-            // 
-            this.LpMoedaX.DataPropertyName = "LpGridMoed";
-            this.LpMoedaX.HeaderText = "MOEDA";
-            this.LpMoedaX.Name = "LpMoedaX";
-            this.LpMoedaX.ReadOnly = true;
-            // 
-            // LpFaltaX
-            // 
-            this.LpFaltaX.DataPropertyName = "LpGridFalt";
-            this.LpFaltaX.HeaderText = "FALTA";
-            this.LpFaltaX.Name = "LpFaltaX";
-            this.LpFaltaX.ReadOnly = true;
-            // 
-            // LpSobraX
-            // 
-            this.LpSobraX.DataPropertyName = "LpGridSob";
-            this.LpSobraX.HeaderText = "SOBRA";
-            this.LpSobraX.Name = "LpSobraX";
-            this.LpSobraX.ReadOnly = true;
-            // 
-            // LpObsX
-            // 
-            this.LpObsX.DataPropertyName = "LpGridObs";
-            this.LpObsX.HeaderText = "OBSERVAÇÕES";
-            this.LpObsX.Name = "LpObsX";
-            this.LpObsX.ReadOnly = true;
             // 
             // TbLpRota
             // 
@@ -755,11 +606,29 @@
             // 
             this.StyleManegerLplan.Owner = this;
             // 
+            // LpGrid
+            // 
+            this.LpGrid.AllowUserToAddRows = false;
+            this.LpGrid.AllowUserToDeleteRows = false;
+            this.LpGrid.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.LpGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LpGrid.CausesValidation = false;
+            this.LpGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LpGrid.Location = new System.Drawing.Point(23, 380);
+            this.LpGrid.MultiSelect = false;
+            this.LpGrid.Name = "LpGrid";
+            this.LpGrid.ReadOnly = true;
+            this.LpGrid.RowHeadersVisible = false;
+            this.LpGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.LpGrid.Size = new System.Drawing.Size(544, 183);
+            this.LpGrid.TabIndex = 28;
+            // 
             // ListaPlanilhas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 615);
+            this.Controls.Add(this.LpGrid);
             this.Controls.Add(this.BtnLpSave);
             this.Controls.Add(this.metroLabel12);
             this.Controls.Add(this.TbLpTot);
@@ -785,7 +654,6 @@
             this.Controls.Add(this.TbLpSaida);
             this.Controls.Add(this.TbLpFunc);
             this.Controls.Add(this.TbLpRota);
-            this.Controls.Add(this.LpGrid);
             this.Controls.Add(this.BtnLpDel);
             this.Controls.Add(this.BtnLpOk);
             this.MaximizeBox = false;
@@ -803,8 +671,8 @@
             this.Text = "Planilhas";
             this.Theme = MetroFramework.MetroThemeStyle.Default;
             this.TextChanged += new System.EventHandler(this.TbxsEditPlan);
-            ((System.ComponentModel.ISupportInitialize)(this.LpGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StyleManegerLplan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LpGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -814,7 +682,6 @@
 
         private MetroFramework.Controls.MetroButton BtnLpOk;
         private MetroFramework.Controls.MetroButton BtnLpDel;
-        private MetroFramework.Controls.MetroGrid LpGrid;
         private MetroFramework.Controls.MetroTextBox TbLpRota;
         private MetroFramework.Controls.MetroTextBox TbLpFunc;
         private MetroFramework.Controls.MetroTextBox TbLpSaida;
@@ -837,20 +704,10 @@
         private MetroFramework.Controls.MetroLabel metroLabel9;
         private MetroFramework.Controls.MetroLabel metroLabel10;
         private MetroFramework.Controls.MetroLabel metroLabel11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpRotaX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpFuncX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpSaiuX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpVoltaX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpDepX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpGastX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpChequeX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpMoedaX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpFaltaX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpSobraX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LpObsX;
         private MetroFramework.Controls.MetroTextBox TbLpTot;
         private MetroFramework.Controls.MetroLabel metroLabel12;
         private MetroFramework.Controls.MetroButton BtnLpSave;
         public MetroFramework.Components.MetroStyleManager StyleManegerLplan;
+        private System.Windows.Forms.DataGridView LpGrid;
     }
 }
