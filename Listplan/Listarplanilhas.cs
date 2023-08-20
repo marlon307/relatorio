@@ -74,7 +74,7 @@ namespace Listplan
             get { return LpObs; }
             set { LpObs = value; }
         }
-        public static List<Listarplanilhas> ListaRelatorioPl(string nArchive)
+        /*public static List<Listarplanilhas> ListaRelatorioPl(string nArchive)
         {
             List<Listarplanilhas> List = new List<Listarplanilhas>();
             XElement xml = XElement.Load(@"cache\" + nArchive + ".xml");
@@ -97,7 +97,7 @@ namespace Listplan
                 List.Add(p);
             }
             return List;
-        }//ExcluirItemPlanilhas
+        }//ExcluirItemPlanilhas*/
         public static void ExcluirItemPlanilhas(string Rota, string nArchive)
         {
             XElement xml = XElement.Load(@"cache\" + nArchive + ".xml");

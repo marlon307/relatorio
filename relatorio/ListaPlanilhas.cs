@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using HomeClass;
 using Listplan;
 using format;
+using start.Class;
 
 namespace start
 {
@@ -17,15 +18,14 @@ namespace start
         string nArchive = Home.DateProprie;
 
 
-        public ListaPlanilhas(Home frm1)
+        public ListaPlanilhas(ListRelatorios frm1)
         {
             InitializeComponent();
 
             this.StyleManager = StyleManegerLplan;
+            LpGrid.DataSource = WorksheetsManeger.ListAllWorkSheets(frm1.reporteDate);
 
-            ObjectsHome = frm1;
-
-            ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
+          /*  ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
             LpGrid.DataSource = ListGridLp;
 
             TbLpRota.Text = ListGridLp[Home.VlueIndexGrid].LpGridRota;
@@ -39,11 +39,11 @@ namespace start
             TbLpFalt.Text = ListGridLp[Home.VlueIndexGrid].LpGridFalt;
             TbLpSob.Text = ListGridLp[Home.VlueIndexGrid].LpGridSob;
             TbLpObs.Text = ListGridLp[Home.VlueIndexGrid].LpGridObs;
-            LpGrid.CurrentCell = LpGrid[0, Home.VlueIndexGrid];//Vai mante a celula selecionada
+            LpGrid.CurrentCell = LpGrid[0, Home.VlueIndexGrid];//Vai mante a celula selecionada*/
         }
         private void BtnLpDel_Click(object sender, EventArgs e)
         {
-            if (LpGrid.SelectedRows.Count > 0)
+          /*  if (LpGrid.SelectedRows.Count > 0)
             {
                 int indice = LpGrid.SelectedRows[0].Index;
                 Listarplanilhas.ExcluirItemPlanilhas(ListGridLp[indice].LpGridRota, nArchive);
@@ -62,7 +62,7 @@ namespace start
                 TbLpObs.Clear();
                 ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
                // ObjectsHome.ListGridHome.DataSource = ListGridHm;
-            }
+            }*/
         }
         private void BtnLpOk_Click(object sender, EventArgs e)
         {
@@ -85,7 +85,7 @@ namespace start
                         LpGridObs = TbLpObs.Text.ToUpper()
                     };
                     Listarplanilhas.EditarPlanilhaLp(p, nArchive);
-                    ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
+                  //  ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
                     LpGrid.DataSource = ListGridLp;
                     ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
                   //  ObjectsHome.ListGridHome.DataSource = ListGridHm;
@@ -114,7 +114,7 @@ namespace start
                         LpGridObs = TbLpObs.Text.ToUpper()
                     };
                     Listarplanilhas.EditarPlanilhaLp(p, nArchive);
-                    ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
+                   // ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
                     LpGrid.DataSource = ListGridLp;
                     ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
                    // ObjectsHome.ListGridHome.DataSource = ListGridHm;

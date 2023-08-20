@@ -58,6 +58,7 @@
             this.GridReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.GridReports.Size = new System.Drawing.Size(410, 303);
             this.GridReports.TabIndex = 0;
+            this.GridReports.DoubleClick += new System.EventHandler(this.GridReports_DoubleClick);
             // 
             // ListRelatorios
             // 
