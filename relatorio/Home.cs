@@ -16,14 +16,12 @@ namespace start
     {
         //Declaracao variaveis
         double n1, n2, n3, n4, n5, n6, total;
-        public static int VlueIndexGrid { get; private set; }
         public static string DateProprie { get; private set; }
         public string AddRotaList { get; }
         private readonly int idReport = 0;
         public string AddEmployeeList { get; }
         public static int StyleFoms = 4; //Cor das bordas Azul
         public static int ThemeForm = 1;//Tema Claro
-        private List<ClassGridLpHome> ListGrid;
         public Home()
         {
             InitializeComponent();
@@ -73,6 +71,8 @@ namespace start
         }
         private void BtnLancar_Click(object sender, EventArgs e)
         {
+            CultureInfo culture = new CultureInfo("pt-BR");
+            label1.Text = double.Parse(TbDeposit.Text, NumberStyles.Currency, culture).ToString();
             if (CbEmployees.SelectedItem != null)
             {
                 ComboBoxItem routeSelected = (ComboBoxItem)ComboBoxRoute.SelectedItem;
@@ -82,17 +82,17 @@ namespace start
                
                 List<ConditionWhere> values = new List<ConditionWhere>
                 {
-                     new ConditionWhere("@report_id", idReport.ToString()),
+                    new ConditionWhere("@report_id", idReport.ToString()),
                     new ConditionWhere("@route_id", idRouter),
                     new ConditionWhere("@employee_id", idEmployee),
                     new ConditionWhere("@qtd_exit", TbExit.Text),
                     new ConditionWhere("@qtd_back", TbBack.Text),
-                    new ConditionWhere("@deposit", double.Parse(TbDeposit.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@spent", double.Parse(TbSpent.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@cheque", double.Parse(TbCheque.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@coins", double.Parse(TbCoin.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@lack", double.Parse(TbLack.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@leftover",double.Parse(TbLeftOver.Text, NumberStyles.AllowCurrencySymbol | NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@deposit", double.Parse(TbDeposit.Text, NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@spent", double.Parse(TbSpent.Text, NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@cheque", double.Parse(TbCheque.Text, NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@coins", double.Parse(TbCoin.Text, NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@lack", double.Parse(TbLack.Text, NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@leftover",double.Parse(TbLeftOver.Text, NumberStyles.Currency).ToString()),
                     new ConditionWhere("@comments", TbComments.Text.ToUpper()),
                 };
                 QueryInsert(@"INSERT INTO records(report_id, route_id, employee_id, qtd_exit, qtd_back, deposit, spent, cheque, coins, lack, leftover, comments)
@@ -124,11 +124,6 @@ namespace start
         {
             AddEmployee FormEmployee = new AddEmployee(this);
             FormEmployee.ShowDialog();
-        }
-        private void MCfgs_Click(object sender, EventArgs e)
-        {   
-            Configuracoes FormCfg = new Configuracoes(this);
-            FormCfg.ShowDialog();
         }
         private void LinkAddRota_Click(object sender, EventArgs e)//Vai abrir uma apara para adicionar mais Rotas
         {

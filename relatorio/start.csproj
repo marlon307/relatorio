@@ -130,18 +130,6 @@
     <Compile Include="Class\ReportsManeger.cs" />
     <Compile Include="Class\RouteManeger.cs" />
     <Compile Include="Class\WorksheetsManeger.cs" />
-    <Compile Include="Configuracoes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Configuracoes.Designer.cs">
-      <DependentUpon>Configuracoes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CtrlEstoque.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CtrlEstoque.Designer.cs">
-      <DependentUpon>CtrlEstoque.cs</DependentUpon>
-    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,12 +155,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddRota.resx">
       <DependentUpon>AddRota.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Configuracoes.resx">
-      <DependentUpon>Configuracoes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CtrlEstoque.resx">
-      <DependentUpon>CtrlEstoque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
@@ -228,10 +210,6 @@
     <ProjectReference Include="..\HomeClass\HomeClass.csproj">
       <Project>{bcb794d2-7f58-499f-9daf-56251dc4ecb3}</Project>
       <Name>HomeClass</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Listplan\Listplan.csproj">
-      <Project>{35bc6b06-3f76-435c-969c-1c171353fd64}</Project>
-      <Name>Listplan</Name>
     </ProjectReference>
     <ProjectReference Include="..\tbformat\format.csproj">
       <Project>{a9c5cbab-6a83-40e9-b1d6-96ac44aeeaa0}</Project>

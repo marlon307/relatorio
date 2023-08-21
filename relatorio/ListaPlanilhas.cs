@@ -1,53 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using HomeClass;
-using Listplan;
 using format;
 using start.Class;
 
 namespace start
 {
-    public partial class ListaPlanilhas : MetroFramework.Forms.MetroForm
+    public partial class ListaPlanilhas : Form
     {
-        private List<Listarplanilhas> ListGridLp;
-        private List<ClassGridLpHome> ListGridHm;
+        private List<WorksheetsManeger> ListGridLp;
+        private readonly ListRelatorios FormListWorkSeeths;
         double n1, n2, n3, n4, n5, n6, total;
 
-        Home ObjectsHome;
-        string nArchive = Home.DateProprie;
-
-
-        public ListaPlanilhas(ListRelatorios frm1)
+        public ListaPlanilhas(ListRelatorios WorkSheetsForm)
         {
             InitializeComponent();
 
-            this.StyleManager = StyleManegerLplan;
-            LpGrid.DataSource = WorksheetsManeger.ListAllWorkSheets(frm1.reporteDate);
-
-          /*  ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
+            FormListWorkSeeths = WorkSheetsForm;
+            ListGridLp = WorksheetsManeger.ListAllWorkSheets(WorkSheetsForm.reporteDate);
             LpGrid.DataSource = ListGridLp;
 
-            TbLpRota.Text = ListGridLp[Home.VlueIndexGrid].LpGridRota;
-            TbLpFunc.Text = ListGridLp[Home.VlueIndexGrid].LpGridFunc;
-            TbLpSaida.Text = ListGridLp[Home.VlueIndexGrid].LpGridSaiu;
-            TbLpVolta.Text = ListGridLp[Home.VlueIndexGrid].LpGridVolta;
-            TbLpDep.Text = ListGridLp[Home.VlueIndexGrid].LpGridDep;
-            TbLpGast.Text = ListGridLp[Home.VlueIndexGrid].LpGridGast;
-            TbLpCheq.Text = ListGridLp[Home.VlueIndexGrid].LpGridCheq;
-            TbLpMoed.Text = ListGridLp[Home.VlueIndexGrid].LpGridMoed;
-            TbLpFalt.Text = ListGridLp[Home.VlueIndexGrid].LpGridFalt;
-            TbLpSob.Text = ListGridLp[Home.VlueIndexGrid].LpGridSob;
-            TbLpObs.Text = ListGridLp[Home.VlueIndexGrid].LpGridObs;
-            LpGrid.CurrentCell = LpGrid[0, Home.VlueIndexGrid];//Vai mante a celula selecionada*/
+           // TbLpRota.Text = ListGridLp[0].LpGridRota;
+            TbLpFunc.Text = ListGridLp[0].Funcionário;
+          //  TbLpSaida.Text = ListGridLp[0].LpGridSaiu;
+           // TbLpVolta.Text = ListGridLp[0].LpGridVolta;
+            TbLpDep.Text = ListGridLp[0].Deposito;
+            TbLpGast.Text = ListGridLp[0].Gasto;
+            TbLpCheq.Text = ListGridLp[0].Cheque;
+            TbLpMoed.Text = ListGridLp[0].Moedas;
+            TbLpFalt.Text = ListGridLp[0].Falta;
+            TbLpSob.Text = ListGridLp[0].Sobra;
+            TbLpObs.Text = ListGridLp[0].Observações;
+            LpGrid.CurrentCell = LpGrid[0, 0];//Vai mante a celula selecionada
         }
         private void BtnLpDel_Click(object sender, EventArgs e)
         {
-          /*  if (LpGrid.SelectedRows.Count > 0)
+            if (LpGrid.SelectedRows.Count > 0)
             {
-                int indice = LpGrid.SelectedRows[0].Index;
-                Listarplanilhas.ExcluirItemPlanilhas(ListGridLp[indice].LpGridRota, nArchive);
-                ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
+                ListGridLp = WorksheetsManeger.ListAllWorkSheets(FormListWorkSeeths.reporteDate);
                 LpGrid.DataSource = ListGridLp;
                 TbLpRota.Clear();
                 TbLpFunc.Clear();
@@ -60,38 +50,12 @@ namespace start
                 TbLpFalt.Clear();
                 TbLpSob.Clear();
                 TbLpObs.Clear();
-                ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
-               // ObjectsHome.ListGridHome.DataSource = ListGridHm;
-            }*/
+                FormListWorkSeeths.GridReports.DataSource = ReportsManeger.ListReports();
+            }
         }
         private void BtnLpOk_Click(object sender, EventArgs e)
         {
-            if (TbLpRota.Text != "")
-            {
-                if (LpGrid.SelectedRows.Count > 0)
-                {
-                    Listarplanilhas p = new Listarplanilhas()
-                    {
-                        LpGridRota = TbLpRota.Text,
-                        LpGridFunc = TbLpFunc.Text.ToUpper(),
-                        LpGridSaiu = TbLpSaida.Text,
-                        LpGridVolta = TbLpVolta.Text,
-                        LpGridDep = TbLpDep.Text,
-                        LpGridGast = TbLpGast.Text,
-                        LpGridCheq = TbLpCheq.Text,
-                        LpGridMoed = TbLpMoed.Text,
-                        LpGridFalt = TbLpFalt.Text,
-                        LpGridSob = TbLpSob.Text,
-                        LpGridObs = TbLpObs.Text.ToUpper()
-                    };
-                    Listarplanilhas.EditarPlanilhaLp(p, nArchive);
-                  //  ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
-                    LpGrid.DataSource = ListGridLp;
-                    ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
-                  //  ObjectsHome.ListGridHome.DataSource = ListGridHm;
-                }
-            }
-            this.Close();
+            Close();
         }
         private void BtnLpSave_Click(object sender, EventArgs e)
         {
@@ -99,57 +63,40 @@ namespace start
             {
                 if (LpGrid.SelectedRows.Count > 0)
                 {
-                    Listarplanilhas p = new Listarplanilhas()
-                    {
-                        LpGridRota = TbLpRota.Text,
-                        LpGridFunc = TbLpFunc.Text.ToUpper(),
-                        LpGridSaiu = TbLpSaida.Text,
-                        LpGridVolta = TbLpVolta.Text,
-                        LpGridDep = TbLpDep.Text,
-                        LpGridGast = TbLpGast.Text,
-                        LpGridCheq = TbLpCheq.Text,
-                        LpGridMoed = TbLpMoed.Text,
-                        LpGridFalt = TbLpFalt.Text,
-                        LpGridSob = TbLpSob.Text,
-                        LpGridObs = TbLpObs.Text.ToUpper()
-                    };
-                    Listarplanilhas.EditarPlanilhaLp(p, nArchive);
+                   // Listarplanilhas.EditarPlanilhaLp(p, nArchive);
                    // ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
                     LpGrid.DataSource = ListGridLp;
-                    ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
+                   // ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
                    // ObjectsHome.ListGridHome.DataSource = ListGridHm;
                 }
             }
         }
         private void LpGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (LpGrid.SelectedRows.Count > 0)
+            if (LpGrid.CurrentCell != null)
             {
-                int indice = LpGrid.SelectedRows[0].Index;
-                if (indice >= 0)
-                {
-                    TbLpRota.Text = ListGridLp[indice].LpGridRota;
-                    TbLpFunc.Text = ListGridLp[indice].LpGridFunc;
-                    TbLpSaida.Text = ListGridLp[indice].LpGridSaiu;
-                    TbLpVolta.Text = ListGridLp[indice].LpGridVolta;
-                    TbLpDep.Text = ListGridLp[indice].LpGridDep;
-                    TbLpGast.Text = ListGridLp[indice].LpGridGast;
-                    TbLpCheq.Text = ListGridLp[indice].LpGridCheq;
-                    TbLpMoed.Text = ListGridLp[indice].LpGridMoed;
-                    TbLpFalt.Text = ListGridLp[indice].LpGridFalt;
-                    TbLpSob.Text = ListGridLp[indice].LpGridSob;
-                    TbLpObs.Text = ListGridLp[indice].LpGridObs;
-                }
+                int index = LpGrid.CurrentCell.RowIndex;
+                // TbLpRota.Text = ListGridLp[indice].LpGridRota;
+                TbLpFunc.Text = ListGridLp[index].Funcionário;
+                // TbLpSaida.Text = ListGridLp[indice].LpGridSaiu;
+                // TbLpVolta.Text = ListGridLp[indice].LpGridVolta;
+                TbLpDep.Text = ListGridLp[index].Deposito;
+                TbLpGast.Text = ListGridLp[index].Gasto;
+                TbLpCheq.Text = ListGridLp[index].Cheque;
+                TbLpMoed.Text = ListGridLp[index].Moedas;
+                TbLpFalt.Text = ListGridLp[index].Falta;
+                TbLpSob.Text = ListGridLp[index].Sobra;
+                TbLpObs.Text = ListGridLp[index].Observações;
             }
         }
         private void TbxsEditPlan(object sender, EventArgs e)
         {
-           // TexboxFormat.Moeda(ref TbLpDep);
-           // TexboxFormat.Moeda(ref TbLpGast);
-           // TexboxFormat.Moeda(ref TbLpCheq);
-           // TexboxFormat.Moeda(ref TbLpMoed);
-           // TexboxFormat.Moeda(ref TbLpFalt);
-           // TexboxFormat.Moeda(ref TbLpSob);
+            TexboxFormat.Moeda(ref TbLpDep);
+            TexboxFormat.Moeda(ref TbLpGast);
+            TexboxFormat.Moeda(ref TbLpCheq);
+            TexboxFormat.Moeda(ref TbLpMoed);
+            TexboxFormat.Moeda(ref TbLpFalt);
+            TexboxFormat.Moeda(ref TbLpSob);
             Calculo();
         }
         private void Calculo()
@@ -170,11 +117,10 @@ namespace start
             }
         }
         private void TbxLpDow(object sender, KeyEventArgs e)
-        {// proibe o uso do DEL
+        {
             if (e.KeyData == Keys.Delete)
             {
                 e.Handled = true;
-                //  TbDeposito.Text = "R$ 0,00";
             }
         }
         private void TbxLpKeyPress(object sender, KeyPressEventArgs e)
