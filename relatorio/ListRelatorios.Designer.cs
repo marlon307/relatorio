@@ -86,6 +86,6 @@
         #endregion
 
         public MetroFramework.Components.MetroStyleManager StyleMagerRf;
-        private System.Windows.Forms.DataGridView GridReports;
+        public System.Windows.Forms.DataGridView GridReports;
     }
 }

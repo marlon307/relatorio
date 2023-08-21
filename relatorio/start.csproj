@@ -229,10 +229,6 @@
       <Project>{bcb794d2-7f58-499f-9daf-56251dc4ecb3}</Project>
       <Name>HomeClass</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Listplan\Listplan.csproj">
-      <Project>{35bc6b06-3f76-435c-969c-1c171353fd64}</Project>
-      <Name>Listplan</Name>
-    </ProjectReference>
     <ProjectReference Include="..\tbformat\format.csproj">
       <Project>{a9c5cbab-6a83-40e9-b1d6-96ac44aeeaa0}</Project>
       <Name>format</Name>

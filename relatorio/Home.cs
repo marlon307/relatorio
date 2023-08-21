@@ -16,14 +16,12 @@ namespace start
     {
         //Declaracao variaveis
         double n1, n2, n3, n4, n5, n6, total;
-        public static int VlueIndexGrid { get; private set; }
         public static string DateProprie { get; private set; }
         public string AddRotaList { get; }
         private readonly int idReport = 0;
         public string AddEmployeeList { get; }
         public static int StyleFoms = 4; //Cor das bordas Azul
         public static int ThemeForm = 1;//Tema Claro
-        private List<ClassGridLpHome> ListGrid;
         public Home()
         {
             InitializeComponent();

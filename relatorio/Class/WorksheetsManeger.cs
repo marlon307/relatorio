@@ -57,7 +57,7 @@ namespace start.Class
             {
                 new ConditionWhere("@date", dateFormat),
             };
-            SQLiteDataReader listReport = QuerySelect("SELECT rp.date, rc.deposit, rc.spent, rc.cheque, rc.coins, rc.lack, rc.leftover, rc.comments FROM 'reports' AS 'rp' INNER JOIN 'records' AS 'rc' ON rc.report_id = rp.id WHERE date = DATE(@date);", dateCondition);
+            SQLiteDataReader listReport = QuerySelect("SELECT rp.date, rc.id, rc.deposit, rc.spent, rc.cheque, rc.coins, rc.lack, rc.leftover, rc.comments FROM 'reports' AS 'rp' INNER JOIN 'records' AS 'rc' ON rc.report_id = rp.id WHERE date = DATE(@date);", dateCondition);
 
             List<WorksheetsManeger> List = new List<WorksheetsManeger>();
             while (listReport.Read())
