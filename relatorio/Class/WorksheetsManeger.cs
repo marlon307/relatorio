@@ -8,48 +8,15 @@ namespace start.Class
 {
     internal class WorksheetsManeger
     {
-        private string deposit;
-        public string Deposito
-        {
-            get { return deposit; }
-            set { deposit = value; }
-        }
-        private string spent;
-        public string Gasto
-        {
-            get { return spent; }
-            set { spent = value; }
-        }
-        private string cheque;
-        public string Cheque
-        {
-            get { return cheque; }
-            set { cheque = value; }
-        }
-        private string coins;
-        public string Moedas
-        {
-            get { return coins; }
-            set { coins = value; }
-        }
-        private string lack;
-        public string Falta
-        {
-            get { return lack; }
-            set { lack = value; }
-        }
-        private string lefover;
-        public string Sobra
-        {
-            get { return lefover; }
-            set { lefover = value; }
-        }
-        private string comments;
-        public string Observações
-        {
-            get { return comments; }
-            set { comments = value; }
-        }
+        private string EmployeeID { get; set; }
+        public string Funcionário { get; set; }
+        public string Deposito { get; set; }
+        public string Gasto { get; set; }
+        public string Cheque { get; set; }
+        public string Moedas { get; set; }
+        public string Falta { get; set; }
+        public string Sobra { get; set; }
+        public string Observações { get; set; }
         public static List<WorksheetsManeger>ListAllWorkSheets(string resportDate)
         {
             string dateFormat = DateTime.Parse(resportDate).ToString("yyyy-MM-dd");
@@ -57,19 +24,21 @@ namespace start.Class
             {
                 new ConditionWhere("@date", dateFormat),
             };
-            SQLiteDataReader listReport = QuerySelect("SELECT rp.date, rc.id, rc.deposit, rc.spent, rc.cheque, rc.coins, rc.lack, rc.leftover, rc.comments FROM 'reports' AS 'rp' INNER JOIN 'records' AS 'rc' ON rc.report_id = rp.id WHERE date = DATE(@date);", dateCondition);
-
+            SQLiteDataReader listReport = QuerySelect("SELECT rp.date, em.name, em.id AS em_id, rc.id, rc.deposit, rc.spent, rc.cheque, rc.coins, rc.lack, rc.leftover, rc.comments FROM 'reports' AS 'rp' INNER JOIN 'records' AS 'rc' ON rc.report_id = rp.id INNER JOIN employees AS 'em' ON em.id = rc.employee_id WHERE date = DATE(@date);", dateCondition);
+            
             List<WorksheetsManeger> List = new List<WorksheetsManeger>();
             while (listReport.Read())
             {
                 WorksheetsManeger resports = new WorksheetsManeger()
                 {
-                    Deposito = listReport["deposit"].ToString(),
-                    Gasto = listReport["spent"].ToString(),
-                    Cheque = listReport["cheque"].ToString(),
-                    Moedas = listReport["coins"].ToString(),
-                    Falta = listReport["lack"].ToString(),
-                    Sobra = listReport["leftover"].ToString(),
+                   // EmployeeID = listReport["em_id"].ToString(),
+                    Funcionário = listReport["name"].ToString(),
+                    Deposito = string.Format("{0:C}", listReport["deposit"]),
+                    Gasto = string.Format("{0:C}", listReport["spent"]),
+                    Cheque = string.Format("{0:C}", listReport["cheque"]),
+                    Moedas = string.Format("{0:C}", listReport["coins"]),
+                    Falta = string.Format("{0:C}", listReport["lack"]),
+                    Sobra = string.Format("{0:C}", listReport["leftover"]),
                     Observações = listReport["comments"].ToString(),
                 };
                 List.Add(resports);

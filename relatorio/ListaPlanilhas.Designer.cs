@@ -165,6 +165,7 @@
             // 
             // TbLpFunc
             // 
+            this.TbLpFunc.Enabled = false;
             this.TbLpFunc.Location = new System.Drawing.Point(175, 58);
             this.TbLpFunc.Name = "TbLpFunc";
             this.TbLpFunc.Size = new System.Drawing.Size(223, 20);

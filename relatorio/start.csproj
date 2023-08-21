@@ -130,18 +130,6 @@
     <Compile Include="Class\ReportsManeger.cs" />
     <Compile Include="Class\RouteManeger.cs" />
     <Compile Include="Class\WorksheetsManeger.cs" />
-    <Compile Include="Configuracoes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Configuracoes.Designer.cs">
-      <DependentUpon>Configuracoes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CtrlEstoque.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CtrlEstoque.Designer.cs">
-      <DependentUpon>CtrlEstoque.cs</DependentUpon>
-    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,12 +155,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddRota.resx">
       <DependentUpon>AddRota.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Configuracoes.resx">
-      <DependentUpon>Configuracoes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CtrlEstoque.resx">
-      <DependentUpon>CtrlEstoque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>

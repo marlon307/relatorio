@@ -21,7 +21,7 @@ namespace start
             LpGrid.DataSource = ListGridLp;
 
            // TbLpRota.Text = ListGridLp[0].LpGridRota;
-           // TbLpFunc.Text = ListGridLp[0].LpGridFunc;
+            TbLpFunc.Text = ListGridLp[0].Funcionário;
           //  TbLpSaida.Text = ListGridLp[0].LpGridSaiu;
            // TbLpVolta.Text = ListGridLp[0].LpGridVolta;
             TbLpDep.Text = ListGridLp[0].Deposito;
@@ -77,7 +77,7 @@ namespace start
             {
                 int index = LpGrid.CurrentCell.RowIndex;
                 // TbLpRota.Text = ListGridLp[indice].LpGridRota;
-                // TbLpFunc.Text = ListGridLp[indice].LpGridFunc;
+                TbLpFunc.Text = ListGridLp[index].Funcionário;
                 // TbLpSaida.Text = ListGridLp[indice].LpGridSaiu;
                 // TbLpVolta.Text = ListGridLp[indice].LpGridVolta;
                 TbLpDep.Text = ListGridLp[index].Deposito;

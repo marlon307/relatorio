@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.MCfgs = new MetroFramework.Controls.MetroLink();
             this.label12 = new System.Windows.Forms.Label();
@@ -58,25 +57,21 @@
             this.ComboBoxRoute = new System.Windows.Forms.ComboBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.DateTimeCx = new System.Windows.Forms.DateTimePicker();
-            this.MetroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
             this.AddEmployeeLB = new System.Windows.Forms.LinkLabel();
             this.CbEmployees = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.MetroStyleManager)).BeginInit();
             this.SuspendLayout();
             // 
             // MCfgs
             // 
-            this.MCfgs.Location = new System.Drawing.Point(887, 564);
+            this.MCfgs.Location = new System.Drawing.Point(0, 0);
             this.MCfgs.Name = "MCfgs";
-            this.MCfgs.Size = new System.Drawing.Size(94, 23);
-            this.MCfgs.TabIndex = 30;
-            this.MCfgs.Text = "Configuracoes";
+            this.MCfgs.Size = new System.Drawing.Size(75, 23);
+            this.MCfgs.TabIndex = 92;
             this.MCfgs.UseSelectable = true;
-            this.MCfgs.Click += new System.EventHandler(this.MCfgs_Click);
             // 
             // label12
             // 
@@ -361,10 +356,6 @@
             this.DateTimeCx.TabIndex = 85;
             this.DateTimeCx.ValueChanged += new System.EventHandler(this.DateTimeCx_ValueChanged);
             // 
-            // MetroStyleManager
-            // 
-            this.MetroStyleManager.Owner = this;
-            // 
             // AddEmployeeLB
             // 
             this.AddEmployeeLB.AutoSize = true;
@@ -468,7 +459,6 @@
             this.TextChanged += new System.EventHandler(this.DateTimeCx_ValueChanged);
             this.Click += new System.EventHandler(this.OnClickTbRel);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDownRel);
-            ((System.ComponentModel.ISupportInitialize)(this.MetroStyleManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -503,7 +493,6 @@
         private System.Windows.Forms.DateTimePicker DateTimeCx;
         private System.Windows.Forms.TextBox TbBack;
         private System.Windows.Forms.TextBox TbExit;
-        public MetroFramework.Components.MetroStyleManager MetroStyleManager;
         private System.Windows.Forms.LinkLabel AddEmployeeLB;
         public System.Windows.Forms.ComboBox CbEmployees;
         private System.Windows.Forms.Label label14;
