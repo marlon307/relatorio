@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            this.MCfgs = new MetroFramework.Controls.MetroLink();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -64,14 +63,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // MCfgs
-            // 
-            this.MCfgs.Location = new System.Drawing.Point(0, 0);
-            this.MCfgs.Name = "MCfgs";
-            this.MCfgs.Size = new System.Drawing.Size(75, 23);
-            this.MCfgs.TabIndex = 92;
-            this.MCfgs.UseSelectable = true;
             // 
             // label12
             // 
@@ -447,7 +438,6 @@
             this.Controls.Add(this.TbBack);
             this.Controls.Add(this.TbExit);
             this.Controls.Add(this.ComboBoxRoute);
-            this.Controls.Add(this.MCfgs);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1000, 600);
@@ -465,7 +455,6 @@
         }
 
         #endregion
-        private MetroFramework.Controls.MetroLink MCfgs;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;

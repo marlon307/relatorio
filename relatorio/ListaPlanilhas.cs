@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using format;
 using start.Class;
+using static start.Class.WorksheetsManeger;
 
 namespace start
 {
@@ -20,7 +21,7 @@ namespace start
             ListGridLp = WorksheetsManeger.ListAllWorkSheets(WorkSheetsForm.reporteDate);
             LpGrid.DataSource = ListGridLp;
 
-           // TbLpRota.Text = ListGridLp[0].LpGridRota;
+            TbLpRota.Text = ListGridLp[0].Rota;
             TbLpFunc.Text = ListGridLp[0].Funcionário;
           //  TbLpSaida.Text = ListGridLp[0].LpGridSaiu;
            // TbLpVolta.Text = ListGridLp[0].LpGridVolta;
@@ -61,13 +62,24 @@ namespace start
         {
             if (TbLpRota.Text != "")
             {
-                if (LpGrid.SelectedRows.Count > 0)
+                if (LpGrid.CurrentCell != null)
                 {
-                   // Listarplanilhas.EditarPlanilhaLp(p, nArchive);
-                   // ListGridLp = Listarplanilhas.ListaRelatorioPl(nArchive);
+                    int index = LpGrid.CurrentCell.RowIndex;
+                    IPropsUpdate valueUpdate = new IPropsUpdate()
+                    {
+                        Deposit = Convert.ToDouble(TbLpDep.Text.Replace("R$ ", "")).ToString(),
+                        Spent = Convert.ToDouble(TbLpGast.Text.Replace("R$ ", "")).ToString(),
+                        Cheque = Convert.ToDouble(TbLpCheq.Text.Replace("R$ ", "")).ToString(),
+                        Coins = Convert.ToDouble(TbLpMoed.Text.Replace("R$ ", "")).ToString(),
+                        Lack = Convert.ToDouble(TbLpSob.Text.Replace("R$ ", "")).ToString(),
+                        Leftover = Convert.ToDouble(TbLpFalt.Text.Replace("R$ ", "")).ToString(),
+                        QuantityExit = TbLpSaida.Text,
+                        QuantityBack = TbLpVolta.Text,
+                        Comments = TbLpObs.Text,
+                    };
+                    WorksheetsManeger.UpdateReport(ListGridLp[index].RecordID, valueUpdate);
+                    ListGridLp = WorksheetsManeger.ListAllWorkSheets(FormListWorkSeeths.reporteDate);
                     LpGrid.DataSource = ListGridLp;
-                   // ListGridHm = ClassGridLpHome.ListaRelatorio(nArchive);
-                   // ObjectsHome.ListGridHome.DataSource = ListGridHm;
                 }
             }
         }
@@ -76,7 +88,7 @@ namespace start
             if (LpGrid.CurrentCell != null)
             {
                 int index = LpGrid.CurrentCell.RowIndex;
-                // TbLpRota.Text = ListGridLp[indice].LpGridRota;
+                TbLpRota.Text = ListGridLp[index].Rota;
                 TbLpFunc.Text = ListGridLp[index].Funcionário;
                 // TbLpSaida.Text = ListGridLp[indice].LpGridSaiu;
                 // TbLpVolta.Text = ListGridLp[indice].LpGridVolta;
@@ -110,9 +122,7 @@ namespace start
                 n4 = Convert.ToDouble(TbLpMoed.Text.Replace("R$ ", ""));
                 n5 = Convert.ToDouble(TbLpSob.Text.Replace("R$ ", ""));
                 n6 = Convert.ToDouble(TbLpFalt.Text.Replace("R$ ", ""));
-
                 total = n1 + n2 + n3 + n4 - n5 + n6;
-
                 TbLpTot.Text = string.Format("{0:C}", total);
             }
         }
@@ -133,8 +143,7 @@ namespace start
             TbLpFalt.Select(TbLpFalt.Text.Length, 0);
             TbLpSob.Select(TbLpSob.Text.Length, 0);
             //Proibe digitacao de letras
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
-                e.Handled = true;
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8) e.Handled = true;
         }
         private void TbxLpClick(object sender, EventArgs e)
         {
