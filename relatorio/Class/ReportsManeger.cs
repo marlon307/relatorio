@@ -22,7 +22,7 @@ namespace start.Class
         public static List<ReportsManeger> ListReports()
         {
             List<ReportsManeger> List = new List<ReportsManeger>();
-            SQLiteDataReader listReport = QuerySelect("SELECT rp.date, SUM(rc.deposit + rc.spent + rc.cheque + rc.coins - rc.lack + rc.leftover) AS 'Total' FROM 'reports' AS 'rp' INNER JOIN 'records' AS 'rc' ON rc.report_id = rp.id GROUP BY rp.id;");
+            SQLiteDataReader listReport = QuerySelect("SELECT rp.date, SUM(rc.deposit + rc.spent + rc.cheque + rc.coins - rc.lack + rc.leftover) AS 'Total' FROM 'reports' AS 'rp' INNER JOIN 'records' AS 'rc' ON rc.report_id = rp.id GROUP BY rp.id ORDER BY rp.date DESC;");
 
             while(listReport.Read())
             {

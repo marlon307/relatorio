@@ -14,15 +14,13 @@ namespace start
     {
         //Declaracao variaveis
         double n1, n2, n3, n4, n5, n6, total;
-        public static string DateProprie { get; private set; }
         public string AddRotaList { get; }
-        private readonly int idReport = 0;
+        private int idReport = 0;
         public string AddEmployeeList { get; }
 
         public Home()
         {
             InitializeComponent();
-            DateProprie = DateTime.Now.ToString("dd-MM-yyyy");
             //Carregar A lista de Rostas 
             if (File.Exists("database.db"))
             {
@@ -77,7 +75,7 @@ namespace start
 
                 List<ConditionWhere> values = new List<ConditionWhere>
                 {
-                    new ConditionWhere("@report_id", idReport.ToString()),
+                    new ConditionWhere("@report_id", idReport),
                     new ConditionWhere("@route_id", idRouter),
                     new ConditionWhere("@employee_id", idEmployee),
                     new ConditionWhere("@qtd_exit", TbExit.Text),
@@ -108,7 +106,20 @@ namespace start
         }
         private void DateTimeCx_ValueChanged(object sender, EventArgs e)//Selecionar Data para o nome do arquivo
         {
-            DateProprie = DateTimeCx.Text.Replace("/", "-");
+            List<ConditionWhere> condition = new List<ConditionWhere>
+            {
+                new ConditionWhere("@date", Convert.ToDateTime(DateTimeCx.Text).ToString("yyyy-MM-dd"))
+            };
+
+            SQLiteDataReader isReport = QuerySelect("SELECT id, date FROM reports WHERE date = DATE(@date)", condition);
+            if (!isReport.Read())
+            {
+                idReport = QueryInsert("INSERT INTO reports(date) VALUES(@date)", condition);
+            }
+            else
+            {
+                idReport = (int)isReport["id"];
+            }
         }
         private void ListarRel_Click(object sender, EventArgs e)
         {
