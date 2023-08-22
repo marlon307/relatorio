@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Windows.Forms;
+using System.Globalization;
 using static DB.SQLiteDB;
 
 
@@ -75,12 +75,12 @@ namespace start.Class
             List<ConditionWhere> condition = new List<ConditionWhere>
             {
                 new ConditionWhere("@id", reportID),
-                new ConditionWhere("@deposit", props.Deposit),
-                new ConditionWhere("@spent",  props.Spent),
-                new ConditionWhere("@cheque", props.Cheque),
-                new ConditionWhere("@coins", props.Coins),
-                new ConditionWhere("@lack", props.Lack),
-                new ConditionWhere("@leftover", props.Leftover),
+                new ConditionWhere("@deposit", double.Parse(props.Deposit,  NumberStyles.Currency)),
+                new ConditionWhere("@spent", double.Parse(props.Spent, NumberStyles.Currency)),
+                new ConditionWhere("@cheque", double.Parse(props.Cheque, NumberStyles.Currency)),
+                new ConditionWhere("@coins", double.Parse(props.Coins, NumberStyles.Currency)),
+                new ConditionWhere("@lack", double.Parse(props.Lack, NumberStyles.Currency)),
+                new ConditionWhere("@leftover", double.Parse(props.Leftover, NumberStyles.Currency)),
                 new ConditionWhere("@qtd_exit", props.QuantityExit),
                 new ConditionWhere("@qtd_back", props.QuantityBack),
                 new ConditionWhere("@comments", props.Comments),

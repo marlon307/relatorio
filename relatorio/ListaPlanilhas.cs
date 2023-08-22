@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Forms;
 using format;
 using start.Class;
@@ -66,19 +67,19 @@ namespace start
             {
                 if (LpGrid.CurrentCell != null)
                 {
-                    int index = LpGrid.CurrentCell.RowIndex;
                     IPropsUpdate valueUpdate = new IPropsUpdate()
                     {
-                        Deposit = Convert.ToDouble(TbLpDep.Text.Replace("R$ ", "")).ToString(),
-                        Spent = Convert.ToDouble(TbLpGast.Text.Replace("R$ ", "")).ToString(),
-                        Cheque = Convert.ToDouble(TbLpCheq.Text.Replace("R$ ", "")).ToString(),
-                        Coins = Convert.ToDouble(TbLpMoed.Text.Replace("R$ ", "")).ToString(),
-                        Lack = Convert.ToDouble(TbLpSob.Text.Replace("R$ ", "")).ToString(),
-                        Leftover = Convert.ToDouble(TbLpFalt.Text.Replace("R$ ", "")).ToString(),
+                        Deposit = TbLpDep.Text,
+                        Spent = TbLpGast.Text,
+                        Cheque = TbLpCheq.Text,
+                        Coins = TbLpMoed.Text,
+                        Lack = TbLpSob.Text,
+                        Leftover = TbLpFalt.Text,
                         QuantityExit = TbLpSaida.Text,
                         QuantityBack = TbLpVolta.Text,
                         Comments = TbLpObs.Text,
                     };
+                    int index = LpGrid.CurrentCell.RowIndex;
                     UpdateReport(ListGridLp[index].RecordID, valueUpdate);
                     ListGridLp = ListAllWorkSheets(FormListWorkSeeths.reporteDate);
                     LpGrid.DataSource = ListGridLp;

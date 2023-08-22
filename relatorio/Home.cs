@@ -48,7 +48,7 @@ namespace start
             }
             else {
                 CreateTable();
-                QueryInsert("INSERT INTO reports(date) VALUES(DATE())");
+                idReport = QueryInsert("INSERT INTO reports(date) VALUES(DATE())");
             }
         }
         private void Calculo()
@@ -74,6 +74,7 @@ namespace start
                 string idRouter = routeSelected.ID;
                 ComboBoxItem selectedItem = (ComboBoxItem)CbEmployees.SelectedItem;
                 string idEmployee = selectedItem.ID;
+
                 List<ConditionWhere> values = new List<ConditionWhere>
                 {
                     new ConditionWhere("@report_id", idReport.ToString()),
@@ -81,12 +82,12 @@ namespace start
                     new ConditionWhere("@employee_id", idEmployee),
                     new ConditionWhere("@qtd_exit", TbExit.Text),
                     new ConditionWhere("@qtd_back", TbBack.Text),
-                    new ConditionWhere("@deposit", double.Parse(TbDeposit.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@spent", double.Parse(TbSpent.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@cheque", double.Parse(TbCheque.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@coins", double.Parse(TbCoin.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@lack", double.Parse(TbLack.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@leftover",double.Parse(TbLeftOver.Text, NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@deposit", double.Parse(TbDeposit.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@spent", double.Parse(TbSpent.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@cheque", double.Parse(TbCheque.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@coins", double.Parse(TbCoin.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@lack", double.Parse(TbLack.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@leftover",double.Parse(TbLeftOver.Text, NumberStyles.Currency)),
                     new ConditionWhere("@comments", TbComments.Text.ToUpper()),
                 };
                 QueryInsert(@"INSERT INTO records(report_id, route_id, employee_id, qtd_exit, qtd_back, deposit, spent, cheque, coins, lack, leftover, comments)
