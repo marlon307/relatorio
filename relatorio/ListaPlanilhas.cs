@@ -18,13 +18,13 @@ namespace start
             InitializeComponent();
 
             FormListWorkSeeths = WorkSheetsForm;
-            ListGridLp = WorksheetsManeger.ListAllWorkSheets(WorkSheetsForm.reporteDate);
+            ListGridLp = ListAllWorkSheets(WorkSheetsForm.reporteDate);
             LpGrid.DataSource = ListGridLp;
 
             TbLpRota.Text = ListGridLp[0].Rota;
             TbLpFunc.Text = ListGridLp[0].Funcionário;
-          //  TbLpSaida.Text = ListGridLp[0].LpGridSaiu;
-           // TbLpVolta.Text = ListGridLp[0].LpGridVolta;
+            TbLpSaida.Text = ListGridLp[0].Saida;
+            TbLpVolta.Text = ListGridLp[0].Volta;
             TbLpDep.Text = ListGridLp[0].Deposito;
             TbLpGast.Text = ListGridLp[0].Gasto;
             TbLpCheq.Text = ListGridLp[0].Cheque;
@@ -36,9 +36,11 @@ namespace start
         }
         private void BtnLpDel_Click(object sender, EventArgs e)
         {
-            if (LpGrid.SelectedRows.Count > 0)
+            if (LpGrid.CurrentCell != null)
             {
-                ListGridLp = WorksheetsManeger.ListAllWorkSheets(FormListWorkSeeths.reporteDate);
+                int index = LpGrid.CurrentCell.RowIndex;
+                DeleteReport(ListGridLp[index].RecordID);
+                ListGridLp = ListAllWorkSheets(FormListWorkSeeths.reporteDate);
                 LpGrid.DataSource = ListGridLp;
                 TbLpRota.Clear();
                 TbLpFunc.Clear();
@@ -77,8 +79,8 @@ namespace start
                         QuantityBack = TbLpVolta.Text,
                         Comments = TbLpObs.Text,
                     };
-                    WorksheetsManeger.UpdateReport(ListGridLp[index].RecordID, valueUpdate);
-                    ListGridLp = WorksheetsManeger.ListAllWorkSheets(FormListWorkSeeths.reporteDate);
+                    UpdateReport(ListGridLp[index].RecordID, valueUpdate);
+                    ListGridLp = ListAllWorkSheets(FormListWorkSeeths.reporteDate);
                     LpGrid.DataSource = ListGridLp;
                 }
             }
@@ -90,8 +92,8 @@ namespace start
                 int index = LpGrid.CurrentCell.RowIndex;
                 TbLpRota.Text = ListGridLp[index].Rota;
                 TbLpFunc.Text = ListGridLp[index].Funcionário;
-                // TbLpSaida.Text = ListGridLp[indice].LpGridSaiu;
-                // TbLpVolta.Text = ListGridLp[indice].LpGridVolta;
+                TbLpSaida.Text = ListGridLp[index].Saida;
+                TbLpVolta.Text = ListGridLp[index].Volta;
                 TbLpDep.Text = ListGridLp[index].Deposito;
                 TbLpGast.Text = ListGridLp[index].Gasto;
                 TbLpCheq.Text = ListGridLp[index].Cheque;

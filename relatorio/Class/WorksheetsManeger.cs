@@ -13,6 +13,8 @@ namespace start.Class
         internal string EmpID { get; set; }
         public string Rota { get; set; }
         public string Funcionário { get; set; }
+        public string Saida { get; set; }
+        public string Volta { get; set; }
         public string Deposito { get; set; }
         public string Gasto { get; set; }
         public string Cheque { get; set; }
@@ -28,7 +30,7 @@ namespace start.Class
                 new ConditionWhere("@date", dateFormat),
             };
             SQLiteDataReader listReport = QuerySelect(@"
-            SELECT rp.date, em.name, rt.route, em.id AS em_id, rc.id, rc.deposit, rc.spent, rc.cheque, rc.coins, rc.lack, rc.leftover, rc.comments
+            SELECT rp.date, em.name, rt.route, em.id AS em_id, rc.id, rc.qtd_exit, rc.qtd_back, rc.deposit, rc.spent, rc.cheque, rc.coins, rc.lack, rc.leftover, rc.comments
             FROM 'reports' AS 'rp' 
             INNER JOIN 'records' AS 'rc' ON rc.report_id = rp.id 
             INNER JOIN employees AS 'em' ON em.id = rc.employee_id
@@ -44,6 +46,8 @@ namespace start.Class
                     EmpID = listReport["em_id"].ToString(),
                     Rota = listReport["route"].ToString(),
                     Funcionário = listReport["name"].ToString(),
+                    Saida = listReport["qtd_exit"].ToString(),
+                    Volta = listReport["qtd_back"].ToString(),
                     Deposito = string.Format("{0:C}", listReport["deposit"]),
                     Gasto = string.Format("{0:C}", listReport["spent"]),
                     Cheque = string.Format("{0:C}", listReport["cheque"]),
@@ -82,8 +86,16 @@ namespace start.Class
                 new ConditionWhere("@comments", props.Comments),
             };
             QueryWhere(@"UPDATE records
-            SET deposit = @deposit, spent = @spent, cheque = @cheque, coins = @coins, lack = @lack, leftover = @leftover, qtd_exit = @qtd_exit, qtd_back = @qtd_back, comments = @comments
+            SET deposit=@deposit, spent=@spent, cheque=@cheque, coins=@coins, lack=@lack, leftover=@leftover, qtd_exit=@qtd_exit, qtd_back=@qtd_back, comments=@comments
             WHERE id = @id;", condition);
+        }
+        public static void DeleteReport (string reportID)
+        {
+            List<ConditionWhere>condition = new List<ConditionWhere>
+            {
+                new ConditionWhere("@id", reportID)
+            };
+            QueryWhere("DELETE FROM records WHERE id=@id;", condition);
         }
     }
 }

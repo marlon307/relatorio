@@ -22,7 +22,7 @@ namespace DB
         private static SQLiteConnection DBConnection()
         {
             if (SQLiteConnection == null)
-            { 
+            {
                 SQLiteConnection = new SQLiteConnection("Data Source=database.db; Version=3;");
                 SQLiteConnection.Open();
             }
