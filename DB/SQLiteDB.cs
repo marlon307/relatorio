@@ -11,9 +11,8 @@ namespace DB
         public class ConditionWhere
         {
             public string Name { get; set; }
-            public string Value { get; set; }
-
-            public ConditionWhere(string name, string value)
+            public dynamic Value { get; set; }
+            public ConditionWhere(string name, dynamic value)
             {
                 Name = name;
                 Value = value;
@@ -77,12 +76,12 @@ namespace DB
 
                         CREATE TABLE IF NOT EXISTS records (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            deposit REAL NOT NULL,
-                            spent REAL NOT NULL,
-                            cheque REAL NOT NULL,
-                            coins REAL NOT NULL,
-                            lack REAL NOT NULL,
-                            leftover REAL NOT NULL,
+                            deposit DOUBLE NOT NULL,
+                            spent DOUBLE NOT NULL,
+                            cheque DOUBLE NOT NULL,
+                            coins DOUBLE NOT NULL,
+                            lack DOUBLE NOT NULL,
+                            leftover DOUBLE NOT NULL,
                             qtd_exit INTEGER NOT NULL,
                             qtd_back INTEGER NOT NULL,
                             comments TEXT NOT NULL,
@@ -160,7 +159,7 @@ namespace DB
                     command.CommandText = query;
                     foreach (ConditionWhere item in where)
                     {
-                        command.Parameters.AddWithValue(item.Name.ToString(), item.Value.ToString());
+                        command.Parameters.AddWithValue(item.Name.ToString(), item.Value);
                     }
                     command.ExecuteNonQuery();
                 }

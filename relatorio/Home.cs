@@ -14,15 +14,13 @@ namespace start
     {
         //Declaracao variaveis
         double n1, n2, n3, n4, n5, n6, total;
-        public static string DateProprie { get; private set; }
         public string AddRotaList { get; }
-        private readonly int idReport = 0;
+        private int idReport = 0;
         public string AddEmployeeList { get; }
 
         public Home()
         {
             InitializeComponent();
-            DateProprie = DateTime.Now.ToString("dd-MM-yyyy");
             //Carregar A lista de Rostas 
             if (File.Exists("database.db"))
             {
@@ -48,7 +46,7 @@ namespace start
             }
             else {
                 CreateTable();
-                QueryInsert("INSERT INTO reports(date) VALUES(DATE())");
+                idReport = QueryInsert("INSERT INTO reports(date) VALUES(DATE())");
             }
         }
         private void Calculo()
@@ -74,19 +72,20 @@ namespace start
                 string idRouter = routeSelected.ID;
                 ComboBoxItem selectedItem = (ComboBoxItem)CbEmployees.SelectedItem;
                 string idEmployee = selectedItem.ID;
+
                 List<ConditionWhere> values = new List<ConditionWhere>
                 {
-                    new ConditionWhere("@report_id", idReport.ToString()),
+                    new ConditionWhere("@report_id", idReport),
                     new ConditionWhere("@route_id", idRouter),
                     new ConditionWhere("@employee_id", idEmployee),
                     new ConditionWhere("@qtd_exit", TbExit.Text),
                     new ConditionWhere("@qtd_back", TbBack.Text),
-                    new ConditionWhere("@deposit", double.Parse(TbDeposit.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@spent", double.Parse(TbSpent.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@cheque", double.Parse(TbCheque.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@coins", double.Parse(TbCoin.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@lack", double.Parse(TbLack.Text, NumberStyles.Currency).ToString()),
-                    new ConditionWhere("@leftover",double.Parse(TbLeftOver.Text, NumberStyles.Currency).ToString()),
+                    new ConditionWhere("@deposit", double.Parse(TbDeposit.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@spent", double.Parse(TbSpent.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@cheque", double.Parse(TbCheque.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@coins", double.Parse(TbCoin.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@lack", double.Parse(TbLack.Text, NumberStyles.Currency)),
+                    new ConditionWhere("@leftover",double.Parse(TbLeftOver.Text, NumberStyles.Currency)),
                     new ConditionWhere("@comments", TbComments.Text.ToUpper()),
                 };
                 QueryInsert(@"INSERT INTO records(report_id, route_id, employee_id, qtd_exit, qtd_back, deposit, spent, cheque, coins, lack, leftover, comments)
@@ -107,7 +106,20 @@ namespace start
         }
         private void DateTimeCx_ValueChanged(object sender, EventArgs e)//Selecionar Data para o nome do arquivo
         {
-            DateProprie = DateTimeCx.Text.Replace("/", "-");
+            List<ConditionWhere> condition = new List<ConditionWhere>
+            {
+                new ConditionWhere("@date", Convert.ToDateTime(DateTimeCx.Text).ToString("yyyy-MM-dd"))
+            };
+
+            SQLiteDataReader isReport = QuerySelect("SELECT id, date FROM reports WHERE date = DATE(@date)", condition);
+            if (!isReport.Read())
+            {
+                idReport = QueryInsert("INSERT INTO reports(date) VALUES(@date)", condition);
+            }
+            else
+            {
+                idReport = (int)isReport["id"];
+            }
         }
         private void ListarRel_Click(object sender, EventArgs e)
         {
