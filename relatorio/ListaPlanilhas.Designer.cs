@@ -384,7 +384,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView LpGrid;
         private System.Windows.Forms.TextBox TbLpSaida;
         private System.Windows.Forms.TextBox TbLpSob;
         private System.Windows.Forms.TextBox TbLpFalt;
@@ -412,5 +411,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridView LpGrid;
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using System.IO;
-using HomeClass;
 using format;
 using System.Data.SQLite;
 using static DB.SQLiteDB;
@@ -20,8 +18,7 @@ namespace start
         public string AddRotaList { get; }
         private readonly int idReport = 0;
         public string AddEmployeeList { get; }
-        public static int StyleFoms = 4; //Cor das bordas Azul
-        public static int ThemeForm = 1;//Tema Claro
+
         public Home()
         {
             InitializeComponent();
@@ -39,12 +36,12 @@ namespace start
                     idReport = Convert.ToInt32(isReport["id"]);
                 }
                 SQLiteDataReader listRoute = QuerySelect("SELECT id, route FROM routes WHERE deleted_at IS NULL");
-                if(listRoute.Read())
+                while(listRoute.Read())
                 {
                     ComboBoxRoute.Items.Add(new ComboBoxItem(listRoute["id"].ToString(), listRoute["route"].ToString()));
                 }
                 SQLiteDataReader listEmployee = QuerySelect("SELECT id, name FROM employees WHERE deleted_at IS NULL");
-                if(listEmployee.Read())
+                while (listEmployee.Read())
                 {
                     CbEmployees.Items.Add(new ComboBoxItem(listEmployee["id"].ToString(), listEmployee["name"].ToString()));
                 }
@@ -71,15 +68,12 @@ namespace start
         }
         private void BtnLancar_Click(object sender, EventArgs e)
         {
-            CultureInfo culture = new CultureInfo("pt-BR");
-            label1.Text = double.Parse(TbDeposit.Text, NumberStyles.Currency, culture).ToString();
             if (CbEmployees.SelectedItem != null)
             {
                 ComboBoxItem routeSelected = (ComboBoxItem)ComboBoxRoute.SelectedItem;
                 string idRouter = routeSelected.ID;
                 ComboBoxItem selectedItem = (ComboBoxItem)CbEmployees.SelectedItem;
                 string idEmployee = selectedItem.ID;
-               
                 List<ConditionWhere> values = new List<ConditionWhere>
                 {
                     new ConditionWhere("@report_id", idReport.ToString()),
