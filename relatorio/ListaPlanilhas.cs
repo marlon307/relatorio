@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Drawing;
 using System.Windows.Forms;
 using format;
 using start.Class;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 using static start.Class.WorksheetsManeger;
 
 namespace start
@@ -13,7 +14,7 @@ namespace start
         private List<WorksheetsManeger> ListGridLp;
         private readonly ListRelatorios FormListWorkSeeths;
         double n1, n2, n3, n4, n5, n6, total;
-        
+        private int currentPageIndex = 0;
         public ListaPlanilhas(ListRelatorios WorkSheetsForm)
         {
             InitializeComponent();
@@ -36,6 +37,12 @@ namespace start
             TbLpSob.Text = ListGridLp[0].Sobra;
             TbLpObs.Text = ListGridLp[0].Observações;
             LpGrid.CurrentCell = LpGrid[0, 0];//Vai mante a celula selecionada
+
+            CbPrints.Items.Clear();
+            foreach (var prinst in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                CbPrints.Items.Add(prinst);
+            }
         }
         private void BtnLpDel_Click(object sender, EventArgs e)
         {
@@ -86,6 +93,76 @@ namespace start
                     ListGridLp = ListAllWorkSheets(FormListWorkSeeths.reporteDate);
                     LpGrid.DataSource = ListGridLp;
                 }
+            }
+        }
+        // https://www.youtube.com/watch?v=9h7nFpFiOjE&ab_channel=Andr%C3%A9Lima
+        // http://www.andrealveslima.com.br/blog/index.php/2017/10/11/imprimindo-informacoes-direto-na-impressora-com-c/
+        private void PrintDocumentPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            using (var font = new Font("Arial", 12))
+            using (var brush = new SolidBrush(Color.Black))
+            using (var pen = new Pen(Color.Black, 1))
+            {
+                float xPos = e.MarginBounds.Left;
+                float yPos = e.MarginBounds.Top;
+                float lineHeight = font.GetHeight();
+
+                int maxLinesPerPage = (int)Math.Floor(e.MarginBounds.Height / lineHeight);
+                int linesPrinted = 0;
+
+                while (currentPageIndex < ListGridLp.Count)
+                {
+                    WorksheetsManeger field = ListGridLp[currentPageIndex];
+                    // Imprime cada linha de texto
+                    float textWidth = e.Graphics.MeasureString($"Rota: {field.Rota}", font).Width + 10;
+
+                    e.Graphics.DrawString($"Rota: {field.Rota}", font, brush, xPos, yPos);
+                    e.Graphics.DrawString($"Funcionário: {field.Funcionário}", font, brush, xPos + textWidth, yPos);
+                    yPos += lineHeight;
+                    linesPrinted++;
+
+                    e.Graphics.DrawString($"Deposito: {field.Deposito}", font, brush, xPos, yPos);
+                    e.Graphics.DrawString($"Gasto: {field.Gasto}", font, brush, xPos + 200, yPos); // Posição ajustada
+                    yPos += lineHeight;
+                    linesPrinted++;
+
+                    e.Graphics.DrawString($"Saida: {field.Saida}", font, brush, xPos, yPos); // Posição ajustada
+                    e.Graphics.DrawString($"Volta: {field.Volta}", font, brush, xPos + 200, yPos);
+                    yPos += lineHeight;
+                    linesPrinted++;
+
+                    e.Graphics.DrawString($"Observações: {field.Observações}", font, brush, xPos, yPos);
+                    yPos += lineHeight;
+                    linesPrinted++;
+                   
+                    // Draw the separator line
+                    yPos += 10;
+                    e.Graphics.DrawLine(pen, xPos, yPos, e.MarginBounds.Right, yPos);
+                    yPos += 10;
+
+                    // Check if we've printed enough lines for the current page
+
+                    if (linesPrinted >= maxLinesPerPage)
+                    {
+                        e.HasMorePages = true;
+                        return;
+                    }
+
+                    currentPageIndex++;
+                }
+
+                e.HasMorePages = false;
+                currentPageIndex = 0; 
+            }
+        }
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            using(var printDocument = new System.Drawing.Printing.PrintDocument())
+            {
+                printDocument.PrinterSettings.PrinterName = CbPrints.SelectedItem.ToString();
+                printDocument.PrintPage += PrintDocumentPage;
+                printDocument.DocumentName = Text;
+                printDocument.Print();
             }
         }
         private void LpGrid_CellClick(object sender, DataGridViewCellEventArgs e)

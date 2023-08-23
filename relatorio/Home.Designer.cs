@@ -58,8 +58,8 @@
             this.DateTimeCx = new System.Windows.Forms.DateTimePicker();
             this.AddEmployeeLB = new System.Windows.Forms.LinkLabel();
             this.CbEmployees = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TbStock = new System.Windows.Forms.TextBox();
+            this.TbProduction = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -142,7 +142,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 17);
             this.label5.TabIndex = 76;
-            this.label5.Text = "Deposito";
+            this.label5.Text = "Depósito";
             // 
             // label4
             // 
@@ -335,7 +335,7 @@
             this.linkLabel1.Size = new System.Drawing.Size(123, 13);
             this.linkLabel1.TabIndex = 84;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Ver Relatorios Anteriores";
+            this.linkLabel1.Text = "Ver Relatórios Anteriores";
             this.linkLabel1.Click += new System.EventHandler(this.ListarRel_Click);
             // 
             // DateTimeCx
@@ -368,19 +368,21 @@
             this.CbEmployees.Size = new System.Drawing.Size(282, 28);
             this.CbEmployees.TabIndex = 87;
             // 
-            // textBox1
+            // TbStock
             // 
-            this.textBox1.Location = new System.Drawing.Point(444, 370);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 88;
+            this.TbStock.Location = new System.Drawing.Point(444, 370);
+            this.TbStock.Name = "TbStock";
+            this.TbStock.Size = new System.Drawing.Size(100, 20);
+            this.TbStock.TabIndex = 88;
+            this.TbStock.Leave += new System.EventHandler(this.TbStock_Leave);
             // 
-            // textBox2
+            // TbProduction
             // 
-            this.textBox2.Location = new System.Drawing.Point(444, 427);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 89;
+            this.TbProduction.Location = new System.Drawing.Point(444, 427);
+            this.TbProduction.Name = "TbProduction";
+            this.TbProduction.Size = new System.Drawing.Size(100, 20);
+            this.TbProduction.TabIndex = 89;
+            this.TbProduction.Leave += new System.EventHandler(this.TbStock_Leave);
             // 
             // label13
             // 
@@ -407,8 +409,8 @@
             this.ClientSize = new System.Drawing.Size(584, 561);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TbProduction);
+            this.Controls.Add(this.TbStock);
             this.Controls.Add(this.CbEmployees);
             this.Controls.Add(this.AddEmployeeLB);
             this.Controls.Add(this.DateTimeCx);
@@ -486,8 +488,8 @@
         public System.Windows.Forms.ComboBox CbEmployees;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TbProduction;
+        private System.Windows.Forms.TextBox TbStock;
     }
 }
 
