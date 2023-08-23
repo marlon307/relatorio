@@ -161,6 +161,7 @@ namespace start
             {
                 printDocument.PrinterSettings.PrinterName = CbPrints.SelectedItem.ToString();
                 printDocument.PrintPage += PrintDocumentPage;
+                printDocument.DocumentName = Text;
                 printDocument.Print();
             }
         }
