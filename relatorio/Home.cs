@@ -32,7 +32,7 @@ namespace start
                 {
                     idReport = Convert.ToInt32(isReport["id"]);
                     TbProduction.Text = isReport["production"].ToString();
-                    TbStock.Text = isReport["stock"].ToString();
+                    TbStock.Text =isReport["stock"].ToString();
                 }
                 SQLiteDataReader listRoute = QuerySelect("SELECT id, route FROM routes WHERE deleted_at IS NULL");
                 while(listRoute.Read())
@@ -111,7 +111,6 @@ namespace start
             {
                 new ConditionWhere("@date", Convert.ToDateTime(DateTimeCx.Text).ToString("yyyy-MM-dd"))
             };
-
             SQLiteDataReader isReport = QuerySelect("SELECT id, date FROM reports WHERE date = DATE(@date)", condition);
             if (!isReport.Read())
             {

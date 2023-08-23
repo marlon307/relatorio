@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Drawing;
 using System.Windows.Forms;
 using format;
 using start.Class;
@@ -35,6 +35,12 @@ namespace start
             TbLpSob.Text = ListGridLp[0].Sobra;
             TbLpObs.Text = ListGridLp[0].Observações;
             LpGrid.CurrentCell = LpGrid[0, 0];//Vai mante a celula selecionada
+
+            CbPrints.Items.Clear();
+            foreach (var prinst in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                CbPrints.Items.Add(prinst);
+            }
         }
         private void BtnLpDel_Click(object sender, EventArgs e)
         {
@@ -85,6 +91,51 @@ namespace start
                     ListGridLp = ListAllWorkSheets(FormListWorkSeeths.reporteDate);
                     LpGrid.DataSource = ListGridLp;
                 }
+            }
+        }
+        // https://www.youtube.com/watch?v=9h7nFpFiOjE&ab_channel=Andr%C3%A9Lima
+        private void PrintDocumentPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            using (var font = new Font("Arial", 12))
+            using (var brush = new SolidBrush(Color.Black))
+            using (var pen = new Pen(Color.Black, 1))
+            {
+                // Calcula a posição de impressão
+                float xPos = e.MarginBounds.Left;
+                float yPos = e.MarginBounds.Top;
+
+                foreach(var record in ListGridLp)
+                {
+                    // Imprime cada linha de texto
+                    e.Graphics.DrawString($"Rota: {record.Rota}", font, brush, xPos, yPos);
+                    e.Graphics.DrawString($"Funcionário: {record.Funcionário}", font, brush, xPos + 200, yPos);
+                    yPos += font.GetHeight();
+
+                    e.Graphics.DrawString($"Deposito: {record.Deposito}", font, brush, xPos, yPos);
+                    e.Graphics.DrawString($"Gasto: {record.Gasto}", font, brush, xPos + 200, yPos); // Posição ajustada
+                    yPos += font.GetHeight();
+
+                    e.Graphics.DrawString($"Volta: {record.Volta}", font, brush, xPos, yPos);
+                    e.Graphics.DrawString($"Saida: {record.Saida}", font, brush, xPos + 200, yPos); // Posição ajustada
+                    yPos += font.GetHeight();
+
+                    e.Graphics.DrawString($"Observações: {record.Observações}", font, brush, xPos, yPos);
+                    yPos += font.GetHeight();
+
+                    // Desenha a linha separadora
+                    yPos += 20; // Espaço entre o bloco de texto e a linha
+                    e.Graphics.DrawLine(pen, xPos, yPos, e.MarginBounds.Right, yPos);
+                    yPos += 20;
+                }
+            }
+        }
+        private void BtnPrint_Click(object sender, EventArgs e)
+        {
+            using(var printDocument = new System.Drawing.Printing.PrintDocument())
+            {
+                printDocument.PrinterSettings.PrinterName = CbPrints.SelectedItem.ToString();
+                printDocument.PrintPage += PrintDocumentPage;
+                printDocument.Print();
             }
         }
         private void LpGrid_CellClick(object sender, DataGridViewCellEventArgs e)

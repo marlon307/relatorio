@@ -56,6 +56,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.BtnPrint = new System.Windows.Forms.Button();
+            this.CbPrints = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.LpGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,7 +69,7 @@
             this.LpGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LpGrid.CausesValidation = false;
             this.LpGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LpGrid.Location = new System.Drawing.Point(16, 340);
+            this.LpGrid.Location = new System.Drawing.Point(16, 372);
             this.LpGrid.MultiSelect = false;
             this.LpGrid.Name = "LpGrid";
             this.LpGrid.ReadOnly = true;
@@ -189,7 +191,7 @@
             // TbLpTot
             // 
             this.TbLpTot.Enabled = false;
-            this.TbLpTot.Location = new System.Drawing.Point(215, 306);
+            this.TbLpTot.Location = new System.Drawing.Point(215, 312);
             this.TbLpTot.Name = "TbLpTot";
             this.TbLpTot.Size = new System.Drawing.Size(116, 20);
             this.TbLpTot.TabIndex = 40;
@@ -197,17 +199,17 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 538);
+            this.button1.Location = new System.Drawing.Point(485, 576);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 41;
-            this.button1.Text = "OK";
+            this.button1.Text = "Sair";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtnLpOk_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(233, 538);
+            this.button2.Location = new System.Drawing.Point(485, 339);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 42;
@@ -217,7 +219,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(485, 538);
+            this.button3.Location = new System.Drawing.Point(16, 339);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 43;
@@ -327,17 +329,37 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(178, 309);
+            this.label12.Location = new System.Drawing.Point(178, 315);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(31, 13);
             this.label12.TabIndex = 55;
             this.label12.Text = "Total";
             // 
+            // BtnPrint
+            // 
+            this.BtnPrint.Location = new System.Drawing.Point(16, 576);
+            this.BtnPrint.Name = "BtnPrint";
+            this.BtnPrint.Size = new System.Drawing.Size(75, 23);
+            this.BtnPrint.TabIndex = 56;
+            this.BtnPrint.Text = "Imprimir";
+            this.BtnPrint.UseVisualStyleBackColor = true;
+            this.BtnPrint.Click += new System.EventHandler(this.BtnPrint_Click);
+            // 
+            // CbPrints
+            // 
+            this.CbPrints.FormattingEnabled = true;
+            this.CbPrints.Location = new System.Drawing.Point(97, 578);
+            this.CbPrints.Name = "CbPrints";
+            this.CbPrints.Size = new System.Drawing.Size(121, 21);
+            this.CbPrints.TabIndex = 57;
+            // 
             // ListaPlanilhas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 576);
+            this.ClientSize = new System.Drawing.Size(574, 611);
+            this.Controls.Add(this.CbPrints);
+            this.Controls.Add(this.BtnPrint);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -367,9 +389,9 @@
             this.Controls.Add(this.TbLpSaida);
             this.Controls.Add(this.LpGrid);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(590, 615);
+            this.MaximumSize = new System.Drawing.Size(590, 650);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(590, 615);
+            this.MinimumSize = new System.Drawing.Size(590, 650);
             this.Name = "ListaPlanilhas";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -412,5 +434,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView LpGrid;
+        private System.Windows.Forms.Button BtnPrint;
+        private System.Windows.Forms.ComboBox CbPrints;
     }
 }
