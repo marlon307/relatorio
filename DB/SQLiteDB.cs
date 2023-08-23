@@ -42,38 +42,23 @@ namespace DB
                 using (var command = DBConnection().CreateCommand())
                 {
                     command.CommandText = @"
-                        CREATE TABLE IF NOT EXISTS report_has_products (
-                            id_report INTEGER PRIMARY KEY AUTOINCREMENT,
-                            id_product INTEGER NOT NULL,
-                            FOREIGN KEY (id_product) REFERENCES products(id),
-                            FOREIGN KEY (id_report) REFERENCES reports(id)
-                        );
-
                         CREATE TABLE IF NOT EXISTS employees (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             name TEXT NOT NULL,
                             deleted_at DATETIME
                         );
-
-                        CREATE TABLE IF NOT EXISTS products (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            name TEXT NOT NULL,
-                            production INTEGER NOT NULL,
-                            stock INTEGER NOT NULL
-                        );
-
                         CREATE TABLE IF NOT EXISTS reports (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             date DATE NOT NULL,
+                            stock INTEGER,
+                            production INTEGER,
                             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
                         );
-
                         CREATE TABLE IF NOT EXISTS routes (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             route TEXT NOT NULL,
                             deleted_at DATETIME
                         );
-
                         CREATE TABLE IF NOT EXISTS records (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             deposit DOUBLE NOT NULL,

@@ -76,7 +76,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "";
-            this.Text = "Relatorios";
+            this.Text = "Relatórios";
             ((System.ComponentModel.ISupportInitialize)(this.StyleMagerRf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridReports)).EndInit();
             this.ResumeLayout(false);

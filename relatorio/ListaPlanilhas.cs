@@ -13,7 +13,6 @@ namespace start
         private List<WorksheetsManeger> ListGridLp;
         private readonly ListRelatorios FormListWorkSeeths;
         double n1, n2, n3, n4, n5, n6, total;
-        
         public ListaPlanilhas(ListRelatorios WorkSheetsForm)
         {
             InitializeComponent();

@@ -17,14 +17,13 @@ namespace start
         public string AddRotaList { get; }
         private int idReport = 0;
         public string AddEmployeeList { get; }
-
         public Home()
         {
             InitializeComponent();
             //Carregar A lista de Rostas 
             if (File.Exists("database.db"))
             {
-                SQLiteDataReader isReport = QuerySelect("SELECT id, date FROM reports WHERE date = DATE()");
+                SQLiteDataReader isReport = QuerySelect("SELECT id, production, stock, date FROM reports WHERE date = DATE()");
                 if(!isReport.Read())
                 {
                     idReport = QueryInsert("INSERT INTO reports(date) VALUES(DATE())");
@@ -32,6 +31,8 @@ namespace start
                 if (idReport == 0)
                 {
                     idReport = Convert.ToInt32(isReport["id"]);
+                    TbProduction.Text = isReport["production"].ToString();
+                    TbStock.Text = isReport["stock"].ToString();
                 }
                 SQLiteDataReader listRoute = QuerySelect("SELECT id, route FROM routes WHERE deleted_at IS NULL");
                 while(listRoute.Read())
@@ -125,6 +126,16 @@ namespace start
         {
             ListRelatorios FormRl = new ListRelatorios();
             FormRl.ShowDialog();
+        }
+        private void TbStock_Leave(object sender, EventArgs e)
+        {
+            List<ConditionWhere> condition = new List<ConditionWhere>
+            {
+                new ConditionWhere("@stock", TbStock.Text),
+                new ConditionWhere("@production", TbProduction.Text),
+                new ConditionWhere("@idReport", idReport)
+            };
+            QueryWhere("UPDATE reports SET stock=@stock, production=@production WHERE id=@idReport", condition);
         }
         private void AddEmployeeLB_Click(object sender, EventArgs e)
         {
