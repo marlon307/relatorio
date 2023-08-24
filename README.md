@@ -1,4 +1,9 @@
-# <p style="text-align: center;">Relatório</p>
+<div align="center">
+  <h1>Relatório</h1>
+</div>
+
+<br/>
+<br/>
 
 ### Tela Principal do Sistema
 
