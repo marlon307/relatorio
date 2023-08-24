@@ -97,5 +97,13 @@ namespace start.Class
             };
             QueryWhere("DELETE FROM records WHERE id=@id;", condition);
         }
+        public static void ReadStock(string dateReport)
+        {
+            List<ConditionWhere> condition = new List<ConditionWhere>
+            {
+                new ConditionWhere("@date", dateReport)
+            };
+            QueryWhere("SELECT stock, production FROM reports WHERE date=@date;", condition);
+        }
     }
 }

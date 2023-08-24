@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using format;
 using start.Class;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 using static start.Class.WorksheetsManeger;
 
 namespace start
@@ -108,49 +107,94 @@ namespace start
                 float lineHeight = font.GetHeight();
 
                 int maxLinesPerPage = (int)Math.Floor(e.MarginBounds.Height / lineHeight);
-                int linesPrinted = 0;
 
+                e.Graphics.DrawString($"Relatório - {FormListWorkSeeths.reporteDate}", font, brush, 16, 16);
+                
                 while (currentPageIndex < ListGridLp.Count)
                 {
                     WorksheetsManeger field = ListGridLp[currentPageIndex];
-                    // Imprime cada linha de texto
-                    float textWidth = e.Graphics.MeasureString($"Rota: {field.Rota}", font).Width + 10;
 
+                    // Imprime cada linha de texto
+                    float textRoute = e.Graphics.MeasureString($"Rota: {field.Rota}", font).Width + 10;
                     e.Graphics.DrawString($"Rota: {field.Rota}", font, brush, xPos, yPos);
-                    e.Graphics.DrawString($"Funcionário: {field.Funcionário}", font, brush, xPos + textWidth, yPos);
+                    e.Graphics.DrawString($"Funcionário: {field.Funcionário}", font, brush, textRoute > 200 ? xPos + textRoute : xPos + 200, yPos);
                     yPos += lineHeight;
-                    linesPrinted++;
 
                     e.Graphics.DrawString($"Deposito: {field.Deposito}", font, brush, xPos, yPos);
-                    e.Graphics.DrawString($"Gasto: {field.Gasto}", font, brush, xPos + 200, yPos); // Posição ajustada
-                    yPos += lineHeight;
-                    linesPrinted++;
+                    float textDeposit = e.Graphics.MeasureString($"Deposito: {field.Deposito}", font).Width + 10;
 
+                    e.Graphics.DrawString($"Gasto: {field.Gasto}", font, brush, textDeposit > 200 ? xPos + textDeposit : xPos + 200, yPos); // Posição ajustada
+                    float textSpent = e.Graphics.MeasureString($"Gasto: {field.Gasto}", font).Width + textDeposit + 10;
+
+                    e.Graphics.DrawString($"Cheque: {field.Cheque}", font, brush, textSpent > 400 ? xPos + textSpent : xPos + 400, yPos);
+                    
+                    yPos += lineHeight;
+                    e.Graphics.DrawString($"Moeda: {field.Moedas}", font, brush, xPos, yPos);
+                    float textCoin = e.Graphics.MeasureString($"Moeda: {field.Moedas}", font).Width + 10;
+
+                    e.Graphics.DrawString($"Falta: {field.Falta}", font, brush, textCoin > 200 ? xPos + textCoin : xPos + 200, yPos);
+                    float textLack = e.Graphics.MeasureString($"Falta: {field.Falta}", font).Width + textCoin + 10;
+
+                    e.Graphics.DrawString($"Sobra: {field.Sobra}", font, brush, textLack > 400 ? xPos + textLack : xPos + 400, yPos);
+
+                    yPos += lineHeight;
+
+                    float textExit = e.Graphics.MeasureString($"Saida: {field.Saida}", font).Width + 10;
                     e.Graphics.DrawString($"Saida: {field.Saida}", font, brush, xPos, yPos); // Posição ajustada
-                    e.Graphics.DrawString($"Volta: {field.Volta}", font, brush, xPos + 200, yPos);
+                    e.Graphics.DrawString($"Volta: {field.Volta}", font, brush, textExit > 200 ? xPos + textExit : xPos + 200, yPos);
                     yPos += lineHeight;
-                    linesPrinted++;
 
-                    e.Graphics.DrawString($"Observações: {field.Observações}", font, brush, xPos, yPos);
-                    yPos += lineHeight;
-                    linesPrinted++;
-                   
-                    // Draw the separator line
+                    string observations = $"Observações: {field.Observações}";
+                    float observationsWidth = e.Graphics.MeasureString(observations, font).Width;
+                    if (observationsWidth > e.MarginBounds.Width)
+                    {
+                        var words = observations.Split(' ');
+                        var lines = new List<string>();
+                        string currentLine = "";
+                        foreach (var word in words)
+                        {
+                            string testLine = currentLine.Length > 0 ? currentLine + " " + word : word;
+                            float testWidth = e.Graphics.MeasureString(testLine, font).Width;
+
+                            if (testWidth <= e.MarginBounds.Width)
+                            {
+                                currentLine = testLine;
+                            }
+                            else
+                            {
+                                lines.Add(currentLine);
+                                currentLine = word;
+                            }
+                        }
+                        lines.Add(currentLine); // Adicionar a última linha
+                        foreach (var line in lines)
+                        {
+                            e.Graphics.DrawString(line, font, brush, xPos, yPos);
+                            yPos += lineHeight;
+                        }
+                    }
+                    else
+                    {
+                        e.Graphics.DrawString(observations, font, brush, xPos, yPos);
+                        yPos += lineHeight;
+                    }
                     yPos += 10;
                     e.Graphics.DrawLine(pen, xPos, yPos, e.MarginBounds.Right, yPos);
                     yPos += 10;
 
-                    // Check if we've printed enough lines for the current page
-
-                    if (linesPrinted >= maxLinesPerPage)
+                    if (yPos + lineHeight * 5 + 20 > e.MarginBounds.Bottom)
                     {
                         e.HasMorePages = true;
                         return;
                     }
-
                     currentPageIndex++;
                 }
-
+                if (currentPageIndex == ListGridLp.Count)
+                {
+                    // Última página - adicionar data no final
+                    string currentDate = DateTime.Now.ToString("dd/MM/yyyy");
+                    e.Graphics.DrawString($"Data: {currentDate}", font, brush, xPos, yPos);
+                }
                 e.HasMorePages = false;
                 currentPageIndex = 0; 
             }
