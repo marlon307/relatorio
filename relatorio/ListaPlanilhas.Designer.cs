@@ -64,6 +64,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.TbStockFinish = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LpGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,7 +76,7 @@
             this.LpGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LpGrid.CausesValidation = false;
             this.LpGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LpGrid.Location = new System.Drawing.Point(16, 419);
+            this.LpGrid.Location = new System.Drawing.Point(16, 415);
             this.LpGrid.MultiSelect = false;
             this.LpGrid.Name = "LpGrid";
             this.LpGrid.ReadOnly = true;
@@ -292,9 +293,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(20, 100);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.Size = new System.Drawing.Size(36, 13);
             this.label7.TabIndex = 50;
-            this.label7.Text = "Saida";
+            this.label7.Text = "Saída";
             // 
             // label8
             // 
@@ -353,10 +354,11 @@
             // 
             // CbPrints
             // 
+            this.CbPrints.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbPrints.FormattingEnabled = true;
             this.CbPrints.Location = new System.Drawing.Point(97, 625);
             this.CbPrints.Name = "CbPrints";
-            this.CbPrints.Size = new System.Drawing.Size(121, 21);
+            this.CbPrints.Size = new System.Drawing.Size(171, 21);
             this.CbPrints.TabIndex = 57;
             // 
             // TbStock
@@ -410,11 +412,21 @@
             this.TbStockFinish.Size = new System.Drawing.Size(114, 20);
             this.TbStockFinish.TabIndex = 62;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(95, 609);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(131, 13);
+            this.label16.TabIndex = 64;
+            this.label16.Text = "Selecione uma Impressora";
+            // 
             // ListaPlanilhas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(574, 661);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.TbStockFinish);
             this.Controls.Add(this.label14);
@@ -505,5 +517,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox TbStockFinish;
+        private System.Windows.Forms.Label label16;
     }
 }

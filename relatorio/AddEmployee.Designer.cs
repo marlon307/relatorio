@@ -134,7 +134,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Adicionar Funcionário";
+            this.Text = "Adicionar/Remover Funcionário";
             ((System.ComponentModel.ISupportInitialize)(this.GridEmployee)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

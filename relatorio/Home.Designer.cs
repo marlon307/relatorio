@@ -162,7 +162,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 17);
             this.label3.TabIndex = 74;
-            this.label3.Text = "Saida";
+            this.label3.Text = "Saída";
             // 
             // label2
             // 
@@ -320,6 +320,7 @@
             // ComboBoxRoute
             // 
             this.ComboBoxRoute.AccessibleName = "Rota";
+            this.ComboBoxRoute.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxRoute.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxRoute.FormattingEnabled = true;
             this.ComboBoxRoute.Location = new System.Drawing.Point(40, 56);
@@ -361,6 +362,7 @@
             // CbEmployees
             // 
             this.CbEmployees.AccessibleName = "Rota";
+            this.CbEmployees.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbEmployees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbEmployees.FormattingEnabled = true;
             this.CbEmployees.Location = new System.Drawing.Point(40, 125);

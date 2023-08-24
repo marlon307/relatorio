@@ -15,9 +15,9 @@ namespace start.Class
         internal string EmpID { get; set; }
         public string Rota { get; set; }
         public string Funcionário { get; set; }
-        public string Saida { get; set; }
+        public string Saída { get; set; }
         public string Volta { get; set; }
-        public string Deposito { get; set; }
+        public string Depósito { get; set; }
         public string Gasto { get; set; }
         public string Cheque { get; set; }
         public string Moedas { get; set; }
@@ -48,9 +48,9 @@ namespace start.Class
                     EmpID = listReport["em_id"].ToString(),
                     Rota = listReport["route"].ToString(),
                     Funcionário = listReport["name"].ToString(),
-                    Saida = listReport["qtd_exit"].ToString(),
+                    Saída = listReport["qtd_exit"].ToString(),
                     Volta = listReport["qtd_back"].ToString(),
-                    Deposito = string.Format("{0:C}", listReport["deposit"]),
+                    Depósito = string.Format("{0:C}", listReport["deposit"]),
                     Gasto = string.Format("{0:C}", listReport["spent"]),
                     Cheque = string.Format("{0:C}", listReport["cheque"]),
                     Moedas = string.Format("{0:C}", listReport["coins"]),
@@ -66,9 +66,9 @@ namespace start.Class
                 EmpID = "0",
                 Rota = "TOTAIS",
                 Funcionário = "FLUXO TOTAL",
-                Saida = List.Select((crr) => Convert.ToInt32(crr.Saida)).Sum().ToString(),
+                Saída = List.Select((crr) => Convert.ToInt32(crr.Saída)).Sum().ToString(),
                 Volta = List.Select((crr) => Convert.ToInt32(crr.Volta)).Sum().ToString(),
-                Deposito = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Deposito, NumberStyles.Currency))),
+                Depósito = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Depósito, NumberStyles.Currency))),
                 Gasto = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Gasto, NumberStyles.Currency))),
                 Cheque = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Cheque, NumberStyles.Currency))),
                 Moedas = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Moedas, NumberStyles.Currency))),

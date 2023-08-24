@@ -22,7 +22,7 @@ namespace start
             InitializeComponent();
 
             this.Text = string.Format("Relatório - {0}", WorkSheetsForm.reporteDate);
-
+            
             FormListWorkSeeths = WorkSheetsForm;
             ListGridLp = ListAllWorkSheets(WorkSheetsForm.reporteDate);
             dataStock = ReadStock(WorkSheetsForm.reporteDate);
@@ -32,17 +32,17 @@ namespace start
                 int vProduction = Convert.ToInt32(dataStock["production"]);
                 TbStock.Text = vStock.ToString();
                 TbProducion.Text = vProduction.ToString();
-                int exit = ListGridLp.Sum((current) => Convert.ToInt32(current.Saida));
-                int back = ListGridLp.Sum((current) => Convert.ToInt32(current.Volta));
+                int exit = ListGridLp.Sum((current) => current.RecordID != "0" ? Convert.ToInt32(current.Saída) : 0);
+                int back = ListGridLp.Sum((current) => current.RecordID != "0" ? Convert.ToInt32(current.Volta) : 0);
                 TbStockFinish.Text = string.Format("{0}", vStock + vProduction + back - exit);
             }
 
             LpGrid.DataSource = ListGridLp;
             TbLpRota.Text = ListGridLp[0].Rota;
             TbLpFunc.Text = ListGridLp[0].Funcionário;
-            TbLpSaida.Text = ListGridLp[0].Saida;
+            TbLpSaida.Text = ListGridLp[0].Saída;
             TbLpVolta.Text = ListGridLp[0].Volta;
-            TbLpDep.Text = ListGridLp[0].Deposito;
+            TbLpDep.Text = ListGridLp[0].Depósito;
             TbLpGast.Text = ListGridLp[0].Gasto;
             TbLpCheq.Text = ListGridLp[0].Cheque;
             TbLpMoed.Text = ListGridLp[0].Moedas;
@@ -50,7 +50,7 @@ namespace start
             TbLpSob.Text = ListGridLp[0].Sobra;
             TbLpObs.Text = ListGridLp[0].Observações;
             LpGrid.CurrentCell = LpGrid[0, 0];//Vai mante a celula selecionada
-            label1.Text = ListGridLp[0].Deposito;
+            
             CbPrints.Items.Clear();
             foreach (var prinst in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {
@@ -83,6 +83,16 @@ namespace start
         {
             Close();
         }
+        private void RecalcStock()
+        {
+            int vStock = Convert.ToInt32(dataStock["stock"]);
+            int vProduction = Convert.ToInt32(dataStock["production"]);
+            TbStock.Text = vStock.ToString();
+            TbProducion.Text = vProduction.ToString();
+            int exit = ListGridLp.Sum((current) => current.RecordID != "0" ? Convert.ToInt32(current.Saída) : 0);
+            int back = ListGridLp.Sum((current) => current.RecordID != "0" ? Convert.ToInt32(current.Volta) : 0);
+            TbStockFinish.Text = string.Format("{0}", vStock + vProduction + back - exit);
+        }
         private void BtnLpSave_Click(object sender, EventArgs e)
         {
             if (TbLpRota.Text != "")
@@ -105,6 +115,7 @@ namespace start
                     UpdateReport(ListGridLp[index].RecordID, valueUpdate);
                     ListGridLp = ListAllWorkSheets(FormListWorkSeeths.reporteDate);
                     LpGrid.DataSource = ListGridLp;
+                    RecalcStock();
                 }
             }
         }
@@ -134,8 +145,8 @@ namespace start
                     e.Graphics.DrawString($"Funcionário: {field.Funcionário}", font, brush, textRoute > 200 ? xPos + textRoute : xPos + 200, yPos);
                     yPos += lineHeight;
 
-                    e.Graphics.DrawString($"Deposito: {field.Deposito}", font, brush, xPos, yPos);
-                    float textDeposit = e.Graphics.MeasureString($"Deposito: {field.Deposito}", font).Width + 10;
+                    e.Graphics.DrawString($"Depósito: {field.Depósito}", font, brush, xPos, yPos);
+                    float textDeposit = e.Graphics.MeasureString($"Depósito: {field.Depósito}", font).Width + 10;
 
                     e.Graphics.DrawString($"Gasto: {field.Gasto}", font, brush, textDeposit > 200 ? xPos + textDeposit : xPos + 200, yPos); // Posição ajustada
                     float textSpent = e.Graphics.MeasureString($"Gasto: {field.Gasto}", font).Width + textDeposit + 10;
@@ -153,8 +164,8 @@ namespace start
 
                     yPos += lineHeight;
 
-                    float textExit = e.Graphics.MeasureString($"Saida: {field.Saida}", font).Width + 10;
-                    e.Graphics.DrawString($"Saida: {field.Saida}", font, brush, xPos, yPos); // Posição ajustada
+                    float textExit = e.Graphics.MeasureString($"Saida: {field.Saída}", font).Width + 10;
+                    e.Graphics.DrawString($"Saída: {field.Saída}", font, brush, xPos, yPos); // Posição ajustada
                     e.Graphics.DrawString($"Volta: {field.Volta}", font, brush, textExit > 200 ? xPos + textExit : xPos + 200, yPos);
                     yPos += lineHeight;
                     // A incrementação estar aqui para poder adicionar informações sobre o estoque no último bloco
@@ -163,6 +174,8 @@ namespace start
                     {
                         e.Graphics.DrawString($"Estoque Inicial: {dataStock["stock"]}", font, brush, xPos, yPos);
                         e.Graphics.DrawString($"Produção: {dataStock["production"]}", font, brush, xPos + 200, yPos);
+                        e.Graphics.DrawString($"Estoque Final: {Convert.ToInt32(dataStock["production"]) + Convert.ToInt32(dataStock["stock"]) + Convert.ToInt32(field.Volta) - Convert.ToInt32(field.Saída)}", font, brush, xPos + 400, yPos);
+
                         yPos += lineHeight;
                     }
                     string observations = $"Observações: {field.Observações}";
@@ -216,12 +229,15 @@ namespace start
         }
         private void BtnPrint_Click(object sender, EventArgs e)
         {
-            using(var printDocument = new System.Drawing.Printing.PrintDocument())
+            if (CbPrints.SelectedItem != null)
             {
-                printDocument.PrinterSettings.PrinterName = CbPrints.SelectedItem.ToString();
-                printDocument.PrintPage += PrintDocumentPage;
-                printDocument.DocumentName = Text;
-                printDocument.Print();
+                using(var printDocument = new System.Drawing.Printing.PrintDocument())
+                {
+                    printDocument.PrinterSettings.PrinterName = CbPrints.SelectedItem.ToString();
+                    printDocument.PrintPage += PrintDocumentPage;
+                    printDocument.DocumentName = Text;
+                    printDocument.Print();
+                }
             }
         }
 
@@ -232,13 +248,7 @@ namespace start
             dataStock = ReadStock(FormListWorkSeeths.reporteDate);
             if (dataStock.Read())
             {
-                int vStock = Convert.ToInt32(dataStock["stock"]);
-                int vProduction = Convert.ToInt32(dataStock["production"]);
-                TbStock.Text = vStock.ToString();
-                TbProducion.Text = vProduction.ToString();
-                int exit = ListGridLp.Sum((current) => Convert.ToInt32(current.Saida));
-                int back = ListGridLp.Sum((current) => Convert.ToInt32(current.Volta));
-                TbStockFinish.Text = string.Format("{0}", vStock + vProduction + back - exit);
+                RecalcStock();
             }
         }
 
@@ -249,9 +259,9 @@ namespace start
                 int index = LpGrid.CurrentCell.RowIndex;
                 TbLpRota.Text = ListGridLp[index].Rota;
                 TbLpFunc.Text = ListGridLp[index].Funcionário;
-                TbLpSaida.Text = ListGridLp[index].Saida;
+                TbLpSaida.Text = ListGridLp[index].Saída;
                 TbLpVolta.Text = ListGridLp[index].Volta;
-                TbLpDep.Text = ListGridLp[index].Deposito;
+                TbLpDep.Text = ListGridLp[index].Depósito;
                 TbLpGast.Text = ListGridLp[index].Gasto;
                 TbLpCheq.Text = ListGridLp[index].Cheque;
                 TbLpMoed.Text = ListGridLp[index].Moedas;
