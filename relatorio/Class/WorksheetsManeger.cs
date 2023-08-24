@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Globalization;
+using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using static DB.SQLiteDB;
 
 
@@ -58,6 +60,23 @@ namespace start.Class
                 };
                 List.Add(resports);
             }
+            WorksheetsManeger total = new WorksheetsManeger()
+            {
+                RecordID = "0",
+                EmpID = "0",
+                Rota = "TOTAIS",
+                Funcionário = "FLUXO TOTAL",
+                Saida = List.Select((crr) => Convert.ToInt32(crr.Saida)).Sum().ToString(),
+                Volta = List.Select((crr) => Convert.ToInt32(crr.Volta)).Sum().ToString(),
+                Deposito = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Deposito, NumberStyles.Currency))),
+                Gasto = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Gasto, NumberStyles.Currency))),
+                Cheque = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Cheque, NumberStyles.Currency))),
+                Moedas = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Moedas, NumberStyles.Currency))),
+                Falta = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Falta, NumberStyles.Currency))),
+                Sobra = string.Format("{0:C}", List.Sum((crr) => double.Parse(crr.Sobra, NumberStyles.Currency))),
+                Observações = "SOMA DE TODAS AS ROTAS FINALIZADAS",
+            };
+            List.Add(total);
             return List;
         }
         internal class IPropsUpdate {
@@ -97,13 +116,27 @@ namespace start.Class
             };
             QueryWhere("DELETE FROM records WHERE id=@id;", condition);
         }
-        public static void ReadStock(string dateReport)
+        public static SQLiteDataReader ReadStock(string dateReport)
         {
+            string dateFormat = DateTime.Parse(dateReport).ToString("yyyy-MM-dd");
             List<ConditionWhere> condition = new List<ConditionWhere>
             {
-                new ConditionWhere("@date", dateReport)
+                new ConditionWhere("@date", dateFormat)
             };
-            QueryWhere("SELECT stock, production FROM reports WHERE date=@date;", condition);
+            SQLiteDataReader result = QuerySelect("SELECT stock, production FROM reports WHERE date=@date;", condition);
+            return result;
+        }
+        public static void UpdateStock(string dateReport, int stock, int production)
+        {
+            string dateFormat = DateTime.Parse(dateReport).ToString("yyyy-MM-dd");
+            List<ConditionWhere> condition = new List<ConditionWhere>
+            {
+                new ConditionWhere("@date", dateFormat),
+                new ConditionWhere("@stock", stock),
+                new ConditionWhere("@production", production)
+
+            };
+            QueryWhere("UPDATE reports SET stock=@stock, production=@production WHERE date=@date;", condition);
         }
     }
 }

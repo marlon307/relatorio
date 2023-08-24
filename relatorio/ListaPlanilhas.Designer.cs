@@ -58,6 +58,12 @@
             this.label12 = new System.Windows.Forms.Label();
             this.BtnPrint = new System.Windows.Forms.Button();
             this.CbPrints = new System.Windows.Forms.ComboBox();
+            this.TbStock = new System.Windows.Forms.TextBox();
+            this.TbProducion = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.TbStockFinish = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.LpGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,7 +75,7 @@
             this.LpGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LpGrid.CausesValidation = false;
             this.LpGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LpGrid.Location = new System.Drawing.Point(16, 372);
+            this.LpGrid.Location = new System.Drawing.Point(16, 419);
             this.LpGrid.MultiSelect = false;
             this.LpGrid.Name = "LpGrid";
             this.LpGrid.ReadOnly = true;
@@ -183,7 +189,7 @@
             // 
             // TbLpObs
             // 
-            this.TbLpObs.Location = new System.Drawing.Point(16, 274);
+            this.TbLpObs.Location = new System.Drawing.Point(16, 270);
             this.TbLpObs.Name = "TbLpObs";
             this.TbLpObs.Size = new System.Drawing.Size(544, 20);
             this.TbLpObs.TabIndex = 39;
@@ -191,7 +197,7 @@
             // TbLpTot
             // 
             this.TbLpTot.Enabled = false;
-            this.TbLpTot.Location = new System.Drawing.Point(215, 312);
+            this.TbLpTot.Location = new System.Drawing.Point(274, 308);
             this.TbLpTot.Name = "TbLpTot";
             this.TbLpTot.Size = new System.Drawing.Size(116, 20);
             this.TbLpTot.TabIndex = 40;
@@ -199,7 +205,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(485, 576);
+            this.button1.Location = new System.Drawing.Point(485, 623);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 41;
@@ -219,7 +225,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(16, 339);
+            this.button3.Location = new System.Drawing.Point(404, 340);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 43;
@@ -302,7 +308,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(230, 255);
+            this.label9.Location = new System.Drawing.Point(230, 251);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 13);
             this.label9.TabIndex = 52;
@@ -329,7 +335,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(178, 315);
+            this.label12.Location = new System.Drawing.Point(237, 311);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(31, 13);
             this.label12.TabIndex = 55;
@@ -337,7 +343,7 @@
             // 
             // BtnPrint
             // 
-            this.BtnPrint.Location = new System.Drawing.Point(16, 576);
+            this.BtnPrint.Location = new System.Drawing.Point(16, 623);
             this.BtnPrint.Name = "BtnPrint";
             this.BtnPrint.Size = new System.Drawing.Size(75, 23);
             this.BtnPrint.TabIndex = 56;
@@ -348,16 +354,73 @@
             // CbPrints
             // 
             this.CbPrints.FormattingEnabled = true;
-            this.CbPrints.Location = new System.Drawing.Point(97, 578);
+            this.CbPrints.Location = new System.Drawing.Point(97, 625);
             this.CbPrints.Name = "CbPrints";
             this.CbPrints.Size = new System.Drawing.Size(121, 21);
             this.CbPrints.TabIndex = 57;
+            // 
+            // TbStock
+            // 
+            this.TbStock.Location = new System.Drawing.Point(82, 308);
+            this.TbStock.Name = "TbStock";
+            this.TbStock.Size = new System.Drawing.Size(116, 20);
+            this.TbStock.TabIndex = 58;
+            this.TbStock.Leave += new System.EventHandler(this.TbProducion_Leave);
+            // 
+            // TbProducion
+            // 
+            this.TbProducion.Location = new System.Drawing.Point(80, 339);
+            this.TbProducion.Name = "TbProducion";
+            this.TbProducion.Size = new System.Drawing.Size(116, 20);
+            this.TbProducion.TabIndex = 59;
+            this.TbProducion.Leave += new System.EventHandler(this.TbProducion_Leave);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(13, 344);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(53, 13);
+            this.label13.TabIndex = 60;
+            this.label13.Text = "Produção";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(14, 311);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(46, 13);
+            this.label14.TabIndex = 61;
+            this.label14.Text = "Estoque";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(15, 381);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(71, 13);
+            this.label15.TabIndex = 63;
+            this.label15.Text = "Estoque Final";
+            // 
+            // TbStockFinish
+            // 
+            this.TbStockFinish.Enabled = false;
+            this.TbStockFinish.Location = new System.Drawing.Point(92, 378);
+            this.TbStockFinish.Name = "TbStockFinish";
+            this.TbStockFinish.Size = new System.Drawing.Size(114, 20);
+            this.TbStockFinish.TabIndex = 62;
             // 
             // ListaPlanilhas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 611);
+            this.ClientSize = new System.Drawing.Size(574, 661);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.TbStockFinish);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.TbProducion);
+            this.Controls.Add(this.TbStock);
             this.Controls.Add(this.CbPrints);
             this.Controls.Add(this.BtnPrint);
             this.Controls.Add(this.label12);
@@ -389,9 +452,9 @@
             this.Controls.Add(this.TbLpSaida);
             this.Controls.Add(this.LpGrid);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(590, 650);
+            this.MaximumSize = new System.Drawing.Size(590, 700);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(590, 650);
+            this.MinimumSize = new System.Drawing.Size(590, 700);
             this.Name = "ListaPlanilhas";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -436,5 +499,11 @@
         private System.Windows.Forms.DataGridView LpGrid;
         private System.Windows.Forms.Button BtnPrint;
         private System.Windows.Forms.ComboBox CbPrints;
+        private System.Windows.Forms.TextBox TbStock;
+        private System.Windows.Forms.TextBox TbProducion;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox TbStockFinish;
     }
 }

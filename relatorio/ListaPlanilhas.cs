@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using format;
 using start.Class;
@@ -14,6 +16,7 @@ namespace start
         private readonly ListRelatorios FormListWorkSeeths;
         double n1, n2, n3, n4, n5, n6, total;
         private int currentPageIndex = 0;
+        private SQLiteDataReader dataStock;
         public ListaPlanilhas(ListRelatorios WorkSheetsForm)
         {
             InitializeComponent();
@@ -22,8 +25,19 @@ namespace start
 
             FormListWorkSeeths = WorkSheetsForm;
             ListGridLp = ListAllWorkSheets(WorkSheetsForm.reporteDate);
-            LpGrid.DataSource = ListGridLp;
+            dataStock = ReadStock(WorkSheetsForm.reporteDate);
+            if(dataStock.Read())
+            {
+                int vStock = Convert.ToInt32(dataStock["stock"]);
+                int vProduction = Convert.ToInt32(dataStock["production"]);
+                TbStock.Text = vStock.ToString();
+                TbProducion.Text = vProduction.ToString();
+                int exit = ListGridLp.Sum((current) => Convert.ToInt32(current.Saida));
+                int back = ListGridLp.Sum((current) => Convert.ToInt32(current.Volta));
+                TbStockFinish.Text = string.Format("{0}", vStock + vProduction + back - exit);
+            }
 
+            LpGrid.DataSource = ListGridLp;
             TbLpRota.Text = ListGridLp[0].Rota;
             TbLpFunc.Text = ListGridLp[0].Funcionário;
             TbLpSaida.Text = ListGridLp[0].Saida;
@@ -36,7 +50,7 @@ namespace start
             TbLpSob.Text = ListGridLp[0].Sobra;
             TbLpObs.Text = ListGridLp[0].Observações;
             LpGrid.CurrentCell = LpGrid[0, 0];//Vai mante a celula selecionada
-
+            label1.Text = ListGridLp[0].Deposito;
             CbPrints.Items.Clear();
             foreach (var prinst in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {
@@ -143,7 +157,14 @@ namespace start
                     e.Graphics.DrawString($"Saida: {field.Saida}", font, brush, xPos, yPos); // Posição ajustada
                     e.Graphics.DrawString($"Volta: {field.Volta}", font, brush, textExit > 200 ? xPos + textExit : xPos + 200, yPos);
                     yPos += lineHeight;
-
+                    // A incrementação estar aqui para poder adicionar informações sobre o estoque no último bloco
+                    currentPageIndex += 1;
+                    if (currentPageIndex == ListGridLp.Count)
+                    {
+                        e.Graphics.DrawString($"Estoque Inicial: {dataStock["stock"]}", font, brush, xPos, yPos);
+                        e.Graphics.DrawString($"Produção: {dataStock["production"]}", font, brush, xPos + 200, yPos);
+                        yPos += lineHeight;
+                    }
                     string observations = $"Observações: {field.Observações}";
                     float observationsWidth = e.Graphics.MeasureString(observations, font).Width;
                     if (observationsWidth > e.MarginBounds.Width)
@@ -187,14 +208,8 @@ namespace start
                         e.HasMorePages = true;
                         return;
                     }
-                    currentPageIndex++;
                 }
-                if (currentPageIndex == ListGridLp.Count)
-                {
-                    // Última página - adicionar data no final
-                    string currentDate = DateTime.Now.ToString("dd/MM/yyyy");
-                    e.Graphics.DrawString($"Data: {currentDate}", font, brush, xPos, yPos);
-                }
+
                 e.HasMorePages = false;
                 currentPageIndex = 0; 
             }
@@ -209,6 +224,24 @@ namespace start
                 printDocument.Print();
             }
         }
+
+        private void TbProducion_Leave(object sender, EventArgs e)
+        {
+            UpdateStock(FormListWorkSeeths.reporteDate, Convert.ToInt32(TbStock.Text), Convert.ToInt32(TbProducion.Text));
+            ListGridLp = ListAllWorkSheets(FormListWorkSeeths.reporteDate);
+            dataStock = ReadStock(FormListWorkSeeths.reporteDate);
+            if (dataStock.Read())
+            {
+                int vStock = Convert.ToInt32(dataStock["stock"]);
+                int vProduction = Convert.ToInt32(dataStock["production"]);
+                TbStock.Text = vStock.ToString();
+                TbProducion.Text = vProduction.ToString();
+                int exit = ListGridLp.Sum((current) => Convert.ToInt32(current.Saida));
+                int back = ListGridLp.Sum((current) => Convert.ToInt32(current.Volta));
+                TbStockFinish.Text = string.Format("{0}", vStock + vProduction + back - exit);
+            }
+        }
+
         private void LpGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (LpGrid.CurrentCell != null)
