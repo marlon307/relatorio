@@ -1,6 +1,4 @@
-<div align="center">
-  <h1>Relatório</h1>
-</div>
+<h1 align="center">Relatório</h1>
 
 <br/>
 <br/>
