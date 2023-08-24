@@ -22,7 +22,7 @@ namespace start
             InitializeComponent();
 
             this.Text = string.Format("Relatório - {0}", WorkSheetsForm.reporteDate);
-
+            
             FormListWorkSeeths = WorkSheetsForm;
             ListGridLp = ListAllWorkSheets(WorkSheetsForm.reporteDate);
             dataStock = ReadStock(WorkSheetsForm.reporteDate);
@@ -32,8 +32,8 @@ namespace start
                 int vProduction = Convert.ToInt32(dataStock["production"]);
                 TbStock.Text = vStock.ToString();
                 TbProducion.Text = vProduction.ToString();
-                int exit = ListGridLp.Sum((current) => Convert.ToInt32(current.Saida));
-                int back = ListGridLp.Sum((current) => Convert.ToInt32(current.Volta));
+                int exit = ListGridLp.Sum((current) => current.RecordID != "0" ? Convert.ToInt32(current.Saida) : 0);
+                int back = ListGridLp.Sum((current) => current.RecordID != "0" ? Convert.ToInt32(current.Volta) : 0);
                 TbStockFinish.Text = string.Format("{0}", vStock + vProduction + back - exit);
             }
 
@@ -50,7 +50,7 @@ namespace start
             TbLpSob.Text = ListGridLp[0].Sobra;
             TbLpObs.Text = ListGridLp[0].Observações;
             LpGrid.CurrentCell = LpGrid[0, 0];//Vai mante a celula selecionada
-            label1.Text = ListGridLp[0].Deposito;
+            
             CbPrints.Items.Clear();
             foreach (var prinst in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {
@@ -83,6 +83,16 @@ namespace start
         {
             Close();
         }
+        private void RecalcStock()
+        {
+            int vStock = Convert.ToInt32(dataStock["stock"]);
+            int vProduction = Convert.ToInt32(dataStock["production"]);
+            TbStock.Text = vStock.ToString();
+            TbProducion.Text = vProduction.ToString();
+            int exit = ListGridLp.Sum((current) => current.RecordID != "0" ? Convert.ToInt32(current.Saida) : 0);
+            int back = ListGridLp.Sum((current) => current.RecordID != "0" ? Convert.ToInt32(current.Volta) : 0);
+            TbStockFinish.Text = string.Format("{0}", vStock + vProduction + back - exit);
+        }
         private void BtnLpSave_Click(object sender, EventArgs e)
         {
             if (TbLpRota.Text != "")
@@ -105,6 +115,7 @@ namespace start
                     UpdateReport(ListGridLp[index].RecordID, valueUpdate);
                     ListGridLp = ListAllWorkSheets(FormListWorkSeeths.reporteDate);
                     LpGrid.DataSource = ListGridLp;
+                    RecalcStock();
                 }
             }
         }
@@ -163,6 +174,8 @@ namespace start
                     {
                         e.Graphics.DrawString($"Estoque Inicial: {dataStock["stock"]}", font, brush, xPos, yPos);
                         e.Graphics.DrawString($"Produção: {dataStock["production"]}", font, brush, xPos + 200, yPos);
+                        e.Graphics.DrawString($"Estoque Final: {Convert.ToInt32(dataStock["production"]) + Convert.ToInt32(dataStock["stock"]) + Convert.ToInt32(field.Volta) - Convert.ToInt32(field.Saida)}", font, brush, xPos + 400, yPos);
+
                         yPos += lineHeight;
                     }
                     string observations = $"Observações: {field.Observações}";
@@ -216,12 +229,15 @@ namespace start
         }
         private void BtnPrint_Click(object sender, EventArgs e)
         {
-            using(var printDocument = new System.Drawing.Printing.PrintDocument())
+            if (CbPrints.SelectedItem != null)
             {
-                printDocument.PrinterSettings.PrinterName = CbPrints.SelectedItem.ToString();
-                printDocument.PrintPage += PrintDocumentPage;
-                printDocument.DocumentName = Text;
-                printDocument.Print();
+                using(var printDocument = new System.Drawing.Printing.PrintDocument())
+                {
+                    printDocument.PrinterSettings.PrinterName = CbPrints.SelectedItem.ToString();
+                    printDocument.PrintPage += PrintDocumentPage;
+                    printDocument.DocumentName = Text;
+                    printDocument.Print();
+                }
             }
         }
 
@@ -232,13 +248,7 @@ namespace start
             dataStock = ReadStock(FormListWorkSeeths.reporteDate);
             if (dataStock.Read())
             {
-                int vStock = Convert.ToInt32(dataStock["stock"]);
-                int vProduction = Convert.ToInt32(dataStock["production"]);
-                TbStock.Text = vStock.ToString();
-                TbProducion.Text = vProduction.ToString();
-                int exit = ListGridLp.Sum((current) => Convert.ToInt32(current.Saida));
-                int back = ListGridLp.Sum((current) => Convert.ToInt32(current.Volta));
-                TbStockFinish.Text = string.Format("{0}", vStock + vProduction + back - exit);
+                RecalcStock();
             }
         }
 
