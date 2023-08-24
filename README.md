@@ -1,3 +1,5 @@
+# <p style="text-align: center;">Relatório</p>
+
 ### Tela Principal do Sistema
 
 ![Tela Principal do Sistema](https://github.com/marlon307/rlatorio/blob/master/Assets/Home.png)
