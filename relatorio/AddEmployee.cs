@@ -40,13 +40,13 @@ namespace start
                 }
                 else
                 {
-                    message.Text = "Ja existe uma rota com este nome.";
+                    message.Text = "Já existe uma rota com este nome.";
                     message.Visible = true;
                 }
             }
             else
             {
-                message.Text = "Adicione um nome para a ROTA!\nA quantidade de caracteres minimo e (4)\nE clique em ADICIONAR.";
+                message.Text = "Adicione um nome para a ROTA!\nA quantidade de caractere mínimo é (4)\nE clique em ADICIONAR.";
             }
         }
         private void BtnClose_Click(object sender, EventArgs e)
