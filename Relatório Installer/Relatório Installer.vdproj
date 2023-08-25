@@ -15,7 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_1D79662C9BD340489B64AA82F51D4671"
+        "MsmKey" = "8:_03C800CE30AB48BFB38C3A45A6C67F71"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2FE5B871D2384AE783799DF02608783B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -135,12 +141,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AE8B1929545C4724B3FCA32E4D5CAF5F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_AEEBF09CB9D34C289EC98F0E0442E8AE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -149,12 +149,6 @@
         {
         "MsmKey" = "8:_B2B8748747905EE27AB9271231526E24"
         "OwnerKey" = "8:_53F473AB705C48BCBBC90461C322059D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B44C4A57288D484E92DE601C0303E879"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -356,6 +350,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -380,6 +382,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -410,12 +420,32 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1D79662C9BD340489B64AA82F51D4671"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03C800CE30AB48BFB38C3A45A6C67F71"
             {
-            "SourcePath" = "8:..\\relatorio\\bin\\Debug\\database.db"
-            "TargetName" = "8:database.db"
+            "SourcePath" = "8:..\\relatorio\\bin\\Debug\\x64\\SQLite.Interop.dll"
+            "TargetName" = "8:SQLite.Interop.dll"
             "Tag" = "8:"
-            "Folder" = "8:_48E86E030B1D4D249B67FB699DCE1379"
+            "Folder" = "8:_997F5665B1CE41029A36608F2C730FF5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2FE5B871D2384AE783799DF02608783B"
+            {
+            "SourcePath" = "8:..\\relatorio\\bin\\Debug\\x86\\SQLite.Interop.dll"
+            "TargetName" = "8:SQLite.Interop.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_E5B227CCD38A48CBA0CAA0EFAC6B809F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -574,26 +604,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AE8B1929545C4724B3FCA32E4D5CAF5F"
-            {
-            "SourcePath" = "8:..\\relatorio\\bin\\Debug\\x86\\SQLite.Interop.dll"
-            "TargetName" = "8:SQLite.Interop.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_D12687751B014124A496F9D0B65A627D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B2B8748747905EE27AB9271231526E24"
             {
             "AssemblyRegister" = "3:1"
@@ -623,26 +633,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B44C4A57288D484E92DE601C0303E879"
-            {
-            "SourcePath" = "8:..\\relatorio\\bin\\Debug\\x64\\SQLite.Interop.dll"
-            "TargetName" = "8:SQLite.Interop.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_6825DD85E01B4AF9ABF3C4C7C2F88D06"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C0AE6183FC5A51997ECB9960BE131A54"
@@ -785,24 +775,24 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_6825DD85E01B4AF9ABF3C4C7C2F88D06"
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_997F5665B1CE41029A36608F2C730FF5"
                     {
                     "Name" = "8:x64"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_1A4395EBD13D4A68A25DC091D76B5D98"
+                    "Property" = "8:_54B875C05E424EA696C98DD172D55952"
                         "Folders"
                         {
                         }
                     }
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_D12687751B014124A496F9D0B65A627D"
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_E5B227CCD38A48CBA0CAA0EFAC6B809F"
                     {
                     "Name" = "8:x86"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_F9A5CE78CCE94FD9B12C726EB35343AC"
+                    "Property" = "8:_55D52A3806794321B0C14CAE4C7AEEC5"
                         "Folders"
                         {
                         }
@@ -859,13 +849,13 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Relatório"
         "ProductCode" = "8:{6F564B66-70D8-4BC7-B995-96C7CCCE2D70}"
-        "PackageCode" = "8:{0C1F2332-A6BB-485C-BE2B-7779A0AFEC37}"
+        "PackageCode" = "8:{94C67883-9CFB-4126-AE98-10646294E9A8}"
         "UpgradeCode" = "8:{110C21C0-0DE7-4144-94F0-8EC0E9019430}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
+        "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
         "Manufacturer" = "8:R307"
         "ARPHELPTELEPHONE" = "8:"
@@ -880,10 +870,10 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
-        "RunPostBuildEvent" = "3:0"
+        "RunPostBuildEvent" = "3:1"
         }
         "Registry"
         {
@@ -996,7 +986,7 @@
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C57E752F57BD465BAEB5A9EE5F5ED2AA"
             {
             "Name" = "8:Relatório"
-            "Arguments" = "8:"
+            "Arguments" = "8:runas /user:Administrator"
             "Description" = "8:Relatório Diário"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"

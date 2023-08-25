@@ -20,8 +20,10 @@ namespace start
         public Home()
         {
             InitializeComponent();
-            //Carregar A lista de Rostas 
-            if (File.Exists("database.db"))
+            string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string filePath = Path.Combine(documentsFolder, @"Relatório\database.db");
+
+            if (File.Exists(filePath))
             {
                 SQLiteDataReader isReport = QuerySelect("SELECT id, production, stock, date FROM reports WHERE date = DATE()");
                 if(!isReport.Read())
