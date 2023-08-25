@@ -240,7 +240,6 @@ namespace start
                 }
             }
         }
-
         private void TbProducion_Leave(object sender, EventArgs e)
         {
             UpdateStock(FormListWorkSeeths.reporteDate, Convert.ToInt32(TbStock.Text), Convert.ToInt32(TbProducion.Text));

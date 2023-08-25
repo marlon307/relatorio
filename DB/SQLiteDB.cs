@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
 
 namespace DB
 {
@@ -23,7 +24,16 @@ namespace DB
             {
                 if (SQLiteConnection == null)
                 {
-                    SQLiteConnection = new SQLiteConnection("Data Source=database.db; Version=3;");
+                    string documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    string filePath = Path.Combine(documentsFolder, "Relatório");
+                    string sqlPath = string.Format(@"Data Source={0}\database.db; Version=3;", filePath);
+                    
+                    if (!Directory.Exists(filePath))
+                    {
+                        Directory.CreateDirectory(filePath);
+                    }
+                   
+                    SQLiteConnection = new SQLiteConnection(sqlPath);
                     SQLiteConnection.Open();
                 }
                 return SQLiteConnection;
