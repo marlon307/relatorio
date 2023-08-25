@@ -3,6 +3,15 @@
 <br/>
 <br/>
 
+<h3 align="center">
+  <a href="https://github.com/marlon307/relatorio/releases">
+    <span>Download da última versão.</span>
+  </a>  
+</h3>
+<p align="center">
+   <img src="https://raw.githubusercontent.com/marlon307/relatorio/master/Assets/icon.ico" alt="Relatório" style="height: 50px; width:50px;"/>
+</p>
+  
 ### Tela Principal do Sistema
 
 ![Tela Principal do Sistema](https://github.com/marlon307/rlatorio/blob/master/Assets/Home.png)
