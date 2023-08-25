@@ -308,6 +308,7 @@
             this.TbBack.Name = "TbBack";
             this.TbBack.Size = new System.Drawing.Size(105, 26);
             this.TbBack.TabIndex = 4;
+            this.TbBack.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressTbRel);
             // 
             // TbExit
             // 
@@ -316,6 +317,7 @@
             this.TbExit.Name = "TbExit";
             this.TbExit.Size = new System.Drawing.Size(105, 26);
             this.TbExit.TabIndex = 3;
+            this.TbExit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressTbRel);
             // 
             // ComboBoxRoute
             // 
@@ -376,6 +378,7 @@
             this.TbStock.Name = "TbStock";
             this.TbStock.Size = new System.Drawing.Size(100, 20);
             this.TbStock.TabIndex = 88;
+            this.TbStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressTbRel);
             this.TbStock.Leave += new System.EventHandler(this.TbStock_Leave);
             // 
             // TbProduction
@@ -384,6 +387,7 @@
             this.TbProduction.Name = "TbProduction";
             this.TbProduction.Size = new System.Drawing.Size(100, 20);
             this.TbProduction.TabIndex = 89;
+            this.TbProduction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyPressTbRel);
             this.TbProduction.Leave += new System.EventHandler(this.TbStock_Leave);
             // 
             // label13

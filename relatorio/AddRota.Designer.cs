@@ -28,23 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.StyleMangerAddRot = new MetroFramework.Components.MetroStyleManager(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddRota));
             this.button1 = new System.Windows.Forms.Button();
             this.TbAddRota = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ListGridRota = new System.Windows.Forms.DataGridView();
             this.BttOKAddR = new System.Windows.Forms.Button();
             this.message = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.StyleMangerAddRot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListGridRota)).BeginInit();
             this.SuspendLayout();
-            // 
-            // StyleMangerAddRot
-            // 
-            this.StyleMangerAddRot.Owner = this;
             // 
             // button1
             // 
@@ -132,6 +126,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TbAddRota);
             this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(450, 400);
             this.MinimizeBox = false;
@@ -143,7 +138,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Adicionar/Remover uma Rota";
             this.DoubleClick += new System.EventHandler(this.ListGridRota_DoubleClick);
-            ((System.ComponentModel.ISupportInitialize)(this.StyleMangerAddRot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ListGridRota)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -151,7 +145,6 @@
         }
 
         #endregion
-        public MetroFramework.Components.MetroStyleManager StyleMangerAddRot;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox TbAddRota;
         private System.Windows.Forms.Label label1;

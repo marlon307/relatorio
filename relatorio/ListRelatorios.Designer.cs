@@ -28,16 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.StyleMagerRf = new MetroFramework.Components.MetroStyleManager(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListRelatorios));
             this.GridReports = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.StyleMagerRf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridReports)).BeginInit();
             this.SuspendLayout();
-            // 
-            // StyleMagerRf
-            // 
-            this.StyleMagerRf.Owner = this;
             // 
             // GridReports
             // 
@@ -66,6 +60,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 361);
             this.Controls.Add(this.GridReports);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(450, 400);
             this.MinimizeBox = false;
@@ -77,7 +72,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Tag = "";
             this.Text = "Relatórios";
-            ((System.ComponentModel.ISupportInitialize)(this.StyleMagerRf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridReports)).EndInit();
             this.ResumeLayout(false);
 
@@ -85,7 +79,6 @@
 
         #endregion
 
-        public MetroFramework.Components.MetroStyleManager StyleMagerRf;
         public System.Windows.Forms.DataGridView GridReports;
     }
 }
