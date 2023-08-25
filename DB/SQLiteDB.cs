@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SQLite;
 
 namespace DB
@@ -20,20 +19,16 @@ namespace DB
         }
         private static SQLiteConnection DBConnection()
         {
-            if (SQLiteConnection == null)
-            {
-                SQLiteConnection = new SQLiteConnection("Data Source=database.db; Version=3;");
-                SQLiteConnection.Open();
-            }
-            return SQLiteConnection;
-        }
-        public static void CreateDB()
-        {
             try
-            { 
-                SQLiteConnection.CreateFile(@"database.db");
+            {
+                if (SQLiteConnection == null)
+                {
+                    SQLiteConnection = new SQLiteConnection("Data Source=database.db; Version=3;");
+                    SQLiteConnection.Open();
+                }
+                return SQLiteConnection;
             }
-            catch { throw; }
+            catch { throw;  }
         }
         public static void CreateTable()
         {
@@ -50,8 +45,8 @@ namespace DB
                         CREATE TABLE IF NOT EXISTS reports (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             date DATE NOT NULL,
-                            stock INTEGER,
-                            production INTEGER,
+                            stock INTEGER DEFAULT 0,
+                            production INTEGER DEFAULT 0,
                             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
                         );
                         CREATE TABLE IF NOT EXISTS routes (

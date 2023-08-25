@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaPlanilhas));
             this.LpGrid = new System.Windows.Forms.DataGridView();
             this.TbLpSaida = new System.Windows.Forms.TextBox();
             this.TbLpVolta = new System.Windows.Forms.TextBox();
@@ -92,6 +93,7 @@
             this.TbLpSaida.Name = "TbLpSaida";
             this.TbLpSaida.Size = new System.Drawing.Size(116, 20);
             this.TbLpSaida.TabIndex = 29;
+            this.TbLpSaida.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbxLpKeyPress);
             // 
             // TbLpVolta
             // 
@@ -99,6 +101,7 @@
             this.TbLpVolta.Name = "TbLpVolta";
             this.TbLpVolta.Size = new System.Drawing.Size(116, 20);
             this.TbLpVolta.TabIndex = 30;
+            this.TbLpVolta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbxLpKeyPress);
             // 
             // TbLpDep
             // 
@@ -367,6 +370,7 @@
             this.TbStock.Name = "TbStock";
             this.TbStock.Size = new System.Drawing.Size(116, 20);
             this.TbStock.TabIndex = 58;
+            this.TbStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbxLpKeyPress);
             this.TbStock.Leave += new System.EventHandler(this.TbProducion_Leave);
             // 
             // TbProducion
@@ -375,6 +379,7 @@
             this.TbProducion.Name = "TbProducion";
             this.TbProducion.Size = new System.Drawing.Size(116, 20);
             this.TbProducion.TabIndex = 59;
+            this.TbProducion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbxLpKeyPress);
             this.TbProducion.Leave += new System.EventHandler(this.TbProducion_Leave);
             // 
             // label13
@@ -463,6 +468,7 @@
             this.Controls.Add(this.TbLpVolta);
             this.Controls.Add(this.TbLpSaida);
             this.Controls.Add(this.LpGrid);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(590, 700);
             this.MinimizeBox = false;

@@ -231,7 +231,7 @@ namespace start
         {
             if (CbPrints.SelectedItem != null)
             {
-                using(var printDocument = new System.Drawing.Printing.PrintDocument())
+                using (var printDocument = new System.Drawing.Printing.PrintDocument())
                 {
                     printDocument.PrinterSettings.PrinterName = CbPrints.SelectedItem.ToString();
                     printDocument.PrintPage += PrintDocumentPage;
