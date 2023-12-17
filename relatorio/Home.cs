@@ -113,14 +113,16 @@ namespace start
             {
                 new ConditionWhere("@date", Convert.ToDateTime(DateTimeCx.Text).ToString("yyyy-MM-dd"))
             };
-            SQLiteDataReader isReport = QuerySelect("SELECT id, date FROM reports WHERE date = DATE(@date)", condition);
+            SQLiteDataReader isReport = QuerySelect("SELECT * FROM reports WHERE date = DATE(@date)", condition);
             if (!isReport.Read())
             {
                 idReport = QueryInsert("INSERT INTO reports(date) VALUES(@date)", condition);
             }
             else
             {
-                idReport = (int)isReport["id"];
+               idReport = Convert.ToInt32(isReport["id"]);
+               TbStock.Text = isReport["stock"].ToString();
+               TbProduction.Text = isReport["production"].ToString();
             }
         }
         private void ListarRel_Click(object sender, EventArgs e)
